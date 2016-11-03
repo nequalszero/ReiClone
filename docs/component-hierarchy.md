@@ -31,6 +31,7 @@
 |Path   | Component   |
 |-------|-------------|
 | "/sign-up" | "AuthFormContainer" |
+| "/sign-in" | "AuthFormContainer" |
 | "/home/:category" | "DisplayResults" |
 | "/home/:category" | "FilterIndex" |
 | "/home/:category/:filters/" | "DisplayResults" |

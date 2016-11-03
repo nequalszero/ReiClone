@@ -2,27 +2,25 @@
 {
   currentUser: {
     id: 1,
-    email: "guest"
+    username: "guest"
   },
 
   shoppingCart: {
     id: 1,
-    customerId: 1,
-    updatedAt: "some date representation",
     items: [
-      {id: 7, quantity: 3},
-      {id: 10, quantity: 1}
+      {category: sleeping_bags, category_id: 7, quantity: 3},
+      {category: tents, category_id: 10, quantity: 1}
     ]
   },
 
   forms: {
     signUp: {errors: []},
     logIn: {errors: []}
-    search: ""
   },
 
   results: {
     1: {
+      id: 5,
       brand: "Sample Brand",
       name: "Sample Item",
       price: 50,
@@ -30,19 +28,14 @@
       numRatings: 10
     },
     2: {
+      id: 8,
       brand: "Sample Brand 2",
       name: "Sample Item 2",
       price: 100,
       rating: 3.5,
       numRatings: 15
     }
-  },
-
-  filters: {
-    category: "Sample category",
-    best_use: "Sample best usage",
-    temperature_rating: "Sample temperature rating"
-  },
+  }
 
 }
 '''

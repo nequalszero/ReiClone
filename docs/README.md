@@ -15,12 +15,12 @@ sufficient CSS styling:
 
 - [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
-- [ ] Search for items
-- [ ] Filter items by various attributes
-- [ ] Sort results by common filters
-- [ ] Add items to shopping cart
-- [ ] Complete checkout
 - [ ] Production README [sample]
+- [ ] Search for items
+- [ ] Display products
+- [ ] Product reviews & comments
+- [ ] Add items to shopping cart
+
 
 ## Design Docs
 * [View Wireframes][wireframes]
@@ -43,7 +43,7 @@ sufficient CSS styling:
 
 ### Phase 2: Sleeping Bags Model, product display pages, individual product page (2 days)
 
-**Objective:** Create sleeping bags model, create intial seed data, connect categories
+**Objective:** Create sleeping bags model, create initial seed data, connect categories
 from nav bar to product display pages, allow clicking a product on product display pages
 to lead to detailed individual product page.
 
@@ -65,6 +65,7 @@ to lead to detailed individual product page.
 
 
 ### Bonus Features (TBD)
+- [ ] Filter/Sort results
 - [ ] Compare items feature
 - [ ] View past purchases
 - [ ] Form for generating gear recommendations

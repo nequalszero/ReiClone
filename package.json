@@ -1,7 +1,7 @@
 {
   "name": "FullstackProject",
   "version": "1.0.0",
-  "description": "",
+  "description": "clone based on REI.com",
   "main": "index.js",
   "directories": {
     "doc": "docs"
