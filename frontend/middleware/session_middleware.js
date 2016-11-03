@@ -19,7 +19,7 @@ const SessionMiddleware = ({ getState, dispatch }) => next => action => {
       login(action.user, successCallback, errorCallback);
       return next(action);
     case LOGOUT:
-      logout(successCallback, errorCallback);
+      logout(() => next(action));
       return next(action);
     case SIGNUP:
       signup(action.user, successCallback, errorCallback);

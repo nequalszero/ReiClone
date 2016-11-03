@@ -1,9 +1,12 @@
 '''js
 {
-  currentUser: {
-    id: 1,
-    username: "guest"
-  },
+  session: {
+    currentUser: {
+      id: 1,
+      username: "guest"
+      }
+    errors: []
+  }
 
   shoppingCart: {
     id: 1,
@@ -11,11 +14,6 @@
       {category: sleeping_bags, category_id: 7, quantity: 3},
       {category: tents, category_id: 10, quantity: 1}
     ]
-  },
-
-  forms: {
-    signUp: {errors: []},
-    logIn: {errors: []}
   },
 
   results: {
