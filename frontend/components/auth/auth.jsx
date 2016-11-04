@@ -26,26 +26,32 @@ class Auth extends React.Component {
     let loginClassName = "authFormDropDown-login";
     let signupClassName = "authFormDropDown-signup";
     return(
-      <nav className="header auth">
+      <nav className="header-auth">
+        <li className="sign-up"
+          onClick={this.toggleFormDropDown(signupClassName)}>SIGN UP</li>
+        <SessionFormContainer formType="signup"
+          className={signupClassName}/>
+        
         <li className="sign-in"
             onClick={this.toggleFormDropDown(loginClassName)}>SIGN IN</li>
           <SessionFormContainer formType="login"
                                 className={loginClassName}/>
-        <li className="sign-up"
-            onClick={this.toggleFormDropDown(signupClassName)}>SIGN UP</li>
-        <SessionFormContainer formType="signup"
-                              className={signupClassName}/>
-        <li>Cart</li>
+        <li>CART</li>
       </nav>
     );
   }
 
   loggedInHeader() {
+    let accountDetailsClass = "account-details-dropdown";
     return (
-      <nav className="header auth">
-        <li className="account-details">My Account</li>
-          <AccountDetailsContainer/>
-        <li>Cart</li>
+      <nav className="header-auth">
+        <li className="placeholder-li"></li>
+        <li className="my-account"
+            onClick={this.toggleFormDropDown(accountDetailsClass)}>
+            My Account</li>
+          <AccountDetailsContainer className="account-details-dropdown"/>
+
+        <li>CART</li>
       </nav>
     );
   }

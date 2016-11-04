@@ -13,8 +13,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, {formType, className}) => ({
     formAction: formType === 'login' ? (user) => dispatch(login(user))
                                      : (user) => dispatch(signup(user)),
-    formType,
-    className
+
 });
 
 export default connect(

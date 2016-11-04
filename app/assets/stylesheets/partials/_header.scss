@@ -1,13 +1,16 @@
-header {
-  position: relative;
+.header{
+  background-color: black;
+}
+
+.header-nav {
   min-width: 990px;
   max-width: 1040px;
-  background-color: black;
   color: white;
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 20px;
   padding-bottom: 25px;
+  margin: 0 auto;
 }
 
 .header-logo-container {
@@ -67,29 +70,89 @@ header {
   background-color: white;
 }
 
-.authForms-ul > nav {
+nav .header-auth {
   display: flex;
   justify-content: space-around;
   width: 300px;
-}
-
-.authForms-ul > li {
   position: relative;
-  display: inline-block;
-  font-size: 14px;
 }
 
-.authForms-ul > li > form {
+nav .header-auth > li {
+  position: relative;
+  list-style: none;
+  font-size: 16px;
+}
+
+.header-auth > li:hover {
+  color: $lime-green;
+  cursor: pointer;
+}
+
+.login-form-container {
   position: absolute;
-  background-color: white;
+  border: 1px solid black;
+  background-color: #fff;
+  font-size: 20px;;
+  height: 230px;
+  width: 240px;
   color: black;
+  top: 20px;
+  right: -100px;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  z-index: 1;
 }
 
-.authFormDropDown-login {
-  color: black;
-  bottom: -5px;
+.login-form > label{
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
-.authFormDropDown-signup {
+.login-form > button{
+  display: block;
+  background-color: $button-blue;
+  font-weight: bold;
+  width: 188px;
+  height: 27px;
+  padding: 6px 24px;
+  border: 1px solid $button-blue;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-form-container:hover {
+  cursor: default;
+}
+
+.login-form-container .login-input {
+  display: block;
+  font-weight: normal;
+  width: 204px;
+  height: 26px;
+  padding: 6px 16px;
+  border: 1px solid black;
+}
+
+.account-details-dropdown {
+  position: absolute;
+  cursor: default;
+  border: 1px solid black;
+  background-color: #fff;
+  font-size: 20px;;
+  height: 230px;
+  width: 240px;
   color: black;
+  top: 20px;
+  right: -100px;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  z-index: 1;
+}
+
+.placeholder-li {
+  display: none;
 }

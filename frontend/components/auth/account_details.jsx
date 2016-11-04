@@ -3,9 +3,11 @@ import React from 'react';
 const AccountDetails = (props) => {
   console.log("props: ", props);
   return(
-    <section>
-      <h3>{props.currentUser.username}</h3>
-    </section>
+    <li>
+      <div className={props.className}>
+        <label>{props.currentUser.username}</label>
+      </div>
+    </li>
   );
 };
 
