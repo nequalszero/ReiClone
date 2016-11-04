@@ -1,0 +1,95 @@
+header {
+  position: relative;
+  min-width: 990px;
+  max-width: 1040px;
+  background-color: black;
+  color: white;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 25px;
+}
+
+.header-logo-container {
+  height: 100px;
+  width: 140px;
+}
+
+.header-logo {
+  height: 100px;
+  width: 100px;
+}
+
+.categories-ul {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.categories-ul > li {
+  display: inline-block;
+  padding-right: 25px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header-search-bar {
+  display: flex;
+  align-items: center;
+  min-width: 420px;
+  background-color: #999;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header-search-bar > input {
+  width: 380px;
+  padding-left: 20px;
+}
+
+.search-auth-container {
+  display: flex;
+  justify-content: space-between;
+  width: 900px;
+}
+
+.search-auth-categories-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100px;
+}
+
+.logo-search-categories-container {
+  display: flex;
+}
+
+.login-form-container {
+  background-color: white;
+}
+
+.authForms-ul > nav {
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+}
+
+.authForms-ul > li {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.authForms-ul > li > form {
+  position: absolute;
+  background-color: white;
+  color: black;
+}
+
+.authFormDropDown-login {
+  color: black;
+  bottom: -5px;
+}
+
+.authFormDropDown-signup {
+  color: black;
+}

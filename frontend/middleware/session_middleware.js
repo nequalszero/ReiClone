@@ -2,7 +2,8 @@ import { receiveCurrentUser,
          receiveErrors,
          LOGIN,
          LOGOUT,
-         SIGNUP
+         SIGNUP,
+         GUEST_LOGIN
        } from '../actions/session_actions';
 
 import { login, signup, logout } from '../util/session_api_util';
@@ -23,6 +24,9 @@ const SessionMiddleware = ({ getState, dispatch }) => next => action => {
       return next(action);
     case SIGNUP:
       signup(action.user, successCallback, errorCallback);
+      return next(action);
+    case GUEST_LOGIN:
+      login(action.user, successCallback, errorCallback);
       return next(action);
     default:
       return next(action);
