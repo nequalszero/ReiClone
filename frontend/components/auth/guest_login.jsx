@@ -11,7 +11,6 @@ class GuestLogin extends React.Component {
   }
 
   render() {
-    console.log("guest login: ", this.props);
     return (
       <li className="guest-login"
           onClick={this.guestLogin}>GUEST LOGIN</li>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  color: MyString
+  weight: 9.99
+  temperature_rating: 1
+  gender: MyString
+  fits_up_to: 9.99
+  insulation_type: MyString
+  bag_shape: MyString
+  zipper_location: MyString
+  fill_power: 1
+
+two:
+  color: MyString
+  weight: 9.99
+  temperature_rating: 1
+  gender: MyString
+  fits_up_to: 9.99
+  insulation_type: MyString
+  bag_shape: MyString
+  zipper_location: MyString
+  fill_power: 1
