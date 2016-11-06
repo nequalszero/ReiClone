@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AccountDetails from './account_details';
-import { logout, login, signup, guestLogin }
+import { logout }
   from '../../actions/session_actions';
 
 // currentUser: state.session.currentUser,

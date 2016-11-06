@@ -22,23 +22,37 @@ cart_id            | integer   | not null, indexed, foreign key
 item_id            | integer   | not null, indexed, foreign key
 quantity           | integer   | not null
 
-## items
+## categories
 column name        | data type | details
 -------------------|-----------|-----------------------
 id                 | integer   | not null, primary key
-category           | string    | not null, foreign key
-category_id        | integer   | not null, foreign key
+category           | string    | not null
+
+## products
+column name        | data type | details
+-------------------|-----------|-----------------------
+id                 | integer   | not null, primary key
+category_id        | integer   | not null, indexed, foreign key
+brand              | string    | not null
+name               | string    | not null
+price              | decimal   | not null
+rating             | decimal   | not null, default: 0
+num_ratings        | integer   | not null, default: 0
+best_use           | string    | not null
+features           | string    |
+description        | text      | not null
+
+## details
+column name        | data type | details
+-------------------|-----------|-----------------------
+id                 | integer   | not null, primary key
+product_id         | integer   | not null, indexed, foreign key
+description        | text      | not null
 
 ## sleeping_bags
 column name        | data type | details
 -------------------|-----------|-----------------------
 id                 | integer   | not null, indexed, primary key
-brand              | string    | not null
-features           | string    | not null
-price              | decimal   | not null
-best_use           | string    | not null
-num_ratings        | integer   | not null, default: 0
-rating             | decimal   | not null, default: 0
 color              | string    | not null
 weight             | decimal   | not null
 temperature_rating | integer   | not null
@@ -49,6 +63,15 @@ bag_shape          | string    | not null
 zipper_location    | string    | not null
 fill_power         | integer   |
 
+## tents
+column name        | data type | details
+-------------------|-----------|-----------------------
+id                 | integer   | not null, indexed, primary key
+sleeping_capacity  | string    | not null
+seasons            | string    | not null
+weight             | decimal   | not null
+number_of_doors    | integer   | not null
+
 ## reviews
 column name      | data type | details
 -----------------|-----------|-----------------------
@@ -57,4 +80,4 @@ customer_id      | string    | not null, indexed, foreign key
 product_id       | string    | not null, indexed, foreign key
 rating           | integer   | not null
 title            | string    | not null
-body             | string    | not null
+body             | text      | not null

@@ -14,8 +14,8 @@ class AccountDetails extends React.Component {
   renderMyAccountForm(buttonText, username) {
     return(
       <div className="account-details-container">
-        <label>{username}</label>
-        <br/>
+        <label>Hello {username}</label>
+        <br/><br/>
         <button onClick={this.submitSessionForm}>{buttonText}</button>
       </div>
     );

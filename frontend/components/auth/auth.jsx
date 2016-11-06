@@ -1,11 +1,27 @@
 import React from 'react';
 import SessionFormContainer from './session_form_container';
 import AccountDetailsContainer from './account_details_container';
+import GuestLoginContainer from './guest_login_container';
 
 class Auth extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  toggleFormDropDown(targetClass) {
+    return (e) => {
+      let targetForm = document.getElementsByClassName(targetClass);
+      if (targetForm.length !== 1){
+        let num = targetForm.length;
+        console.log(`Error in toggleFormDropDown: ${num} elements found` +
+          `for class ${targetClass}`);
+        } else {
+          targetForm = targetForm[0];
+          targetForm.style.display = targetForm.style.display === "none"
+          ? "block" : "none";
+        }
+      };
+    }
 
   hideFormDropDown(targetClass) {
     let targetForm = document.getElementsByClassName(targetClass);
@@ -15,23 +31,8 @@ class Auth extends React.Component {
                   `for class ${targetClass}`);
     } else {
       targetForm = targetForm[0];
-      targetForm.style.display = targetForm.style.display || "none";
+      targetForm.style.display = "none";
     }
-  }
-
-  toggleFormDropDown(targetClass) {
-    return (e) => {
-      let targetForm = document.getElementsByClassName(targetClass);
-      if (targetForm.length !== 1){
-        let num = targetForm.length;
-        console.log(`Error in toggleFormDropDown: ${num} elements found` +
-                    `for class ${targetClass}`);
-      } else {
-        targetForm = targetForm[0];
-        targetForm.style.display = targetForm.style.display === "none"
-                                    ? "block" : "none";
-      }
-    };
   }
 
   hideLoginAndSignupContainers() {
@@ -49,11 +50,14 @@ class Auth extends React.Component {
     let accountClass = "account-details-dropdown";
     let accountContainer = document.getElementsByClassName(accountClass)[0];
     let signupLink = document.getElementsByClassName("sign-up")[0];
+    let guestLoginLink = document.getElementsByClassName("guest-login")[0];
     signupLink.style.display = "block";
+    guestLoginLink.style.display = "block";
 
     if (accountContainer) {
       accountContainer.style.display = "block";
       signupLink.style.display = "none";
+      guestLoginLink.style.display = "none";
     }
   }
 
@@ -65,6 +69,7 @@ class Auth extends React.Component {
     if (status === "logged_out") {
       return(
         <nav className="header-auth">
+          <GuestLoginContainer />
           <li className="sign-up"
             onClick={this.toggleFormDropDown(signupClassName)}>SIGN UP</li>
           <SessionFormContainer formType="signup"
@@ -81,6 +86,7 @@ class Auth extends React.Component {
 
       return(
         <nav className="header-auth">
+            <GuestLoginContainer />
             <li className="sign-up"
               onClick={this.toggleFormDropDown(signupClassName)}>SIGN UP</li>
             <SessionFormContainer formType="signup"
