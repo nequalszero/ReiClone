@@ -1,0 +1,28 @@
+SleepingBag.create(weight: ,
+                   temperature_rating: ,
+                   gender: "",
+                   fits_up_to: ,
+                   insulation_type: "",
+                   bag_shape: "",
+                   zipper_location: "",
+                   fill_power: ,
+                   color: "",
+                   packed_size:
+                  )
+
+Product.create(category_id: 1,
+               product_table_id: ,
+               brand_id: ,
+               name: "",
+               price: ,
+               rating: ,
+               num_ratings: ,
+               best_use: "Backpacking",
+               primary_image: "",
+               result_image: "c_scale,h_200/",
+               description: ""
+              )
+
+Feature.create(product_id: , name: "")
+
+Detail.create(product_id: , description: "")

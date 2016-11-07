@@ -47,7 +47,8 @@ column name        | data type | details
 id                 | integer   | not null, primary key
 category_id        | integer   | not null, indexed, foreign key
 brand_id           | integer   | not null, indexed, foreign key
-primary_image_url  | string    | not null
+result_image       | string    | not null
+primary_image      | string    | not null
 name               | string    | not null
 price              | decimal   | not null
 rating             | decimal   | not null, default: 0
@@ -85,6 +86,8 @@ insulation_type    | string    | not null
 bag_shape          | string    | not null
 zipper_location    | string    | not null
 fill_power         | integer   |
+packed_size        | decimal   |
+
 
 ## tents
 column name        | data type | details
@@ -94,6 +97,10 @@ sleeping_capacity  | string    | not null
 seasons            | string    | not null
 weight             | decimal   | not null
 number_of_doors    | integer   | not null
+floor_area         | decimal   | not null
+peak_height        | integer   | not null
+design_type        | string    | not null
+
 
 
 Retrieving category items from database:

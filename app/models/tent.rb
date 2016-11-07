@@ -1,4 +1,4 @@
 class Tent < ActiveRecord::Base
   validates :sleeping_capacity, :seasons, :weight, :number_of_doors,
-            presence: true
+            :floor_area, :peak_height, :design_type, presence: true
 end

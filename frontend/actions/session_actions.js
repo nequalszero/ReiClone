@@ -31,5 +31,5 @@ export const receiveErrors = errors => ({
 
 export const guestLogin = () => ({
   type: GUEST_LOGIN,
-  user: {user: {username: 'guest', password: 'asdfasdf'}}
+  user: {user: {username: 'Guest', password: 'asdfasdf'}}
 });

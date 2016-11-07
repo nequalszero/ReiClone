@@ -9,6 +9,8 @@ class CreateProducts < ActiveRecord::Migration
       t.decimal :rating, null: false, default: 0
       t.integer :num_ratings, null: false, default: 0
       t.string :best_use
+      t.string :primary_image, null: false
+      t.string :result_image, null: false
       t.text :description, null: false
 
       t.index [:category_id, :product_table_id], unique: true

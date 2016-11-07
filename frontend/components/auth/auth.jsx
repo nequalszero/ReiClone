@@ -41,10 +41,21 @@ class Auth extends React.Component {
   }
 
   componentDidMount() {
+    console.log("auth.jsx component did mount");
     this.hideLoginAndSignupContainers();
+    if (this.props.currentUser) {
+      let accountClass = "account-details-dropdown";
+      let signupLink = document.getElementsByClassName("sign-up")[0];
+      let guestLoginLink = document.getElementsByClassName("guest-login")[0];
+      let accountContainer = document.getElementsByClassName(accountClass)[0];
+      signupLink.style.display = "none";
+      guestLoginLink.style.display = "none";
+      accountContainer.style.display = "none";
+    }
   }
 
   componentDidUpdate() {
+    console.log("auth.jsx component did update");
     this.hideLoginAndSignupContainers();
 
     let accountClass = "account-details-dropdown";
@@ -55,6 +66,7 @@ class Auth extends React.Component {
     guestLoginLink.style.display = "block";
 
     if (accountContainer) {
+      console.log("accountContainer exists");
       accountContainer.style.display = "block";
       signupLink.style.display = "none";
       guestLoginLink.style.display = "none";

@@ -41,7 +41,14 @@ document.addEventListener("click", (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const store = configureStore();
+  let store;
+  if (window.currentUser) {
+    const preloadedState = {session: {currentUser: window.currentUser}};
+    store = configureStore(preloadedState);
+  } else {
+    store = configureStore();
+  }
+  
   window.store = store;
   const rootEl = document.getElementById('root');
   ReactDOM.render(<Root store={store}/>, rootEl);

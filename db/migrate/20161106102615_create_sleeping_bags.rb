@@ -10,6 +10,7 @@ class CreateSleepingBags < ActiveRecord::Migration
       t.string :zipper_location, null: false
       t.integer :fill_power
       t.string :color
+      t.decimal :packed_size
 
       t.timestamps null: false
     end

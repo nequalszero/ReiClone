@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106112201) do
+ActiveRecord::Schema.define(version: 20161107012156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20161106112201) do
     t.text     "description",                    null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.string   "primary_image",                  null: false
+    t.string   "result_image",                   null: false
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
@@ -92,6 +94,7 @@ ActiveRecord::Schema.define(version: 20161106112201) do
     t.string   "color"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.decimal  "packed_size"
   end
 
   create_table "tents", force: :cascade do |t|
@@ -101,6 +104,9 @@ ActiveRecord::Schema.define(version: 20161106112201) do
     t.string   "number_of_doors",   null: false
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.decimal  "floor_area",        null: false
+    t.integer  "peak_height",       null: false
+    t.string   "design_type",       null: false
   end
 
   create_table "users", force: :cascade do |t|
