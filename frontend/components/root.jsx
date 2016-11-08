@@ -2,18 +2,20 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from './app';
-import SessionFormContainer from './session_form/session_form_container';
+import ResultsIndexContainer from './products/results_index_container';
+//import ProductsContainer from './products/products_container';
+//<Route path="/product/:productId/" component={ProductsContainer} />
 
-// <Route path="/login" component={SessionFormContainer} />
-// <Route path="/signup" component={SessionFormContainer} />
-
-const Root = ({ store }) => (
-  <Provider store={store}>
-    <Router history={hashHistory}>
-      <Route path="/" component={App}>
-      </Route>
-    </Router>
-  </Provider>
-);
+const Root = ( props ) => {
+  return(
+    <Provider store={props.store}>
+      <Router history={hashHistory}>
+        <Route path="/" component={App}>
+          <Route path="/category/:categoryId" component={ResultsIndexContainer} />
+        </Route>
+      </Router>
+    </Provider>
+  );
+};
 
 export default Root;

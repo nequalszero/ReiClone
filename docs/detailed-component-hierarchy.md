@@ -65,6 +65,5 @@
 | "/" | "SearchBarContainer" |
 | "/" | "CategoryContainer" |
 | "/category/:category" | "ProductsIndex" |
-| "/category/:category/category-id/:id" | "DisplayResults" |
-| "/category/:category/category-id/:id" | "DisplayResults" |
+| "/products/:id" | "DisplayResults" |
 | "/shopping-cart/:id" | "ShoppingCartIndex" |

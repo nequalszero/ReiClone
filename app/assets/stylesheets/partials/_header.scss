@@ -35,6 +35,11 @@
   font-weight: bold;
 }
 
+.categories-ul > li:hover {
+  color: $lime-green;
+  cursor: pointer;
+}
+
 .header-search-bar {
   display: flex;
   align-items: center;
@@ -74,7 +79,7 @@
 nav .header-auth {
   display: flex;
   justify-content: space-around;
-  width: 300px;
+  width: 400px;
   position: relative;
 }
 
@@ -82,6 +87,7 @@ nav .header-auth > li {
   position: relative;
   list-style: none;
   font-size: 16px;
+  padding: 8px 8px;
 }
 
 .header-auth > li:hover {
@@ -97,7 +103,7 @@ nav .header-auth > li {
   height: 230px;
   width: 240px;
   color: black;
-  top: 20px;
+  top: 30px;
   right: -100px;
   padding-top: 30px;
   padding-left: 30px;
@@ -145,8 +151,8 @@ nav .header-auth > li {
   height: 230px;
   width: 240px;
   color: black;
-  top: 20px;
-  right: -100px;
+  top: 30px;
+  right: -24px;
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;

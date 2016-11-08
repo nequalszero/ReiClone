@@ -1,10 +1,16 @@
 import React from 'react';
 import AuthContainer from './auth/auth_container';
+import CategoryIndexContainer from './products/category_index_container';
 
-const App = ({ children }) => {
-  // <CartContainer />
-  const logoURL = "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_100/v1478194085/animal-icon-png-6295_rk9nzw.png";
+const renderHomePage = (props) => {
   const backgroundURL = "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_600/v1478298316/sheep-1476781_1920_itrb02.jpg";
+  if (props.location.pathname === "/") {
+    return(<img src={backgroundURL}/>);
+  }
+};
+
+const App = ( props ) => {
+  const logoURL = "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_100/v1478194085/animal-icon-png-6295_rk9nzw.png";
   return(
     <section>
       <header className="header">
@@ -25,19 +31,15 @@ const App = ({ children }) => {
               </div>
 
               <nav className="categories">
-                <ul className="categories-ul">
-                  <li key="Cat1">Cat 1</li>
-                  <li key="Cat2">Cat 2</li>
-                  <li key="Cat3">Cat 3</li>
-                </ul>
+                <CategoryIndexContainer />
               </nav>
             </div>
           </div>
         </nav>
 
       </header>
-      <img src={backgroundURL}/>
-      {children}
+      {renderHomePage(props)}
+      {props.children}
     </section>
   );
 };

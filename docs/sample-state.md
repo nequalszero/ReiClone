@@ -23,7 +23,8 @@
       name: "Sample Item",
       price: 50,
       rating: 2.5,
-      numRatings: 10
+      numRatings: 10,
+      result_image: "some cloudinary url"
     },
     2: {
       id: 8,
@@ -31,7 +32,8 @@
       name: "Sample Item 2",
       price: 100,
       rating: 3.5,
-      numRatings: 15
+      numRatings: 15,
+      result_image: "some cloudinary url"
     }
   }
 
