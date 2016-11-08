@@ -22,8 +22,8 @@ class ResultsIndex extends React.Component {
         <h2 className="category-name">{displayText[this.props.categoryId]}</h2>
         <div className="product-results-container">
           {
-            this.props.product.items.map((item) => (
-              <ResultsIndexItem item={item}/>
+            this.props.results.items.map((item) => (
+              <ResultsIndexItem item={item} key={item.id}/>
             ))
           }
         </div>
@@ -33,7 +33,7 @@ class ResultsIndex extends React.Component {
 
   loadResults() {
     console.log("this.props", this.props);
-    if (this.props.product.items) {
+    if (this.props.results.items) {
       let results = this.displayResults();
       return results;
     } else {

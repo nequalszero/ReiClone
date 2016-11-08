@@ -1,33 +1,28 @@
-import { RECEIVE_ITEMS,
-         RECEIVE_ERRORS,
-         RECEIVE_CATEGORIES
+import { RECEIVE_ITEM,
+         RECEIVE_ERRORS
        } from '../actions/product_actions';
 import merge from 'lodash/merge';
 
 const _defaultProduct = Object.freeze({
-  items: null,
-  errors: [],
-  categories: []
+  product: null,
+  errors: []
 });
 
-const ProductReducer = (oldState = _defaultProduct, action) => {
+const ResultsReducer = (oldState = _defaultProduct, action) => {
   Object.freeze(oldState);
   let newState = merge({}, oldState);
   newState.errors = [];
 
   switch(action.type) {
-    case RECEIVE_ITEMS:
-      let items = action.items;
-      return merge(newState, { items });
+    case RECEIVE_ITEM:
+      let item = action.item;
+      return merge(newState, { item });
     case RECEIVE_ERRORS:
       let errors = action.errors;
       return merge(newState, { errors });
-    case RECEIVE_CATEGORIES:
-      let categories = action.categories;
-      return merge(newState, { categories });
     default:
       return oldState;
   }
 };
 
-export default ProductReducer;
+export default ResultsReducer;

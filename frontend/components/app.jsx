@@ -14,7 +14,7 @@ const redirectIfNotHome = (url, props) => {
   if (props.location.pathname !== "/") {
     return (e) => props.router.push(url);
   }
-}
+};
 
 const App = ( props ) => {
   const logoURL = "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_100/v1478194085/animal-icon-png-6295_rk9nzw.png";

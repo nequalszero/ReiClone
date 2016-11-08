@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import ResultsIndex from './results_index';
-import { requestCategoryItems } from '../../actions/product_actions';
+import { requestCategoryItems } from '../../actions/results_actions';
 
 const mapStateToProps = (state, {params}) => ({
   categoryId: parseInt(params.categoryId),
-  product: state.product
+  results: state.results
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {

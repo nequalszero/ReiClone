@@ -4,23 +4,20 @@ import { withRouter } from 'react-router';
 const padPrice = (price) => {
   let priceString = price;
   if (price.split(".")[1].length === 1) {
-    console.log("padding price");
     priceString = priceString + "0";
   }
-  console.log(priceString);
   return priceString;
 };
 
 const ResultsIndexItem = ({ item, router }) => {
-  console.log("item: ", item);
   const handleClick = url => e => router.push(url);
   let itemName = `${item.brand} ${item.name}`;
   let paddedPrice = padPrice(item.price);
+  let uniqueKey = `${item.id}-${item.name}`;
 
   return (
-    <div>
-      <div key="item.id"
-           className="results-index-item"
+    <div key={uniqueKey}>
+      <div className="results-index-item"
            onClick={handleClick(`/product/${item.id}`)}>
         <div className="result-image-container">
           <img className="result-image" src={item.result_image} alt={itemName}/>

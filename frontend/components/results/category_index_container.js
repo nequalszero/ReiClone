@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import CategoryIndex from './category_index';
-import { requestCategories } from '../../actions/product_actions';
+import { requestCategories } from '../../actions/results_actions';
 
 const mapStateToProps = state => {
   return {
-    categories: state.product.categories
+    categories: state.results.categories
   };
 };
 

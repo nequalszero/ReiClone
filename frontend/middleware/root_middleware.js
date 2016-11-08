@@ -1,10 +1,10 @@
 import { applyMiddleware } from 'redux';
 import SessionMiddleware from './session_middleware';
-import ProductMiddleware from './product_middleware';
+import ResultsMiddleware from './results_middleware';
 
 const RootMiddleware = applyMiddleware(
   SessionMiddleware,
-  ProductMiddleware
+  ResultsMiddleware
 );
 
 export default RootMiddleware;
