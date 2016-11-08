@@ -8,7 +8,6 @@ const mapStateToProps = (state, {params}) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log("ownProps:", ownProps);
   return {
     requestCategoryItems: (id) => dispatch(requestCategoryItems(id))
   };

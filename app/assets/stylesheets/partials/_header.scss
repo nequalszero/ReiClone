@@ -14,8 +14,15 @@
 }
 
 .header-logo-container {
+  display: flex;
+  justify-content: center;
   height: 100px;
   width: 140px;
+  padding-right: 30px;
+}
+
+.header-logo-container:hover {
+  cursor: pointer;
 }
 
 .header-logo {

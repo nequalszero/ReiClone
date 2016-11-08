@@ -15,3 +15,12 @@ export const fetchCategories = (success, error) => (
     error
   })
 );
+
+export const fetchItem = (productId, success, error) => (
+  $.ajax({
+    url: `api/products/${productId}`,
+    type: 'GET',
+    success,
+    error
+  })
+);
