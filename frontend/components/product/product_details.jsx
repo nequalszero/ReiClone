@@ -6,17 +6,55 @@ class ProductDisplay extends React.Component {
     console.log("ProductDisplay props: ", props);
   }
 
+  componentDidMount() {
+    console.log("componentDidMount");
+    let details = document.getElementsByClassName("product-details-link")[0];
+    details.style.borderBottom = "6px solid #06c";
+    details.style.color = "black";
+
+    let specs = document.getElementsByClassName("product-specs-link")[0];
+    specs.style.borderBottom = "none";
+    specs.style.color = "#06c";
+  }
+
+  toggleLink(targetLink) {
+    console.log("toggling", targetLink);
+    let details = document.getElementsByClassName("product-details-link")[0];
+    let specs = document.getElementsByClassName("product-specs-link")[0];
+    let target = document.getElementsByClassName(targetLink)[0];
+
+    if (specs) {
+      const links = [details, specs];
+      links.forEach(link => {
+        switch(link) {
+          case target:
+          link.style.borderBottom = "6px solid #06c";
+          link.style.color = "black";
+          break;
+        default:
+          link.style.borderBottom = "none";
+          link.style.color = "#06c";
+          break;
+        }
+      });
+    }
+
+  }
+
   detailsNavigationBar() {
     return(
       <ul className="product-details-nav">
-        <li className="product-details-nav">
-          Details
+        <li className="product-details-link"
+            onClick={() => {this.toggleLink("product-details-link");}}>
+            Details
         </li>
-        <li className="product-details-nav">
-          Specs
+        <li className="product-specs-link"
+            onClick={() => {this.toggleLink("product-specs-link");}}>
+            Specs
         </li>
-        <li className="product-details-nav">
-          Reviews
+        <li className="product-reviews-link">
+          Rew
+          views
         </li>
       </ul>
     );

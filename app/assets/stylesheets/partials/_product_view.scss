@@ -129,7 +129,7 @@ ul.product-details-nav {
   margin-bottom: 12px;
 }
 
-li.product-details-nav {
+ul.product-details-nav > li {
   display: block;
   text-align: center;
   padding: 11px 16px;
@@ -137,7 +137,7 @@ li.product-details-nav {
   font-weight: bold;
 }
 
-li.product-details-nav:hover {
+ul.product-details-nav > li:hover {
   color: black;
   cursor: pointer;
 }

@@ -83,15 +83,21 @@ class Auth extends React.Component {
         <nav className="header-auth">
           <GuestLoginContainer />
           <li className="sign-up"
-            onClick={this.toggleFormDropDown(signupClassName)}>SIGN UP</li>
+            onClick={this.toggleFormDropDown(signupClassName)}>
+            SIGN UP <i className="fa fa-user-plus fa-lg" aria-hidden="true"></i>
+          </li>
           <SessionFormContainer formType="signup"
                                 className={signupClassName}/>
 
           <li className="sign-in"
-            onClick={this.toggleFormDropDown(loginClassName)}>SIGN IN</li>
+            onClick={this.toggleFormDropDown(loginClassName)}>
+            SIGN IN <i className="fa fa-user-circle fa-lg" aria-hidden="true"></i>
+          </li>
           <SessionFormContainer formType="login"
                                 className={loginClassName}/>
-          <li>CART</li>
+          <li>
+            CART <i className="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+          </li>
         </nav>
       );
     } else {
@@ -100,14 +106,21 @@ class Auth extends React.Component {
         <nav className="header-auth">
             <GuestLoginContainer />
             <li className="sign-up"
-              onClick={this.toggleFormDropDown(signupClassName)}>SIGN UP</li>
+              onClick={this.toggleFormDropDown(signupClassName)}>
+              SIGN UP
+            </li>
             <SessionFormContainer formType="signup"
                                   className={signupClassName}/>
             <li className="my-account"
                 onClick={this.toggleFormDropDown(accountDetailsClass)}>
-                MY ACCOUNT</li>
+                MY ACCOUNT <i className="fa fa-user-circle-o fa-lg"
+                              aria-hidden="true"></i>
+            </li>
               <AccountDetailsContainer className={accountDetailsClass}/>
-              <li>CART</li>
+              <li>
+                CART <i className="fa fa-shopping-cart fa-lg"
+                        aria-hidden="true"></i>
+              </li>
         </nav>
       );
     }

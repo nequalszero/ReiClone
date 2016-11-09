@@ -6,13 +6,13 @@ column name      | data type | details
 id               | integer   | not null, primary key
 username         | string    | not null, indexed, unique
 password_digest  | string    | not null
-session_token    | string    | not null, indexed, unique
-shopping_cart_id | integer   | not null, indexed, unique, foreign key
+session_token    | string    | not null, indexed, unique key
 
 ## shopping_carts
 column name        | data type | details
 -------------------|-----------|-----------------------
 id                 | integer   | not null, primary key
+user_id            | integer   | 
 
 ## shopping_cart_items
 column name        | data type | details

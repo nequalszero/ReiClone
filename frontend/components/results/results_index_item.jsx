@@ -9,11 +9,37 @@ const padPrice = (price) => {
   return priceString;
 };
 
+const formatRating = (rating) => {
+  const star = <i className="fa fa-star" aria-hidden="true"></i>;
+  const emptyStar = <i className="fa fa-star-o" aria-hidden="true"></i>;
+  const halfStar = <i className="fa fa-star-half-o" aria-hidden="true"></i>;
+
+  if (rating === 0.0) {
+    return [emptyStar, emptyStar, emptyStar, emptyStar, emptyStar];
+  } else {
+    let starArray = [];
+    let numStars = Math.floor(rating);
+    let residualStar = Math.round((rating - numStars)*10)/10;
+    console.log("residualStar", residualStar);
+    for (let i = 0; i < numStars; i++) {
+      starArray.push(star);
+    }
+    if (residualStar >= 0.3 && residualStar <= 0.8) {
+      starArray.push(halfStar);
+    }
+    while (starArray.length < 5) {
+      starArray.push(emptyStar);
+    }
+    return starArray;
+  }
+};
+
 const ResultsIndexItem = ({ item, router }) => {
   const handleClick = url => e => router.push(url);
   let itemName = `${item.brand} ${item.name}`;
   let paddedPrice = padPrice(item.price);
   let uniqueKey = `${item.id}-${item.name}`;
+  let rating = formatRating(parseFloat(item.rating));
 
   return (
     <div key={uniqueKey}>
@@ -28,7 +54,9 @@ const ResultsIndexItem = ({ item, router }) => {
             <span className="item_name">{item.name}</span>
           </section>
           <span className="item_price">${paddedPrice}</span>
-          <span className="rating">Rating: {item.rating} ({item.num_ratings})</span>
+          <span className="rating">
+            {rating} {item.rating} ({item.num_ratings})
+          </span>
         </section>
       </div>
     </div>

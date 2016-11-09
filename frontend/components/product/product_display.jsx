@@ -51,10 +51,35 @@ class ProductDisplay extends React.Component {
     return priceString;
   }
 
+  formatRating(rating) {
+    const star = <i className="fa fa-star" aria-hidden="true"></i>;
+    const emptyStar = <i className="fa fa-star-o" aria-hidden="true"></i>;
+    const halfStar = <i className="fa fa-star-half-o" aria-hidden="true"></i>;
+
+    if (rating === 0.0) {
+      return [emptyStar, emptyStar, emptyStar, emptyStar, emptyStar];
+    } else {
+      let starArray = [];
+      let numStars = Math.floor(rating);
+      let residualStar = Math.round((rating - numStars)*10)/10;
+      for (let i = 0; i < numStars; i++) {
+        starArray.push(star);
+      }
+      if (residualStar >= 0.3 && residualStar <= 0.8) {
+        starArray.push(halfStar);
+      }
+      while (starArray.length < 5) {
+        starArray.push(emptyStar);
+      }
+      return starArray;
+    }
+  }
+
   renderProductImagePriceAndReviews() {
     let item = this.props.product.item;
     let title = `${item.brand} ${item.name}`;
     let price = this.padPrice(item.price);
+    let rating = this.formatRating(parseFloat(item.rating));
 
     return(
       <div className="product-image-price-reviews-container">
@@ -70,7 +95,7 @@ class ProductDisplay extends React.Component {
             </div>
             <div className="product-rating-container">
               <span className="product-rating">
-                Rating: {item.rating} ({item.num_ratings})
+                {rating.map((el) => el)} {item.rating} ({item.num_ratings})
               </span>
             </div>
           </div>
@@ -110,7 +135,8 @@ class ProductDisplay extends React.Component {
         </div>
         <button className="add-product-to-cart"
                 onClick={this.addProductToCart(itemName)}>
-                Add To Cart
+                Add To Cart <i className="fa fa-cart-plus fa-lg"
+                               aria-hidden="true"></i>
         </button>
       </div>
     );
