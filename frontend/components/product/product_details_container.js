@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
-import ProductDisplay from './product_display';
+import ProductDetails from './product_details';
 import { requestItem } from '../../actions/product_actions';
 
-const mapStateToProps = (state, {params}) => ({
-  productId: parseInt(params.productId),
+const mapStateToProps = (state) => ({
   product: state.product
 });
 
@@ -16,4 +15,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductDisplay);
+)(ProductDetails);

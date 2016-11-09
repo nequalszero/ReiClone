@@ -7,10 +7,6 @@ class ResultsIndex extends React.Component {
     super(props);
   }
 
-  componentWillMount() {
-    this.props.requestCategoryItems(this.props.categoryId);
-  }
-
   displayResults() {
     const displayText = {
       1: "Sleeping Bags",
@@ -32,10 +28,8 @@ class ResultsIndex extends React.Component {
   }
 
   loadResults() {
-    console.log("this.props", this.props);
     if (this.props.results.items) {
-      let results = this.displayResults();
-      return results;
+      return this.displayResults();
     } else {
       return (<p>Loading</p>);
     }

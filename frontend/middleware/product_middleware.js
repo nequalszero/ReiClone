@@ -10,7 +10,7 @@ const ProductMiddleware = ({ getState, dispatch }) => next => action => {
 
   switch(action.type) {
     case REQUEST_ITEM:
-      fetchItem(action.item, successCallback, errorCallback);
+      fetchItem(action.id, successCallback, errorCallback);
       return next(action);
     default:
       return next(action);

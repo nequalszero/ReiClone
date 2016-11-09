@@ -33,6 +33,8 @@ SleepingBag.create(weight: 1.45625,
                    bag_shape: "Mummy",
                    zipper_location: "Left",
                    fill_power: 800,
+                   fill: "800-fill goose down",
+                   fill_weight: 0.68125,
                    color: "yellow",
                    packed_size: 5.6
                   )
@@ -74,6 +76,8 @@ SleepingBag.create(weight: 2.125,
                    bag_shape: "Mummy",
                    zipper_location: "Left",
                    fill_power: 875,
+                   fill: "875-fill goose down",
+                   fill_weight: 1.1875,
                    color: "black",
                    packed_size: 7
                   )
@@ -115,6 +119,8 @@ SleepingBag.create(weight: 1.8125,
                    bag_shape: "Mummy",
                    zipper_location: "Left",
                    fill_power: 700,
+                   fill: '700-fill duck down',
+                   fill_weight: 0.925,
                    color: "gray",
                    packed_size: 5.2
                   )
@@ -156,6 +162,8 @@ SleepingBag.create(weight: 1.6875,
                    bag_shape: "Mummy",
                    zipper_location: "Right",
                    fill_power: 700,
+                   fill: '700-fill duck down (top) and PrimaLoft Sport (bottom)',
+                   fill_weight: 0.725,
                    color: "blue",
                    packed_size: 3.7
                   )
@@ -196,6 +204,8 @@ SleepingBag.create(weight: 3.625,
                    insulation_type: "Synthetic",
                    bag_shape: "Semirectangular",
                    zipper_location: "Right",
+                   fill: 'Stratofiber synthetic fibers',
+                   fill_weight: 2.91875,
                    color: "red",
                    packed_size: 8.5
                   )
@@ -225,6 +235,8 @@ SleepingBag.create(weight: 3.0625,
                    insulation_type: "Synthetic",
                    bag_shape: "Semirectangular",
                    zipper_location: "Right",
+                   fill: 'Stratofiber synthetic fibers',
+                   fill_weight: 2.5625,
                    color: "red",
                    packed_size: 7.5
                   )
@@ -257,6 +269,8 @@ SleepingBag.create(weight: 2.6875,
                    bag_shape: "Semirectangular",
                    zipper_location: "Right",
                    fill_power: 750,
+                   fill: '750-fill down',
+                   fill_weight: 1.6125,
                    color: "blue",
                    packed_size: 7.5
                   )
@@ -294,6 +308,8 @@ SleepingBag.create(weight: 2.75,
                    bag_shape: "Mummy",
                    zipper_location: "Left",
                    fill_power: 800,
+                   fill: '800-fill Water-resistant Q.Shield down',
+                   fill_weight: 1.875,
                    color: "blue",
                    packed_size: 10.5
                   )
@@ -403,6 +419,8 @@ SleepingBag.create(weight: 2.6875,
                    insulation_type: "Synthetic",
                    bag_shape: "Mummy",
                    zipper_location: "Left",
+                   fill: "Heatseeker Pro",
+                   fill_weight: 1.625,
                    color: "blue",
                    packed_size: 16.6
                   )
@@ -436,6 +454,8 @@ SleepingBag.create(weight: 2.5625,
                    bag_shape: "Mummy",
                    zipper_location: "Left",
                    fill_power: 650,
+                   fill: '650-fill down / synthetic insulation',
+                   fill_weight: 1.3125,
                    color: "blue",
                    packed_size: 9.3
                   )
@@ -474,6 +494,8 @@ SleepingBag.create(weight: 1.3125,
                    insulation_type: "Synthetic",
                    bag_shape: "Rectangular",
                    zipper_location: "Right",
+                   fill: 'Heatseeker Eco',
+                   fill_weight: '1.3125',
                    color: "Orange",
                    packed_size: 10.7
                   )
@@ -502,6 +524,8 @@ SleepingBag.create(weight: 4.8125,
                    insulation_type: "Synthetic",
                    bag_shape: "Rectangular",
                    zipper_location: "Right",
+                   fill: 'Heatseeker Eco',
+                   fill_weight: 2.5125,
                    color: "Orange",
                    packed_size: 14.9
                   )

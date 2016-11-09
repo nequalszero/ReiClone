@@ -4,7 +4,7 @@ import { RECEIVE_ITEM,
 import merge from 'lodash/merge';
 
 const _defaultProduct = Object.freeze({
-  product: null,
+  item: null,
   errors: []
 });
 

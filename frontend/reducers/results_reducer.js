@@ -17,8 +17,10 @@ const ResultsReducer = (oldState = _defaultResult, action) => {
 
   switch(action.type) {
     case RECEIVE_ITEMS:
+      console.log("receiving items: ", action.items);
       let items = action.items;
-      return merge(newState, { items });
+      newState.items = items;
+      return newState;
     case RECEIVE_ERRORS:
       let errors = action.errors;
       return merge(newState, { errors });

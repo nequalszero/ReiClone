@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107012156) do
+ActiveRecord::Schema.define(version: 20161106105753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,11 +59,11 @@ ActiveRecord::Schema.define(version: 20161107012156) do
     t.decimal  "rating",           default: 0.0, null: false
     t.integer  "num_ratings",      default: 0,   null: false
     t.string   "best_use"
+    t.string   "primary_image",                  null: false
+    t.string   "result_image",                   null: false
     t.text     "description",                    null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.string   "primary_image",                  null: false
-    t.string   "result_image",                   null: false
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
@@ -91,22 +91,24 @@ ActiveRecord::Schema.define(version: 20161107012156) do
     t.string   "bag_shape",          null: false
     t.string   "zipper_location",    null: false
     t.integer  "fill_power"
+    t.decimal  "fill_weight"
+    t.string   "fill"
     t.string   "color"
+    t.decimal  "packed_size"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.decimal  "packed_size"
   end
 
   create_table "tents", force: :cascade do |t|
     t.string   "sleeping_capacity", null: false
     t.string   "seasons",           null: false
-    t.string   "weight",            null: false
-    t.string   "number_of_doors",   null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.decimal  "weight",            null: false
+    t.integer  "number_of_doors",   null: false
     t.decimal  "floor_area",        null: false
     t.integer  "peak_height",       null: false
     t.string   "design_type",       null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "users", force: :cascade do |t|
