@@ -10,7 +10,7 @@ import { fetchCategoryItems,
 
 const ResultsMiddleware = ({ getState, dispatch }) => next => action => {
   let successCallback;
-  const errorCallback = xhr => dispatch(receiveErrors(xhr.responseJson));
+  const errorCallback = xhr => dispatch(receiveErrors(xhr.responseJSON));
 
   switch(action.type) {
     case REQUEST_CATEGORY_ITEMS:

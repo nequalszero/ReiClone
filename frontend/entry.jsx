@@ -3,13 +3,26 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-import { signup, login, logout, requestCategories, requestCategoryItems }
-    from './actions/session_actions';
-window.signup = signup;
-window.login = login;
-window.logout = logout;
-window.requestCategories = requestCategories;
-window.requestCategoryItems = requestCategoryItems;
+// import { signup, login, logout, requestCategories, requestCategoryItems }
+//     from './actions/session_actions';
+// window.signup = signup;
+// window.login = login;
+// window.logout = logout;
+// window.requestCategories = requestCategories;
+// window.requestCategoryItems = requestCategoryItems;
+
+import { addItemToCart, removeItem, updateQuantity, requestUserItems,
+         receiveUserItems, receiveErrors, saveCartItem, removeUserItemsFromDatabase
+       } from './actions/shopping_cart_actions';
+
+window.addItemToCart = addItemToCart;
+window.removeItem = removeItem;
+window.updateQuantity = updateQuantity;
+window.requestUserItems = requestUserItems;
+window.receiveUserItems = receiveUserItems;
+window.receiveErrors = receiveErrors;
+window.saveCartItem = saveCartItem;
+window.removeUserItemsFromDatabase = removeUserItemsFromDatabase;
 
 document.addEventListener("click", (event) => {
   let eventPath = event.path.map((el) => el.className);

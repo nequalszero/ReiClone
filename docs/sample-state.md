@@ -7,15 +7,15 @@
       shopping_cart_id: 1
       }
     errors: []
-    shoppingCart: {
-      id: 1,
-      items: [
-        {category: sleeping_bags, category_id: 7, quantity: 3},
-        {category: tents, category_id: 10, quantity: 1}
-      ]
-    },
   }
 
+  shoppingCart: {
+    userId: 1,
+    items: [
+      {category: sleeping_bags, category_id: 7, quantity: 3},
+      {category: tents, category_id: 10, quantity: 1}
+    ]
+  },
 
   results: {
     1: {

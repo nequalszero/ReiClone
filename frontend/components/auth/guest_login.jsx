@@ -7,7 +7,7 @@ class GuestLogin extends React.Component {
   }
 
   guestLogin() {
-    return this.props.guestLogin();
+    this.props.guestLogin();    
   }
 
   render() {

@@ -83,20 +83,14 @@ ActiveRecord::Schema.define(version: 20161109192727) do
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "shopping_cart_items", force: :cascade do |t|
-    t.integer  "shopping_cart_id", null: false
-    t.integer  "product_id",       null: false
-    t.integer  "quantity",         null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "shopping_cart_items", ["shopping_cart_id"], name: "index_shopping_cart_items_on_shopping_cart_id", using: :btree
-
-  create_table "shopping_carts", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",    null: false
+    t.integer  "product_id", null: false
+    t.integer  "quantity",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "shopping_cart_items", ["user_id"], name: "index_shopping_cart_items_on_user_id", using: :btree
 
   create_table "sleeping_bags", force: :cascade do |t|
     t.decimal  "weight",             null: false
@@ -144,5 +138,5 @@ ActiveRecord::Schema.define(version: 20161109192727) do
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
   add_foreign_key "shopping_cart_items", "products"
-  add_foreign_key "shopping_cart_items", "shopping_carts"
+  add_foreign_key "shopping_cart_items", "users"
 end

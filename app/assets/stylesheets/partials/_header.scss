@@ -1,5 +1,7 @@
-.header{
+header{
   background-color: black;
+  // background-size: contain;
+  max-width: 2000px;
 }
 
 .header-nav {
@@ -177,4 +179,17 @@ nav .header-auth > li {
   border: 1px solid $button-blue;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.homepage-main-image {
+  display: block;
+  background-size: contain;
+  max-height: 650px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.num-cart-items {
+  color: $lime-green;
+  font-weight: bold;
 }

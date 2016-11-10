@@ -20,7 +20,6 @@ const formatRating = (rating) => {
     let starArray = [];
     let numStars = Math.floor(rating);
     let residualStar = Math.round((rating - numStars)*10)/10;
-    console.log("residualStar", residualStar);
     for (let i = 0; i < numStars; i++) {
       starArray.push(star);
     }

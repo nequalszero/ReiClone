@@ -6,7 +6,7 @@ import { fetchItem } from '../util/product_api_util';
 
 const ProductMiddleware = ({ getState, dispatch }) => next => action => {
   const successCallback = item => dispatch(receiveItem(item));
-  const errorCallback = xhr => dispatch(receiveErrors(xhr.responseJson));
+  const errorCallback = xhr => dispatch(receiveErrors(xhr.responseJSON));
 
   switch(action.type) {
     case REQUEST_ITEM:

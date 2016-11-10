@@ -546,3 +546,9 @@ Detail.create(product_id: 14, description: "Heatseeker™ Eco insulation offers 
 Detail.create(product_id: 14, description: "An internal cellphone pocket features see-through, touch-though mesh so you can quickly hit snooze or ignore a call")
 Detail.create(product_id: 14, description: "Short side zipper allows you to fold the bag more like your bedding at home")
 Detail.create(product_id: 14, description: "Included compression stuff sack features printed fabric and doubles as a simple backpack")
+
+
+
+# Shopping Cart Items
+ShoppingCartItem.create(user_id: 1, product_id: 1, quantity: 1)
+ShoppingCartItem.create(user_id: 1, product_id: 2, quantity: 2)

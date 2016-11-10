@@ -2,6 +2,7 @@ import React from 'react';
 import SessionFormContainer from './session_form_container';
 import AccountDetailsContainer from './account_details_container';
 import GuestLoginContainer from './guest_login_container';
+import ShoppingCartContainer from '../shopping_cart/shopping_cart_container';
 
 class Auth extends React.Component {
   constructor(props) {
@@ -13,8 +14,8 @@ class Auth extends React.Component {
       let targetForm = document.getElementsByClassName(targetClass);
       if (targetForm.length !== 1){
         let num = targetForm.length;
-        console.log(`Error in toggleFormDropDown: ${num} elements found` +
-          `for class ${targetClass}`);
+        // console.log(`Error in toggleFormDropDown: ${num} elements found` +
+        //   `for class ${targetClass}`);
         } else {
           targetForm = targetForm[0];
           targetForm.style.display = targetForm.style.display === "none"
@@ -27,8 +28,8 @@ class Auth extends React.Component {
     let targetForm = document.getElementsByClassName(targetClass);
     if (targetForm.length !== 1){
       let num = targetForm.length;
-      console.log(`Error in hideFormDropDown: ${num} elements found.` +
-                  `for class ${targetClass}`);
+      // console.log(`Error in hideFormDropDown: ${num} elements found.` +
+      //             `for class ${targetClass}`);
     } else {
       targetForm = targetForm[0];
       targetForm.style.display = "none";
@@ -41,7 +42,7 @@ class Auth extends React.Component {
   }
 
   componentDidMount() {
-    console.log("auth.jsx component did mount");
+    // console.log("auth.jsx component did mount");
     this.hideLoginAndSignupContainers();
     if (this.props.currentUser) {
       let accountClass = "account-details-dropdown";
@@ -55,7 +56,7 @@ class Auth extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log("auth.jsx component did update");
+    // console.log("auth.jsx component did update");
     this.hideLoginAndSignupContainers();
 
     let accountClass = "account-details-dropdown";
@@ -66,11 +67,13 @@ class Auth extends React.Component {
     guestLoginLink.style.display = "block";
 
     if (accountContainer) {
-      console.log("accountContainer exists");
+      // console.log("accountContainer exists");
       accountContainer.style.display = "block";
       signupLink.style.display = "none";
       guestLoginLink.style.display = "none";
     }
+
+    if (this.props.loggedIn) {this.props.requestUserItems();}
   }
 
   sessionLinks(status){
@@ -93,11 +96,9 @@ class Auth extends React.Component {
             onClick={this.toggleFormDropDown(loginClassName)}>
             SIGN IN <i className="fa fa-user-circle fa-lg" aria-hidden="true"></i>
           </li>
-          <SessionFormContainer formType="login"
-                                className={loginClassName}/>
-          <li>
-            CART <i className="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
-          </li>
+                <SessionFormContainer formType="login"
+                                      className={loginClassName}/>
+                <ShoppingCartContainer />
         </nav>
       );
     } else {
@@ -117,10 +118,7 @@ class Auth extends React.Component {
                               aria-hidden="true"></i>
             </li>
               <AccountDetailsContainer className={accountDetailsClass}/>
-              <li>
-                CART <i className="fa fa-shopping-cart fa-lg"
-                        aria-hidden="true"></i>
-              </li>
+            <ShoppingCartContainer />
         </nav>
       );
     }
