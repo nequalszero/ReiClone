@@ -1,5 +1,9 @@
 import {connect} from 'react-redux';
-// import { } from '../../actions/shopping_cart_actions';
+import { saveCartItemToDatabase,
+         removeUserItemFromDatabase,
+         updateQuantityInDatabase,
+         requestUserItems
+       } from '../../actions/shopping_cart_actions';
 import ShoppingCartDisplay from './shopping_cart_display';
 
 const mapStateToProps = state => ({
@@ -7,7 +11,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  saveCartItemToDatabase: (item) => dispatch(saveCartItemToDatabase(item)),
+  removeUserItemFromDatabase: (item) => dispatch(removeUserItemFromDatabase(item)),
+  updateQuantityInDatabase: (item) => dispatch(updateQuantityInDatabase(item))
 });
 
 export default connect(

@@ -134,6 +134,7 @@
 
 .shopping-cart-item-detail-container {
   display: flex;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -147,8 +148,71 @@
 }
 
 .shopping-cart-item-image-container {
-  display: block;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   height: 157px;
   width: 25%;
+}
+
+.shopping-cart-item-details-container {
+  display: flex;
+  justify-content: space-between;
+  height: 157px;
+  width: 75%;
+}
+
+.shopping-cart-item-summary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 30%;
+  max-height: 50%;
+  width: 50%;
+}
+
+.shopping-cart-item-title{
+  display: block;
+  width: 100%;
+  font-weight: bold;
+}
+
+.shopping-cart-item-price{
+  display: block;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.shopping-cart-item-quantity-container {
+  display: flex;
+  width: 25%;
+  padding-left: 30px;
+  padding-right: 30px;
+  justify-content: space-between;
+}
+
+.shopping-cart-item-quantity-container-half {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 96px;
+  width: 50%;
+}
+
+.shopping-cart-item-quantity-label {
+  display: block;
+  font-weight: bold;
+}
+
+.shopping-cart-item-quantity-action {
+  display: block;
+  font-weight: bold;
+  color: $link-blue;
+}
+
+.shopping-cart-item-quantity-input {
+  display: block;
+  width: 38px;
+  height: 26px;
+  padding: 6px 16px;
+  border: 1px solid black;
 }

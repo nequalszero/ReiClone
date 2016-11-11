@@ -10,9 +10,7 @@ class Auth extends React.Component {
   }
 
   toggleFormDropDown(targetClass, parentLink) {
-    console.log(`clicked ${parentLink}`);
     let targetForm = document.getElementsByClassName(targetClass);
-    console.log("targetForm: ", targetForm);
     if (targetForm.length !== 1){
       let num = targetForm.length;
       console.log(`Error in toggleFormDropDown: ${num} elements found` +
@@ -20,13 +18,10 @@ class Auth extends React.Component {
       } else {
         targetForm = targetForm[0];
         let listEl = document.getElementsByClassName(parentLink)[0];
-        console.log("in toggleFormDropDown");
         listEl.style.color = "#a1c900";
         if (targetForm.style.display === "none") {
-          console.log("style was none");
           targetForm.style.display = "block";
         } else if (targetForm.style.display === "block") {
-          console.log("style was block");
           targetForm.style.display = "none";
         }
         // targetForm.style.display = targetForm.style.display === "none"

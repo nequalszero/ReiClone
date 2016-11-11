@@ -8,6 +8,7 @@ import ShoppingCartDisplayContainer
     from './shopping_cart/shopping_cart_display_container';
 import { requestCategoryItems } from '../actions/results_actions';
 import { requestItem } from '../actions/product_actions';
+import { requestUserItems } from '../actions/shopping_cart_actions';
 
 
 
@@ -19,6 +20,10 @@ const Root = ( props ) => {
   const updateProduct = (nextState) => {
     props.store.dispatch(requestItem(nextState.params.productId));
   };
+
+  // const updateShoppingCartItems = (nextState) => {
+  //   props.store.dispatch(requestUserItems());
+  // };
 
   return(
     <Provider store={props.store}>

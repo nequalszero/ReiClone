@@ -4,17 +4,29 @@ import { withRouter, Link } from 'react-router';
 class ShoppingCartDisplay extends React.Component {
   constructor(props) {
     super(props);
-    this.clickEventHandler = this.clickEventHandler.bind(this);
+    console.log("receiving constructor props: ", props);
+    this.state = {items: props.shopping_cart.items};
+
     this.renderEmptyCartPage = this.renderEmptyCartPage.bind(this);
     this.renderFilledCartPage = this.renderFilledCartPage.bind(this);
     this.renderItemDetails = this.renderItemDetails.bind(this);
     this.renderItemDetailAndBorder = this.renderItemDetailAndBorder.bind(this);
     this.renderItemDetail = this.renderItemDetail.bind(this);
+    this.renderQuantity = this.renderQuantity.bind(this);
   }
 
-  clickEventHandler(e) {
-    e.preventDefault();
-    this.props.router.push("/shopping_cart");
+  shouldComponentUpdate(nextProps) {
+    console.log("ShoppingCartDisplay shouldComponentUpdate");
+    if (nextProps.shopping_cart.items.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  componentWillUpdate(nextProps) {
+    console.log("ShoppingCartDisplay componentWillUpdate");
+    this.setState({items: nextProps.shopping_cart.items});
   }
 
   renderEmptyCartPage() {
@@ -87,23 +99,9 @@ class ShoppingCartDisplay extends React.Component {
     );
   }
 
-  renderItemDetails() {
-    console.log("rendering item details");
-    let numDifferentProducts = this.props.shopping_cart.items.length;
-    return (
-      <div className="shopping-cart-item-details-list">
-        {this.props.shopping_cart.items.map((item, idx) => (
-          this.renderItemDetailAndBorder(item, idx, numDifferentProducts)
-        ))}
-      </div>
-    );
-  }
-
   renderItemDetailAndBorder(item, idx, numDifferentProducts) {
-    console.log("redering item detail and border");
-    let itemDetail = this.renderItemDetail(item);
+    let itemDetail = this.renderItemDetail(item, idx);
     let border = this.renderDivider(idx, numDifferentProducts);
-    console.log("itemDetail", itemDetail);
     return (
       <div className="shopping-cart-item-details-row">
         {itemDetail}
@@ -112,17 +110,79 @@ class ShoppingCartDisplay extends React.Component {
     );
   }
 
-  renderItemDetail(item) {
+  renderItemDetails() {
+    console.log("rendering item details");
+    let numDifferentProducts = this.props.shopping_cart.items.length;
+
+    return (
+      <div className="shopping-cart-item-details-list">
+        {this.state.items.map((item, idx) => (
+          this.renderItemDetailAndBorder(item, idx, numDifferentProducts)
+        ))}
+      </div>
+    );
+  }
+
+  renderItemDetail(item, idx) {
     console.log("rendering item detail");
     let itemName = `${item.brand} ${item.name}`;
     return (
       <li key={item.product_id} className="shopping-cart-item-detail-container">
-        <span classfilledCartPageName="shopping-cart-item-image-container">
+        <span className="shopping-cart-item-image-container">
           <img className="shopping-cart-item-image"
                src={item.cart_image}
                alt={itemName} />
         </span>
+        <span className="shopping-cart-item-details-container">
+          {this.renderItemSummary(item)}
+          {this.renderQuantity(item, idx)}
+        </span>
       </li>
+    );
+  }
+
+  renderItemSummary(item) {
+    let title = `${item.brand} ${item.name}`;
+    let price = this.padPrice(item.price);
+    return(
+      <div className="shopping-cart-item-summary-container">
+        <span className="shopping-cart-item-title">{title}</span>
+        <span className="shopping-cart-item-price">${price}</span>
+      </div>
+    );
+  }
+
+  updateQuantityField(idx) {
+
+    return (e) => {
+      let newItems = this.state.items;
+      newItems[idx] = e.target.value;
+      this.setState({items: newItems});
+    };
+  }
+
+  renderQuantity(item, idx) {
+    return(
+      <div className="shopping-cart-item-quantity-container">
+        <div className="cart-item-quantity-container-half">
+          <label className="shopping-cart-item-quantity-label">
+            Qty
+          </label>
+          <span className="shopping-cart-item-quantity-action">
+            Update
+          </span>
+        </div>
+        <div className="cart-item-quantity-container-half">
+          <input className="shopping-cart-item-quantity-input"
+                  onChange={this.updateQuantityField(idx)}
+                  defaultValue={this.state.items[idx].quantity}>
+
+          </input>
+          <span className="shopping-cart-item-quantity-action">
+            Remove
+          </span>
+        </div>
+      </div>
     );
   }
 

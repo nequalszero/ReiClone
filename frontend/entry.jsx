@@ -59,8 +59,6 @@ document.addEventListener("click", (event) => {
   dropDowns.forEach(({liClass, form, text, link}) => {
     if (form) {
       if (form.style.display === "block" && eventPath[0] !== text) {
-        console.log("eventPath[0]", eventPath[0]);
-        console.log("text", text);
         if (!eventPath.includes(liClass)) {
           form.style.display = "none";
           let listEl = document.getElementsByClassName(text)[0];

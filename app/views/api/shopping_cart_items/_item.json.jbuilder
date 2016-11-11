@@ -9,7 +9,7 @@ json.quantity shopping_cart_item.quantity
 
 json.category_id product_info.category_id
 json.product_table_id product_info.product_table_id
-json.brand product_info.brand
+json.brand product_info.brand.name
 json.name product_info.name
 json.price product_info.price
 json.cart_image product_info.cart_image
