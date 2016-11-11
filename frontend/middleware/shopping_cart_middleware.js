@@ -1,41 +1,43 @@
 import { REQUEST_USER_ITEMS,
-         REMOVE_USER_ITEMS_FROM_DATABASE,
-         SAVE_CART_ITEM,
-         RECEIVE_USER_ITEMS,
-         removeItem,
-         receiveUserItems,
+         SAVE_CART_ITEM_TO_DATABASE,
+         REMOVE_ITEM_FROM_DATABASE,
+         UPDATE_QUANTITY_IN_DATABASE,
          receiveErrors,
-         removeUserItemsFromDatabase }
-    from '../actions/shopping_cart_actions';
+         receiveUserItems,
+         updateQuantity,
+         addItemToCart,
+         removeItemFromCart
+        } from '../actions/shopping_cart_actions';
 import { fetchUserItems,
          createItem,
-         deleteUserItems
+         deleteUserItem,
+         updateItemQuantity
         } from '../util/shopping_cart_api_util';
 
 const ShoppingCartMiddleware = ({ getState, dispatch }) => next => action => {
-  const errorCallback = xhr => {
-    console.log("errorCallback xhr", xhr);
-    return dispatch(receiveErrors(xhr.responseJSON));
-  };
-
+  const errorCb = xhr => dispatch(receiveErrors(xhr.responseJSON));
+  const requestUserItemsSuccessCb = items => dispatch(receiveUserItems(items));
+  const updateSuccessCb = (item) => dispatch(updateQuantity(item));
+  const saveItemSuccessCb = (item) => dispatch(addItemToCart(item));
+  const removeItemSuccessCb = (item) => dispatch(removeItemFromCart(item));
 
   switch(action.type) {
     case REQUEST_USER_ITEMS:
-      const requestUserItemsSuccessCallback = items => dispatch(receiveUserItems(items));
-      fetchUserItems(requestUserItemsSuccessCallback, errorCallback);
+      fetchUserItems(requestUserItemsSuccessCb, errorCb);
       return next(action);
-    case RECEIVE_USER_ITEMS:
-      const receiveUserItemsSuccessCallback = () => dispatch(removeUserItemsFromDatabase());
-      deleteUserItems(receiveUserItemsSuccessCallback, errorCallback);
+
+    case UPDATE_QUANTITY_IN_DATABASE:
+      updateItemQuantity(action.item, updateSuccessCb, errorCb);
       return next(action);
-    // case REMOVE_USER_ITEMS_FROM_DATABASE:
-    //   const deleteSuccessCallback = message => console.log(message);
-    //   deleteUserItems(deleteSuccessCallback, errorCallback);
-    //   return next(action);
-    case SAVE_CART_ITEM:
-      let saveCartSuccessCallback = (item) => dispatch(removeItem(item));
-      createItem(action.item, saveCartSuccessCallback, errorCallback);
+
+    case SAVE_CART_ITEM_TO_DATABASE:
+      createItem(action.item, saveItemSuccessCb, errorCb);
       return next(action);
+
+    case REMOVE_ITEM_FROM_DATABASE:
+      deleteUserItem(action.item, removeItemSuccessCb, errorCb);
+      return next(action);
+
     default:
       return next(action);
   }

@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   has_many :reviews
   has_many :features
   has_many :details
+  has_many :shopping_cart_items;
   belongs_to :brand
   belongs_to :category
 

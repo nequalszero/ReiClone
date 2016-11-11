@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20161109192727) do
     t.string   "best_use"
     t.string   "primary_image",                  null: false
     t.string   "result_image",                   null: false
+    t.string   "cart_image",                     null: false
     t.text     "description",                    null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 20161109192727) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "shopping_cart_items", ["user_id", "product_id"], name: "index_shopping_cart_items_on_user_id_and_product_id", unique: true, using: :btree
   add_index "shopping_cart_items", ["user_id"], name: "index_shopping_cart_items_on_user_id", using: :btree
 
   create_table "sleeping_bags", force: :cascade do |t|

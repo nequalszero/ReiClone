@@ -18,26 +18,40 @@ class ProductDisplay extends React.Component {
   }
 
   toggleLink(targetLink) {
-    console.log("toggling", targetLink);
+    // console.log("toggling", targetLink);
     let details = document.getElementsByClassName("product-details-link")[0];
-    let specs = document.getElementsByClassName("product-specs-link")[0];
-    let target = document.getElementsByClassName(targetLink)[0];
+    const detailsLink = "product-details-link";
+    const specsLink = "product-specs-link";
+    const reviewsLink = "product-reviews-link";
+    let detailsId = "product-details-section";
+    let specsId = "product-specs-table";
 
-    if (specs) {
-      const links = [details, specs];
-      links.forEach(link => {
-        switch(link) {
-          case target:
-          link.style.borderBottom = "6px solid #06c";
-          link.style.color = "black";
+    const idHash = {
+                    "product-details-link": "product-details-section",
+                    "product-specs-link": "product-specs-table"
+                   };
+
+    const links = [detailsLink, specsLink, reviewsLink];
+
+    links.forEach(link => {
+      let currentElement = document.getElementsByClassName(link)[0];
+
+      switch(link) {
+        case targetLink:
+          currentElement.style.borderBottom = "6px solid #06c";
+          currentElement.style.color = "black";
+          let scrollToTarget = document.getElementById(idHash[link]);
+          let scrollToPos = window.scrollY
+                            + scrollToTarget.getBoundingClientRect().top;
+          // console.log(`${idHash[link]} position`, scrollToPos);
+          window.scrollTo(0, scrollToPos);
           break;
         default:
-          link.style.borderBottom = "none";
-          link.style.color = "#06c";
+          currentElement.style.borderBottom = "none";
+          currentElement.style.color = "#06c";
           break;
-        }
-      });
-    }
+      }
+    });
 
   }
 
@@ -53,8 +67,7 @@ class ProductDisplay extends React.Component {
             Specs
         </li>
         <li className="product-reviews-link">
-          Rew
-          views
+          Reviews
         </li>
       </ul>
     );
@@ -64,7 +77,9 @@ class ProductDisplay extends React.Component {
     let details = this.props.product.item.details;
     return(
       <section className="product-details-section">
-        <h3 className="details-label">Details</h3>
+        <h3 className="details-label" id="product-details-section">
+          Details
+        </h3>
         <ul className="details-list">
           {details.map((detail) =>
             <li className="details-list" key={detail.detailId}>
@@ -117,7 +132,9 @@ class ProductDisplay extends React.Component {
 
     return(
       <div className="product-specs-table-container">
-        <h3 className="product-specs-table-title">Specs</h3>
+        <h3 className="product-specs-table-title" id="product-specs-table">
+          Specs
+        </h3>
         <table className="product_specs">
           <tbody>
             {categories.map(key => (

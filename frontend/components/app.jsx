@@ -28,16 +28,18 @@ const App = ( props ) => {
               <img src={logoURL} className="header-logo"/>
             </div>
             <div className="search-auth-categories-container">
-              <div className="search-auth-container">
-                <div className="header-search-bar">
-                  <input value="Search for great gear & clothing"/>
+              <div className="search-auth-container-divider">
+                <div className="search-auth-container">
+                  <div className="header-search-bar">
+                    <input value="Search for great gear & clothing"/>
+                  </div>
+
+                  <nav className="authForms">
+                    <AuthContainer />
+                  </nav>
                 </div>
-
-                <nav className="authForms">
-                  <AuthContainer />
-                </nav>
+                <div className="header-line-divider"/>
               </div>
-
               <nav className="categories">
                 <CategoryIndexContainer />
               </nav>

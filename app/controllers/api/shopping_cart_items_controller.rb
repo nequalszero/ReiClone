@@ -33,12 +33,17 @@ class Api::ShoppingCartItemsController < ApplicationController
   end
 
   def update
-    @shopping_cart_item = ShoppingCartItem.find(params[:id])
+    if current_user
+      @shopping_cart_item = ShoppingCartItem.find(params[:id])
 
-    if @shopping_cart_item.update(shopping_cart_item_params)
-      render "api/shopping_cart_items/show_item"
+      if @shopping_cart_item.update(shopping_cart_item_params)
+        render "api/shopping_cart_items/show_item"
+      else
+        render json: @shopping_cart_item.errors.full_messages, status: 422
+      end
     else
-      render json: @shopping_cart_item.errors.full_messages, status: 422
+      error = "ShoppingCartItemsController - update - no current user"
+      render json: {errors: [error]}, status: 422
     end
   end
 

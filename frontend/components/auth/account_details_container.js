@@ -2,10 +2,7 @@ import { connect } from 'react-redux';
 import AccountDetails from './account_details';
 import { logout }
   from '../../actions/session_actions';
-import { saveCartItem } from '../../actions/shopping_cart_actions';
-
-// currentUser: state.session.currentUser,
-// loggedIn: state.session.currentUser ? true : false,
+import { } from '../../actions/shopping_cart_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
@@ -13,8 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout()),
-  saveCartItem: (item) => dispatch(saveCartItem(item))
+  logout: () => dispatch(logout())
 });
 
 export default connect(

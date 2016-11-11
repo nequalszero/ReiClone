@@ -49,6 +49,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478473156/marmot_hydrogen_hyghtl.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478473156/marmot_hydrogen_hyghtl.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478473156/marmot_hydrogen_hyghtl.jpg",
                description: "At just a pound and a half, the Marmot Hydrogen 3-season sleeping bag is constructed with curved baffles to reduce the shifting of its water-resistant 800-fill goose down for superb loft and warmth."
               )
 
@@ -92,6 +93,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478482708/marmot_plasma_15_qztthh.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478482708/marmot_plasma_15_qztthh.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478482708/marmot_plasma_15_qztthh.jpg",
                description: "No, you're not dreaming. The Marmot Plasma 15 Sleeping Bag comes in under 2 lbs. (regular length) with 875-fill-power, water-resistant goose down—backpacking season can't get here soon enough!"
               )
 
@@ -135,6 +137,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478484166/rei_igneo_tdv7hy.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478484166/rei_igneo_tdv7hy.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478484166/rei_igneo_tdv7hy.jpg",
                description: "A premium backpacking bag for wet conditions, this 3-season Mummy bag features REI's double-protection design, which uses both water-repellent down and waterproof/breathable fabric panels."
               )
 
@@ -178,6 +181,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478484833/rei_flash_womens_t16m3w.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478484833/rei_flash_womens_t16m3w.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478484833/rei_flash_womens_t16m3w.jpg",
                description: "This 3-season, ultralight women's specific sleeping bag uses a clever hybrid of water-repellent insulations and waterproof/breathable fabric panels in its double-protection design."
               )
 
@@ -218,6 +222,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
                description: "Side sleepers rejoice! The women's 3-season Nemo Celesta 25 sleeping bag has a unique spoon shape to give side sleepers more room to find their comfort zone."
               )
 
@@ -251,6 +256,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
                description: "The women's 3-season NEMO Celesta backpacking bag features a unique spoon shape that offers generous room at the elbows and knees, making it perfect for side sleeping."
               )
 
@@ -285,6 +291,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478490599/nemo_rhapsody_15_womens_b4jars.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478490599/nemo_rhapsody_15_womens_b4jars.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478490599/nemo_rhapsody_15_womens_b4jars.jpg",
                description: "The Nemo Rhapsody 15 backpacking bag with 750-fill DownTek down features stretch stitching and a unique spoon shape for added room at the elbows and knees, perfect for side sleepers."
               )
 
@@ -322,6 +329,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478497964/mountain_hardwear_phantom_torch_3_o9bjuq.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478497964/mountain_hardwear_phantom_torch_3_o9bjuq.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478497964/mountain_hardwear_phantom_torch_3_o9bjuq.jpg",
                description: "A favorite among cold-weather backpackers, the superlight Mountain Hardwear Phantom Torch 3 is filled with 800-fill Q.Shield Down for maximum warmth and loft in damp conditions."
               )
 
@@ -360,6 +368,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478497968/mountain_hardwear_lamina_z_torch_sleeping_bag_qx3gn8.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478497968/mountain_hardwear_lamina_z_torch_sleeping_bag_qx3gn8.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478497968/mountain_hardwear_lamina_z_torch_sleeping_bag_qx3gn8.jpg",
                description: "For maximum warmth on winter outings, this cold-weather sleeping bag has thermally zoned insulation to put extra warmth where you need it most—around your core and your feet."
               )
 
@@ -395,6 +404,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478498827/mountain_hardwear_lamina_z_blaze_-15_sleeping_bag_dqhjmx.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478498827/mountain_hardwear_lamina_z_blaze_-15_sleeping_bag_dqhjmx.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478498827/mountain_hardwear_lamina_z_blaze_-15_sleeping_bag_dqhjmx.jpg",
                description: "A warm, affordable, and water-repellent synthetic bag, with unique Lamina construction for ultimate warmth, the Mountain Hardwear Lamina Z Blaze is a great choice for winter backpacking."
               )
 
@@ -435,6 +445,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478499330/the_north_face_cats_meow_22_tkrnsz.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478499330/the_north_face_cats_meow_22_tkrnsz.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478499330/the_north_face_cats_meow_22_tkrnsz.jpg",
                description: "The quintessential synthetic, 20° bag for 3-season backpacking, the Cat's Meow 22 sleeping bag has an efficient design that maximizes warmth and compressibility while reducing weight."
               )
 
@@ -470,6 +481,7 @@ Product.create(category_id: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478499327/the_north_face_blue_kazoo_20_qjwxru.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478499327/the_north_face_blue_kazoo_20_qjwxru.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478499327/the_north_face_blue_kazoo_20_qjwxru.jpg",
                description: "It's been a long day on the trail and you're ready for a good night's sleep. The North Face Blue Kazoo 20 is filled with lofty 650-fill ProDown℥ to keep you warm on all your 3-season adventures."
               )
 
@@ -510,6 +522,7 @@ Product.create(category_id: 1,
                best_use: "Camping",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478501986/the_north_face_dolomtite_40_sleeping_bag_ivot0n.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478501986/the_north_face_dolomtite_40_sleeping_bag_ivot0n.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478501986/the_north_face_dolomtite_40_sleeping_bag_ivot0n.jpg",
                description: "Generously cut in a rectangular shape, The North Face Dolomite 40° synthetic sleeping bag is for those who want modern performance in an old-school camping bag."
               )
 
@@ -538,6 +551,7 @@ Product.create(category_id: 1,
                best_use: "Camping",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478502818/the_north_face_homestead_twin_20_sleeping_bag_gsp5ew.jpg",
                result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478502818/the_north_face_homestead_twin_20_sleeping_bag_gsp5ew.jpg",
+               cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478502818/the_north_face_homestead_twin_20_sleeping_bag_gsp5ew.jpg",
                description: "The ultimate in base-camp comfort and style, the 20° Homestead synthetic bag from The North Face bag is sized to match a standard twin mattress, or you can zip two together for a queen-size bed."
               )
 

@@ -5,6 +5,7 @@ class CreateShoppingCartItems < ActiveRecord::Migration
       t.references :product, foreign_key: true, null: false
       t.integer :quantity, null: false
 
+      t.index [:user_id, :product_id], unique: true
       t.timestamps null: false
     end
   end

@@ -1,19 +1,21 @@
 export const ADD_ITEM_TO_CART = "ADD_ITEM_TO_CART";
-export const REMOVE_ITEM = "REMOVE_ITEM";
+export const REMOVE_ITEM_FROM_CART = "REMOVE_ITEM_FROM_CART";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const REQUEST_USER_ITEMS = "REQUEST_USER_ITEMS";
 export const RECEIVE_USER_ITEMS = "RECEIVE_USER_ITEMS";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
-export const SAVE_CART_ITEM = "SAVE_CART_ITEM";
-export const REMOVE_USER_ITEMS_FROM_DATABASE = "REMOVE_USER_ITEMS_FROM_DATABASE";
+export const SAVE_CART_ITEM_TO_DATABASE = "SAVE_CART_ITEM_TO_DATABASE";
+export const REMOVE_USER_ITEM_FROM_DATABASE = "REMOVE_USER_ITEM_FROM_DATABASE";
+export const UPDATE_QUANTITY_IN_DATABASE = "UPDATE_QUANTITY_IN_DATABASE";
+export const EMPTY_CART_ON_LOGOUT = "EMPTY_CART_ON_LOGOUT";
 
 export const addItemToCart = item => ({
   type: "ADD_ITEM_TO_CART",
   item
 });
 
-export const removeItem = item => ({
-  type: "REMOVE_ITEM",
+export const removeItemFromCart = item => ({
+  type: "REMOVE_ITEM_FROM_CART",
   item
 });
 
@@ -39,11 +41,21 @@ export const receiveErrors = ( {errors} ) => {
   };
 };
 
-export const saveCartItem = item => ({
-  type: "SAVE_CART_ITEM",
+export const saveCartItemToDatabase = item => ({
+  type: "SAVE_CART_ITEM_TO_DATABASE",
   item
 });
 
-export const removeUserItemsFromDatabase = () => ({
-  type: REMOVE_USER_ITEMS_FROM_DATABASE
+export const removeUserItemFromDatabase = (item) => ({
+  type: "REMOVE_USER_ITEM_FROM_DATABASE",
+  item
+});
+
+export const updateQuantityInDatabase = (item) => ({
+  type: "UPDATE_QUANTITY_IN_DATABASE",
+  item
+});
+
+export const emptyCartOnLogout = () => ({
+  type: "EMPTY_CART_ON_LOGOUT"
 });

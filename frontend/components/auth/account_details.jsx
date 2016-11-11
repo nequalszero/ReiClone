@@ -8,10 +8,10 @@ class AccountDetails extends React.Component {
 
   submitSessionForm(e) {
     e.preventDefault();
-    let items = this.props.shopping_cart.items;
-    if (items !== []) {
-      items.forEach(item => this.props.saveCartItem(item));
-    }
+    // let items = this.props.shopping_cart.items;
+    // if (items !== []) {
+    //   items.forEach(item => this.props.saveCartItem(item));
+    // }
     return this.props.logout();
   }
 

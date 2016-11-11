@@ -7,12 +7,12 @@ class GuestLogin extends React.Component {
   }
 
   guestLogin() {
-    this.props.guestLogin();    
+    this.props.guestLogin();
   }
 
   render() {
     return (
-      <li className="guest-login"
+      <li className="visible-li guest-login"
           onClick={this.guestLogin}>
           GUEST LOGIN <i className="fa fa-user-secret fa-lg"
                          aria-hidden="true"></i>

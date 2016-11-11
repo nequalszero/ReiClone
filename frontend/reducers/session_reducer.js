@@ -4,7 +4,7 @@ import merge from 'lodash/merge';
 
 const _nullUser = Object.freeze({
   currentUser: null,
-  errors: []
+  errors: {}
 });
 
 // Merge with _nullUser instead of oldState because of issues with errors
@@ -13,12 +13,13 @@ const _nullUser = Object.freeze({
 //  errors array of 2 items, with the first old item replaced with the first
 //  action.errors item, instead of replacing the entire array.
 const SessionReducer = (oldState = _nullUser, action) => {
-  Object.freeze(oldState);
+  let newState = merge({}, oldState);
+  newState.errors = {};
 
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
-      let currentUser = action.currentUser;
-      return merge({}, _nullUser, { currentUser });
+      newState.currentUser = action.currentUser;
+      return newState;
     case LOGOUT:
       return merge({}, _nullUser);
     case RECEIVE_ERRORS:

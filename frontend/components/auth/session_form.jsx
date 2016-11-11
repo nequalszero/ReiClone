@@ -27,20 +27,21 @@ class SessionForm extends React.Component {
   renderErrors() {
     // console.log("renderErrors props:", this.props);
     if (this.props.errors) {
-      return(
-        <ul>
-          {this.props.errors.map((error, idx) => (
-            <li key={`error-${idx}`}>
-              {error}
-            </li>
-          ))}
-        </ul>
-      );
+      if (this.props.errors[this.props.formType]) {
+        return(
+          <ul className="errors-list">
+            {this.props.errors[this.props.formType].map((error, idx) => (
+              <li key={`error-${idx}`}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        );
+      }
     }
   }
 
   renderNewSessionForm(buttonText, className){
-    //
     return (
       <div className="login-form-container">
         { this.renderErrors() }
@@ -56,7 +57,8 @@ class SessionForm extends React.Component {
           <label>Password<br/>
             <input onChange={this.updateField('password')}
                    value={this.state.password}
-                   className="login-input"/>
+                   className="login-input"
+                   type="password"/>
           </label>
           <br/>
 
@@ -72,7 +74,7 @@ class SessionForm extends React.Component {
     let className = this.props.className;
 
     return(
-      <li>
+      <li className="hidden-li my-cart">
         <form className={className}>
           {this.renderNewSessionForm(buttonText, className)}
         </form>
