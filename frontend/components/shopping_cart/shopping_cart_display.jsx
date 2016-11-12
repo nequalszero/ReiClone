@@ -4,9 +4,8 @@ import { withRouter, Link } from 'react-router';
 class ShoppingCartDisplay extends React.Component {
   constructor(props) {
     super(props);
-    console.log("receiving constructor props: ", props);
+    // console.log("receiving constructor props: ", props);
     this.state = {items: props.shopping_cart.items};
-
     this.renderEmptyCartPage = this.renderEmptyCartPage.bind(this);
     this.renderFilledCartPage = this.renderFilledCartPage.bind(this);
     this.renderItemDetails = this.renderItemDetails.bind(this);
@@ -15,9 +14,21 @@ class ShoppingCartDisplay extends React.Component {
     this.renderQuantity = this.renderQuantity.bind(this);
   }
 
+  updateCartItem(idx) {
+    return (e) => (
+      this.props.updateQuantityInDatabase(this.state.items[idx])
+    );
+  }
+
+  removeCartItem(idx) {
+    return (e) => (
+      this.props.removeUserItemFromDatabase(this.state.items[idx])
+    );
+  }
+
   shouldComponentUpdate(nextProps) {
-    console.log("ShoppingCartDisplay shouldComponentUpdate");
-    if (nextProps.shopping_cart.items.length > 0) {
+    // console.log("ShoppingCartDisplay shouldComponentUpdate");
+    if (nextProps.shopping_cart.items.length > 0 && this.state.items.length === 0) {
       return true;
     } else {
       return false;
@@ -25,7 +36,7 @@ class ShoppingCartDisplay extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-    console.log("ShoppingCartDisplay componentWillUpdate");
+    // console.log("ShoppingCartDisplay componentWillUpdate");
     this.setState({items: nextProps.shopping_cart.items});
   }
 
@@ -69,6 +80,7 @@ class ShoppingCartDisplay extends React.Component {
       <div className="filled-cart-page-container">
         {this.renderShoppingCartHeader(numItems, subtotalString)}
         {this.renderItemDetails()}
+        {this.renderShoppingCartFooter(subtotalString)}
       </div>
     );
   }
@@ -99,19 +111,28 @@ class ShoppingCartDisplay extends React.Component {
     );
   }
 
-  renderItemDetailAndBorder(item, idx, numDifferentProducts) {
-    let itemDetail = this.renderItemDetail(item, idx);
-    let border = this.renderDivider(idx, numDifferentProducts);
+  renderShoppingCartFooter(subtotalString) {
     return (
-      <div className="shopping-cart-item-details-row">
-        {itemDetail}
-        {border}
-      </div>
+      <section className="shopping-cart-footer-container">
+        <div className="shopping-cart-footer-total-and-checkout">
+          <span className="subtotal-container">
+            <label className="subtotal-label">
+              Subtotal:
+            </label>
+            <span className="subtotal-amount">
+              ${subtotalString}
+            </span>
+          </span>
+          <button className="checkout-button">
+            Checkout
+          </button>
+        </div>
+      </section>
     );
   }
 
   renderItemDetails() {
-    console.log("rendering item details");
+    // console.log("rendering item details");
     let numDifferentProducts = this.props.shopping_cart.items.length;
 
     return (
@@ -123,8 +144,19 @@ class ShoppingCartDisplay extends React.Component {
     );
   }
 
+  renderItemDetailAndBorder(item, idx, numDifferentProducts) {
+    let itemDetail = this.renderItemDetail(item, idx);
+    let border = this.renderDivider(idx, numDifferentProducts);
+    return (
+      <div className="shopping-cart-item-details-row">
+        {itemDetail}
+        {border}
+      </div>
+    );
+  }
+
   renderItemDetail(item, idx) {
-    console.log("rendering item detail");
+    // console.log("rendering item detail");
     let itemName = `${item.brand} ${item.name}`;
     return (
       <li key={item.product_id} className="shopping-cart-item-detail-container">
@@ -136,6 +168,7 @@ class ShoppingCartDisplay extends React.Component {
         <span className="shopping-cart-item-details-container">
           {this.renderItemSummary(item)}
           {this.renderQuantity(item, idx)}
+          {this.renderItemTotal(item)}
         </span>
       </li>
     );
@@ -153,10 +186,10 @@ class ShoppingCartDisplay extends React.Component {
   }
 
   updateQuantityField(idx) {
-
+    // console.log("updateQuantityField - update local state");
     return (e) => {
       let newItems = this.state.items;
-      newItems[idx] = e.target.value;
+      newItems[idx].quantity = parseInt(e.target.value);
       this.setState({items: newItems});
     };
   }
@@ -166,9 +199,10 @@ class ShoppingCartDisplay extends React.Component {
       <div className="shopping-cart-item-quantity-container">
         <div className="cart-item-quantity-container-half">
           <label className="shopping-cart-item-quantity-label">
-            Qty
+            Quantity
           </label>
-          <span className="shopping-cart-item-quantity-action">
+          <span className="shopping-cart-item-quantity-action"
+                onClick={this.updateCartItem(idx)}>
             Update
           </span>
         </div>
@@ -178,10 +212,23 @@ class ShoppingCartDisplay extends React.Component {
                   defaultValue={this.state.items[idx].quantity}>
 
           </input>
-          <span className="shopping-cart-item-quantity-action">
+          <span className="shopping-cart-item-quantity-action"
+                onClick={this.removeCartItem(idx)}>
             Remove
           </span>
         </div>
+      </div>
+    );
+  }
+
+  renderItemTotal(item) {
+    let itemTotal = parseFloat(item.price) * item.quantity;
+    let paddedTotal = this.padPrice(`${itemTotal}`);
+    return (
+      <div className="shopping-cart-item-total-container">
+        <span className="shopping-cart-item-total">
+          Item total: ${paddedTotal}
+        </span>
       </div>
     );
   }
@@ -195,7 +242,7 @@ class ShoppingCartDisplay extends React.Component {
   }
 
   render() {
-    console.log("shopping cart display", this.props);
+    // console.log("shopping cart display", this.props);
     return (
       <div className="shopping_cart_page_container">
         {this.props.shopping_cart.items.length === 0

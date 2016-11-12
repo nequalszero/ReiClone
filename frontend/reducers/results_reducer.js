@@ -17,7 +17,6 @@ const ResultsReducer = (oldState = _defaultResult, action) => {
 
   switch(action.type) {
     case RECEIVE_ITEMS:
-      console.log("receiving items: ", action.items);
       let items = action.items;
       newState.items = items;
       return newState;

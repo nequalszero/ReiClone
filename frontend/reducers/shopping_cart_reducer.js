@@ -42,28 +42,28 @@ const ShoppingCartReducer = (oldState = _defaultShoppingCart, action) => {
     case RECEIVE_USER_ITEMS:
       action.items.forEach((item) => newState.items.push(item));
       return newState;
-      
+
     case ADD_ITEM_TO_CART:
       newState.items.push(action.item);
       return newState;
-      
+
     case RECEIVE_ERRORS:
-      console.log("receiving errors");
+      // console.log("receiving errors");
       newState.errors = action.errors;
       return newState;
-      
+
     case REMOVE_ITEM:
       newState.items = removeItemHelper(newState.items, action.item);
       return newState;
-      
+
     case UPDATE_QUANTITY:
       newState.items = updateQuantityHelper(newState.items, action.item);
       return newState;
-      
+
     case EMPTY_CART_ON_LOGOUT:
       newState.items = [];
       return newState;
-      
+
     default:
       return oldState;
   }

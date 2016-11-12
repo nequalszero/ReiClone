@@ -13,8 +13,8 @@ class Auth extends React.Component {
     let targetForm = document.getElementsByClassName(targetClass);
     if (targetForm.length !== 1){
       let num = targetForm.length;
-      console.log(`Error in toggleFormDropDown: ${num} elements found` +
-                  `for class ${targetClass}`);
+      // console.log(`Error in toggleFormDropDown: ${num} elements found` +
+      //             `for class ${targetClass}`);
       } else {
         targetForm = targetForm[0];
         let listEl = document.getElementsByClassName(parentLink)[0];
@@ -48,7 +48,7 @@ class Auth extends React.Component {
   }
 
   componentDidMount() {
-    console.log("auth.jsx component did mount");
+    // console.log("auth.jsx component did mount");
     this.hideLoginAndSignupContainers();
     if (this.props.currentUser) {
       this.props.requestUserItems();
@@ -63,7 +63,7 @@ class Auth extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log("auth.jsx component did update");
+    // console.log("auth.jsx component did update");
 
     if (this.props.errors){
       if (!this.props.errors.login && !this.props.errors.signup) {

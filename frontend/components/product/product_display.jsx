@@ -111,10 +111,10 @@ class ProductDisplay extends React.Component {
     };
   }
 
-  addProductToCart(itemName) {
+  addProductToCart(item) {
     return (e) => {
-      console.log(`Adding ${this.state.quantity} `+
-                  `${itemName} to cart`);
+      item.quantity = parseInt(this.state.quantity);
+      this.props.addItemToCart(item);
     };
   }
 
@@ -134,7 +134,7 @@ class ProductDisplay extends React.Component {
             onChange={this.updateQuantity()}/>
         </div>
         <button className="add-product-to-cart"
-                onClick={this.addProductToCart(itemName)}>
+                onClick={this.addProductToCart(item)}>
                 Add To Cart <i className="fa fa-cart-plus fa-lg"
                                aria-hidden="true"></i>
         </button>

@@ -19,7 +19,8 @@ class ResultsIndex extends React.Component {
         <div className="product-results-container">
           {
             this.props.results.items.map((item) => (
-              <ResultsIndexItem item={item} key={item.id}/>
+              <ResultsIndexItem item={item}
+                                key={item.id}/>
             ))
           }
         </div>

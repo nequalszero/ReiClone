@@ -48,16 +48,13 @@ class Api::ShoppingCartItemsController < ApplicationController
   end
 
   def destroy
-    if current_user
-      @shopping_cart_items = ShoppingCartItem.where(user_id: current_user.id)
-      @shopping_cart_items.each do |item|
-        item.delete
-      end
+    @shopping_cart_item = ShoppingCartItem.find(params[:id])
+    if @shopping_cart_item
+      @shopping_cart_item.delete
       success = "Successfully deleted #{current_user.username}'s items from database"
       render json: [success]
     else
-      error = "ShoppingCartItemsController - destroy - no current user"
-      render json: {errors: [error]}, status: 422
+      render json: @shopping_cart_item.errors.full_messages, status: 422
     end
   end
 

@@ -33,7 +33,7 @@ const formatRating = (rating) => {
   }
 };
 
-const ResultsIndexItem = ({ item, router }) => {
+const ResultsIndexItem = ({ item, router, dispatch }) => {
   const handleClick = url => e => router.push(url);
   let itemName = `${item.brand} ${item.name}`;
   let paddedPrice = padPrice(item.price);

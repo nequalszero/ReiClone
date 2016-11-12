@@ -3,11 +3,11 @@ import React from 'react';
 class ProductDisplay extends React.Component {
   constructor(props) {
     super(props);
-    console.log("ProductDisplay props: ", props);
+    // console.log("ProductDisplay props: ", props);
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
+    // console.log("componentDidMount");
     let details = document.getElementsByClassName("product-details-link")[0];
     details.style.borderBottom = "6px solid #06c";
     details.style.color = "black";
@@ -161,7 +161,7 @@ class ProductDisplay extends React.Component {
     } else {
       let ounces = this.roundToOneDecimal(weight*16);
       weight = `${ounces} ounces`;
-      console.log(weight);
+      // console.log(weight);
     }
     return weight;
   }
