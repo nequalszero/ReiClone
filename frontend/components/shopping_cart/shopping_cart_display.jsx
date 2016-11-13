@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router';
 class ShoppingCartDisplay extends React.Component {
   constructor(props) {
     super(props);
-    // console.log("receiving constructor props: ", props);
+    console.log("receiving constructor props: ", props);
     this.state = {items: props.shopping_cart.items};
     this.renderEmptyCartPage = this.renderEmptyCartPage.bind(this);
     this.renderFilledCartPage = this.renderFilledCartPage.bind(this);
@@ -12,32 +12,54 @@ class ShoppingCartDisplay extends React.Component {
     this.renderItemDetailAndBorder = this.renderItemDetailAndBorder.bind(this);
     this.renderItemDetail = this.renderItemDetail.bind(this);
     this.renderQuantity = this.renderQuantity.bind(this);
+
+    this.removeCartItem = this.removeCartItem.bind(this);
+    this.updateCartItem = this.updateCartItem.bind(this);
+    this.updateQuantityField = this.updateQuantityField.bind(this);
   }
 
   updateCartItem(idx) {
-    return (e) => (
-      this.props.updateQuantityInDatabase(this.state.items[idx])
-    );
+    console.log("update CB item:", this.state.items[idx]);
+    this.props.updateQuantityInDatabase(this.state.items[idx]);
+  }
+
+  updateQuantityField(idx) {
+    console.log("updateQuantityField - update local state");
+    return (e) => {
+      let newItems = this.state.items;
+      newItems[idx].quantity = parseInt(e.target.value);
+      this.setState({items: newItems});
+    };
   }
 
   removeCartItem(idx) {
-    return (e) => (
-      this.props.removeUserItemFromDatabase(this.state.items[idx])
-    );
+    console.log("idx", idx);
+    console.log("returning");
+    this.props.removeUserItemFromDatabase(this.state.items[idx]);
   }
 
   shouldComponentUpdate(nextProps) {
-    // console.log("ShoppingCartDisplay shouldComponentUpdate");
-    if (nextProps.shopping_cart.items.length > 0 && this.state.items.length === 0) {
+    console.log("ShoppingCartDisplay shouldComponentUpdate");
+    if (nextProps.shopping_cart.items !== this.state.items) {
       return true;
     } else {
       return false;
     }
   }
+  //
+  // shouldComponentUpdate(nextProps) {
+  //   console.log("ShoppingCartDisplay shouldComponentUpdate");
+  //   if (nextProps.shopping_cart.items.length > 0 && this.state.items.length === 0) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   componentWillUpdate(nextProps) {
-    // console.log("ShoppingCartDisplay componentWillUpdate");
+    console.log("ShoppingCartDisplay componentWillUpdate");
     this.setState({items: nextProps.shopping_cart.items});
+    console.log("nextProps", nextProps);
   }
 
   renderEmptyCartPage() {
@@ -148,7 +170,7 @@ class ShoppingCartDisplay extends React.Component {
     let itemDetail = this.renderItemDetail(item, idx);
     let border = this.renderDivider(idx, numDifferentProducts);
     return (
-      <div className="shopping-cart-item-details-row">
+      <div key={idx} className="shopping-cart-item-details-row">
         {itemDetail}
         {border}
       </div>
@@ -159,7 +181,7 @@ class ShoppingCartDisplay extends React.Component {
     // console.log("rendering item detail");
     let itemName = `${item.brand} ${item.name}`;
     return (
-      <li key={item.product_id} className="shopping-cart-item-detail-container">
+      <li className="shopping-cart-item-detail-container">
         <span className="shopping-cart-item-image-container">
           <img className="shopping-cart-item-image"
                src={item.cart_image}
@@ -185,15 +207,6 @@ class ShoppingCartDisplay extends React.Component {
     );
   }
 
-  updateQuantityField(idx) {
-    // console.log("updateQuantityField - update local state");
-    return (e) => {
-      let newItems = this.state.items;
-      newItems[idx].quantity = parseInt(e.target.value);
-      this.setState({items: newItems});
-    };
-  }
-
   renderQuantity(item, idx) {
     return(
       <div className="shopping-cart-item-quantity-container">
@@ -202,18 +215,18 @@ class ShoppingCartDisplay extends React.Component {
             Quantity
           </label>
           <span className="shopping-cart-item-quantity-action"
-                onClick={this.updateCartItem(idx)}>
+                onClick={() => this.updateCartItem(idx)}>
             Update
           </span>
         </div>
         <div className="cart-item-quantity-container-half">
           <input className="shopping-cart-item-quantity-input"
-                  onChange={this.updateQuantityField(idx)}
-                  defaultValue={this.state.items[idx].quantity}>
+                 onChange={this.updateQuantityField(idx)}
+                 defaultValue={this.state.items[idx].quantity}>
 
           </input>
           <span className="shopping-cart-item-quantity-action"
-                onClick={this.removeCartItem(idx)}>
+                onClick={() =>this.removeCartItem(idx)}>
             Remove
           </span>
         </div>

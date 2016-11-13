@@ -10,9 +10,9 @@ const padPrice = (price) => {
 };
 
 const formatRating = (rating) => {
-  const star = <i className="fa fa-star" aria-hidden="true"></i>;
-  const emptyStar = <i className="fa fa-star-o" aria-hidden="true"></i>;
-  const halfStar = <i className="fa fa-star-half-o" aria-hidden="true"></i>;
+  const star = (key) => <i key={key} className="fa fa-star" aria-hidden="true"></i>;
+  const emptyStar = (key) => <i key={key} className="fa fa-star-o" aria-hidden="true"></i>;
+  const halfStar = key => <i key={key} className="fa fa-star-half-o" aria-hidden="true"></i>;
 
   if (rating === 0.0) {
     return [emptyStar, emptyStar, emptyStar, emptyStar, emptyStar];
@@ -20,14 +20,18 @@ const formatRating = (rating) => {
     let starArray = [];
     let numStars = Math.floor(rating);
     let residualStar = Math.round((rating - numStars)*10)/10;
+    let count = 0;
     for (let i = 0; i < numStars; i++) {
-      starArray.push(star);
+      starArray.push(star(i));
+      count += 1;
     }
     if (residualStar >= 0.3 && residualStar <= 0.8) {
-      starArray.push(halfStar);
+      starArray.push(halfStar(count));
+      count += 1;
     }
     while (starArray.length < 5) {
-      starArray.push(emptyStar);
+      starArray.push(emptyStar(count));
+      count += 1;
     }
     return starArray;
   }

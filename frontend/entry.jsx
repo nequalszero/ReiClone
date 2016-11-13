@@ -11,16 +11,16 @@ import Root from './components/root';
 // window.requestCategories = requestCategories;
 // window.requestCategoryItems = requestCategoryItems;
 
-// import { saveCartItemToDatabase,
-//          removeUserItemFromDatabase,
-//          updateQuantityInDatabase,
-//          requestUserItems
-//        } from './actions/shopping_cart_actions';
-//
-// window.saveCartItemToDatabase = saveCartItemToDatabase;
-// window.updateQuantityInDatabase = updateQuantityInDatabase;
-// window.requestUserItems = requestUserItems;
-// window.removeUserItemFromDatabase = removeUserItemFromDatabase;
+import { saveCartItemToDatabase,
+         removeUserItemFromDatabase,
+         updateQuantityInDatabase,
+         requestUserItems
+       } from './actions/shopping_cart_actions';
+
+window.saveCartItemToDatabase = saveCartItemToDatabase;
+window.updateQuantityInDatabase = updateQuantityInDatabase;
+window.requestUserItems = requestUserItems;
+window.removeUserItemFromDatabase = removeUserItemFromDatabase;
 
 document.addEventListener("click", (event) => {
   let eventPath = event.path.map((el) => el.className);
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
 
-  // window.store = store;
+  window.store = store;
   const rootEl = document.getElementById('root');
   ReactDOM.render(<Root store={store}/>, rootEl);
 });

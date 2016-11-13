@@ -1,7 +1,8 @@
 import { REQUEST_USER_ITEMS,
          SAVE_CART_ITEM_TO_DATABASE,
-         REMOVE_ITEM_FROM_DATABASE,
+         REMOVE_USER_ITEM_FROM_DATABASE,
          UPDATE_QUANTITY_IN_DATABASE,
+         ADD_ITEM_TO_CART,
          receiveErrors,
          receiveUserItems,
          updateQuantity,
@@ -34,10 +35,18 @@ const ShoppingCartMiddleware = ({ getState, dispatch }) => next => action => {
       createItem(action.item, saveItemSuccessCb, errorCb);
       return next(action);
 
-    case REMOVE_ITEM_FROM_DATABASE:
+    case REMOVE_USER_ITEM_FROM_DATABASE:
+      console.log("REMOVE_ITEM_FROM_DATABASE");
+      console.log("item: ", action.item);
       deleteUserItem(action.item, removeItemSuccessCb, errorCb);
       return next(action);
 
+    case ADD_ITEM_TO_CART:
+      if (action.item.redirect_create) {
+        updateItemQuantity(action.item, updateSuccessCb, errorCb);
+      }
+      return next(action);
+      
     default:
       return next(action);
   }

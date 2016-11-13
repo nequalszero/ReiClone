@@ -2,7 +2,7 @@ class Api::ShoppingCartItemsController < ApplicationController
   def index
     if current_user
       user_id = current_user.id
-
+      @redirect_create = false
       @shopping_cart_items = ShoppingCartItem.find_by_user_id(user_id)
       render "api/shopping_cart_items/show_items"
     else
@@ -12,14 +12,29 @@ class Api::ShoppingCartItemsController < ApplicationController
   end
 
   def show
+    @redirect_create = false
     @shopping_cart_item = ShoppingCartItem.find(params[:id])
     render "api/shopping_cart_items/show_item"
   end
 
   def create
     if current_user
+      @shopping_cart_item = ShoppingCartItem.find_by_user_id_and_product_id(
+        current_user.id,
+        shopping_cart_item_params[:product_id]
+      )
+
+      if @shopping_cart_item
+        params["id"] = @shopping_cart_item.id
+        params["quantity"] = @shopping_cart_item.quantity.to_i +
+                             shopping_cart_item_params["quantity"].to_i
+        params[:redirect_create] = true
+        return update
+      end
+
       @shopping_cart_item = ShoppingCartItem.new(shopping_cart_item_params)
       @shopping_cart_item.user_id = current_user.id
+
 
       if @shopping_cart_item.save
         render "api/shopping_cart_items/show_item"
@@ -37,6 +52,10 @@ class Api::ShoppingCartItemsController < ApplicationController
       @shopping_cart_item = ShoppingCartItem.find(params[:id])
 
       if @shopping_cart_item.update(shopping_cart_item_params)
+        @redirect_create = false
+        if params.has_key?(:redirect_create)
+          @redirect_create = true
+        end
         render "api/shopping_cart_items/show_item"
       else
         render json: @shopping_cart_item.errors.full_messages, status: 422
@@ -51,8 +70,7 @@ class Api::ShoppingCartItemsController < ApplicationController
     @shopping_cart_item = ShoppingCartItem.find(params[:id])
     if @shopping_cart_item
       @shopping_cart_item.delete
-      success = "Successfully deleted #{current_user.username}'s items from database"
-      render json: [success]
+      render "api/shopping_cart_items/show_item"
     else
       render json: @shopping_cart_item.errors.full_messages, status: 422
     end
@@ -60,6 +78,6 @@ class Api::ShoppingCartItemsController < ApplicationController
 
   private
   def shopping_cart_item_params
-    params.permit(:product_id, :quantity)
+    params.permit(:user_id, :product_id, :quantity)
   end
 end

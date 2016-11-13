@@ -4,8 +4,20 @@ import ProductDetailsContainer from './product_details_container';
 class ProductDisplay extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {quantity: 1};
-    // this.updateQuantity = this.updateQuantity.bind(this);
+    this.state = {quantity: 1, product_id: this.props.productId};
+    this.addProductToCart = this.addProductToCart.bind(this);
+  }
+
+  updateQuantity() {
+    return (e) => {
+      this.setState({["quantity"]: e.target.value});
+    };
+  }
+
+  addProductToCart(e) {
+    e.preventDefault();
+    let item = this.state;
+    this.props.saveCartItemToDatabase(item);
   }
 
   displayProduct() {
@@ -52,24 +64,31 @@ class ProductDisplay extends React.Component {
   }
 
   formatRating(rating) {
-    const star = <i className="fa fa-star" aria-hidden="true"></i>;
-    const emptyStar = <i className="fa fa-star-o" aria-hidden="true"></i>;
-    const halfStar = <i className="fa fa-star-half-o" aria-hidden="true"></i>;
+    const star = (key) => <i key={key} className="fa fa-star"
+                             aria-hidden="true"></i>;
+    const emptyStar = (key) => <i key={key} className="fa fa-star-o"
+                                  aria-hidden="true"></i>;
+    const halfStar = key => <i key={key} className="fa fa-star-half-o"
+                               aria-hidden="true"></i>;
 
     if (rating === 0.0) {
-      return [emptyStar, emptyStar, emptyStar, emptyStar, emptyStar];
+      return [emptyStar(1), emptyStar(2), emptyStar(3), emptyStar(4), emptyStar(5)];
     } else {
       let starArray = [];
       let numStars = Math.floor(rating);
       let residualStar = Math.round((rating - numStars)*10)/10;
+      let count = 0;
       for (let i = 0; i < numStars; i++) {
-        starArray.push(star);
+        starArray.push(star(i));
+        count += 1;
       }
       if (residualStar >= 0.3 && residualStar <= 0.8) {
-        starArray.push(halfStar);
+        starArray.push(halfStar(count));
+        count += 1;
       }
       while (starArray.length < 5) {
-        starArray.push(emptyStar);
+        starArray.push(emptyStar(count));
+        count += 1;
       }
       return starArray;
     }
@@ -80,6 +99,10 @@ class ProductDisplay extends React.Component {
     let title = `${item.brand} ${item.name}`;
     let price = this.padPrice(item.price);
     let rating = this.formatRating(parseFloat(item.rating));
+    let numRatings = `(${item.num_ratings})`;
+    if (item.num_ratings === 0) {
+      numRatings="";
+    }
 
     return(
       <div className="product-image-price-reviews-container">
@@ -95,7 +118,7 @@ class ProductDisplay extends React.Component {
             </div>
             <div className="product-rating-container">
               <span className="product-rating">
-                {rating.map((el) => el)} {item.rating} ({item.num_ratings})
+                {rating.map((el) => el)} {item.rating} {numRatings}
               </span>
             </div>
           </div>
@@ -103,19 +126,6 @@ class ProductDisplay extends React.Component {
         </div>
       </div>
     );
-  }
-
-  updateQuantity() {
-    return (e) => {
-      this.setState({["quantity"]: e.target.value});
-    };
-  }
-
-  addProductToCart(item) {
-    return (e) => {
-      item.quantity = parseInt(this.state.quantity);
-      this.props.addItemToCart(item);
-    };
   }
 
   renderAddProductToCart() {
@@ -134,16 +144,12 @@ class ProductDisplay extends React.Component {
             onChange={this.updateQuantity()}/>
         </div>
         <button className="add-product-to-cart"
-                onClick={this.addProductToCart(item)}>
+                onClick={this.addProductToCart}>
                 Add To Cart <i className="fa fa-cart-plus fa-lg"
                                aria-hidden="true"></i>
         </button>
       </div>
     );
-  }
-
-  componentWillMount() {
-    this.props.requestItem(this.props.productId);
   }
 
   render() {

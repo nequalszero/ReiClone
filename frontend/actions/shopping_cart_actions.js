@@ -46,10 +46,13 @@ export const saveCartItemToDatabase = item => ({
   item
 });
 
-export const removeUserItemFromDatabase = (item) => ({
-  type: "REMOVE_USER_ITEM_FROM_DATABASE",
-  item
-});
+export const removeUserItemFromDatabase = (item) => {
+  console.log(item);
+  return {
+    type: "REMOVE_USER_ITEM_FROM_DATABASE",
+    item: item
+  };
+};
 
 export const updateQuantityInDatabase = (item) => ({
   type: "UPDATE_QUANTITY_IN_DATABASE",

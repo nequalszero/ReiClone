@@ -8,6 +8,7 @@ class ProductDisplay extends React.Component {
 
   componentDidMount() {
     // console.log("componentDidMount");
+    window.scrollTo(0, 0);
     let details = document.getElementsByClassName("product-details-link")[0];
     details.style.borderBottom = "6px solid #06c";
     details.style.color = "black";
@@ -59,11 +60,11 @@ class ProductDisplay extends React.Component {
     return(
       <ul className="product-details-nav">
         <li className="product-details-link"
-            onClick={() => {this.toggleLink("product-details-link");}}>
+            onClick={() => this.toggleLink("product-details-link")}>
             Details
         </li>
         <li className="product-specs-link"
-            onClick={() => {this.toggleLink("product-specs-link");}}>
+            onClick={() => this.toggleLink("product-specs-link")}>
             Specs
         </li>
         <li className="product-reviews-link">

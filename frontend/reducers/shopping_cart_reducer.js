@@ -1,5 +1,5 @@
 import { RECEIVE_USER_ITEMS,
-         REMOVE_ITEM,
+         REMOVE_ITEM_FROM_CART,
          RECEIVE_ERRORS,
          ADD_ITEM_TO_CART,
          UPDATE_QUANTITY,
@@ -44,7 +44,10 @@ const ShoppingCartReducer = (oldState = _defaultShoppingCart, action) => {
       return newState;
 
     case ADD_ITEM_TO_CART:
-      newState.items.push(action.item);
+      let item = action.item;
+      if (!item.redirect_create) {
+        newState.items.push(action.item);
+      }
       return newState;
 
     case RECEIVE_ERRORS:
@@ -52,12 +55,16 @@ const ShoppingCartReducer = (oldState = _defaultShoppingCart, action) => {
       newState.errors = action.errors;
       return newState;
 
-    case REMOVE_ITEM:
+    case REMOVE_ITEM_FROM_CART:
+      console.log("removing item from cart");
+      console.log("action.item", action.item);
       newState.items = removeItemHelper(newState.items, action.item);
       return newState;
 
     case UPDATE_QUANTITY:
-      newState.items = updateQuantityHelper(newState.items, action.item);
+      let newItem = action.item;
+      if (newItem.redirect_create) delete newItem["redirect_create"];
+      newState.items = updateQuantityHelper(newState.items, newItem);
       return newState;
 
     case EMPTY_CART_ON_LOGOUT:

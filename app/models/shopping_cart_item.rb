@@ -7,4 +7,5 @@ class ShoppingCartItem < ActiveRecord::Base
   def self.find_by_user_id(user_id)
     ShoppingCartItem.where(user_id: user_id)
   end
+
 end
