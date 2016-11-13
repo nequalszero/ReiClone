@@ -47,7 +47,6 @@ export const saveCartItemToDatabase = item => ({
 });
 
 export const removeUserItemFromDatabase = (item) => {
-  console.log(item);
   return {
     type: "REMOVE_USER_ITEM_FROM_DATABASE",
     item: item

@@ -56,8 +56,6 @@ const ShoppingCartReducer = (oldState = _defaultShoppingCart, action) => {
       return newState;
 
     case REMOVE_ITEM_FROM_CART:
-      console.log("removing item from cart");
-      console.log("action.item", action.item);
       newState.items = removeItemHelper(newState.items, action.item);
       return newState;
 

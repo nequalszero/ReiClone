@@ -36,8 +36,6 @@ const ShoppingCartMiddleware = ({ getState, dispatch }) => next => action => {
       return next(action);
 
     case REMOVE_USER_ITEM_FROM_DATABASE:
-      console.log("REMOVE_ITEM_FROM_DATABASE");
-      console.log("item: ", action.item);
       deleteUserItem(action.item, removeItemSuccessCb, errorCb);
       return next(action);
 
@@ -46,7 +44,7 @@ const ShoppingCartMiddleware = ({ getState, dispatch }) => next => action => {
         updateItemQuantity(action.item, updateSuccessCb, errorCb);
       }
       return next(action);
-      
+
     default:
       return next(action);
   }

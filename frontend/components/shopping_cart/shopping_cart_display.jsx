@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router';
 class ShoppingCartDisplay extends React.Component {
   constructor(props) {
     super(props);
-    console.log("receiving constructor props: ", props);
+    // console.log("receiving constructor props: ", props);
     this.state = {items: props.shopping_cart.items};
     this.renderEmptyCartPage = this.renderEmptyCartPage.bind(this);
     this.renderFilledCartPage = this.renderFilledCartPage.bind(this);
@@ -19,12 +19,10 @@ class ShoppingCartDisplay extends React.Component {
   }
 
   updateCartItem(idx) {
-    console.log("update CB item:", this.state.items[idx]);
     this.props.updateQuantityInDatabase(this.state.items[idx]);
   }
 
   updateQuantityField(idx) {
-    console.log("updateQuantityField - update local state");
     return (e) => {
       let newItems = this.state.items;
       newItems[idx].quantity = parseInt(e.target.value);
@@ -33,13 +31,11 @@ class ShoppingCartDisplay extends React.Component {
   }
 
   removeCartItem(idx) {
-    console.log("idx", idx);
-    console.log("returning");
     this.props.removeUserItemFromDatabase(this.state.items[idx]);
   }
 
   shouldComponentUpdate(nextProps) {
-    console.log("ShoppingCartDisplay shouldComponentUpdate");
+    // console.log("ShoppingCartDisplay shouldComponentUpdate");
     if (nextProps.shopping_cart.items !== this.state.items) {
       return true;
     } else {
@@ -57,9 +53,8 @@ class ShoppingCartDisplay extends React.Component {
   // }
 
   componentWillUpdate(nextProps) {
-    console.log("ShoppingCartDisplay componentWillUpdate");
+    // console.log("ShoppingCartDisplay componentWillUpdate");
     this.setState({items: nextProps.shopping_cart.items});
-    console.log("nextProps", nextProps);
   }
 
   renderEmptyCartPage() {

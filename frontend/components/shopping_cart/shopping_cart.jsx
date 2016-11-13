@@ -13,7 +13,6 @@ class ShoppingCart extends React.Component {
   }
 
   render() {
-    console.log("Rendering shopping cart");
     let numItems = 0;
     if (this.props.shopping_cart.items.length > 0) {
       this.props.shopping_cart.items.forEach(item => {
