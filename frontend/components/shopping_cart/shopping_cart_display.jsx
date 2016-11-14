@@ -16,6 +16,7 @@ class ShoppingCartDisplay extends React.Component {
     this.removeCartItem = this.removeCartItem.bind(this);
     this.updateCartItem = this.updateCartItem.bind(this);
     this.updateQuantityField = this.updateQuantityField.bind(this);
+    this.handleCheckout = this.handleCheckout.bind(this);
   }
 
   updateCartItem(idx) {
@@ -34,6 +35,13 @@ class ShoppingCartDisplay extends React.Component {
     this.props.removeUserItemFromDatabase(this.state.items[idx]);
   }
 
+  handleCheckout(e) {
+    e.preventDefault();
+    this.state.items.forEach((item, idx) => {
+      this.removeCartItem(idx);
+    });
+  }
+
   shouldComponentUpdate(nextProps) {
     // console.log("ShoppingCartDisplay shouldComponentUpdate");
     if (nextProps.shopping_cart.items !== this.state.items) {
@@ -42,15 +50,6 @@ class ShoppingCartDisplay extends React.Component {
       return false;
     }
   }
-  //
-  // shouldComponentUpdate(nextProps) {
-  //   console.log("ShoppingCartDisplay shouldComponentUpdate");
-  //   if (nextProps.shopping_cart.items.length > 0 && this.state.items.length === 0) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
 
   componentWillUpdate(nextProps) {
     // console.log("ShoppingCartDisplay componentWillUpdate");
@@ -120,7 +119,8 @@ class ShoppingCartDisplay extends React.Component {
               ${subtotalString}
             </span>
           </span>
-          <button className="checkout-button">
+          <button className="checkout-button"
+                  onClick={this.handleCheckout}>
             Checkout
           </button>
         </div>
@@ -140,7 +140,8 @@ class ShoppingCartDisplay extends React.Component {
               ${subtotalString}
             </span>
           </span>
-          <button className="checkout-button">
+          <button className="checkout-button"
+                  onClick={this.handleCheckout}>
             Checkout
           </button>
         </div>
