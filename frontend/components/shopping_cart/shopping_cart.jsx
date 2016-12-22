@@ -19,6 +19,7 @@ class ShoppingCart extends React.Component {
         numItems += item.quantity;
       });
     }
+    numItems = numItems > 999 ? '999+' : numItems;
     return(
       <li className="visible-li"
           onClick={this.redirectToCartPage}>

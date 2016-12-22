@@ -10,11 +10,30 @@ const roundToDecimal = (value, numDecimals) => {
 
 // Pads prices that are even dollars with an extra 0 for display
 export const padPrice = (price) => {
-  let priceString = price;
-  if (price.split(".")[1].length === 1) {
-    priceString = priceString + "0";
+  let priceString = String(price);
+  let cents = price.split(".")[1] || '00';
+  let dollars = price.split(".")[0];
+  let centsLength = cents.length;
+  let dollarsLength = dollars.length;
+
+  if (centsLength === 1) {
+    cents = cents + "0";
   }
-  return priceString;
+  if (dollarsLength > 3) {
+    let dollarString = [];
+    let n = 1;
+    let maxN = Math.floor((dollarsLength - 1)/3);
+
+    dollars.split('').reverse().forEach((el, idx) => {
+      if (3*n === idx) {
+        dollarString.push(',');
+        n += 1;
+      }
+      dollarString.push(el);
+    });
+    dollars = dollarString.reverse().join('');
+  }
+  return `${dollars}.${cents}`;
 };
 
 export const formatRating = (rating) => {

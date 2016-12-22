@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router';
+import { padPrice } from '../helper_functions/product_details_helper';
 
 class ShoppingCartDisplay extends React.Component {
   constructor(props) {
@@ -73,16 +74,6 @@ class ShoppingCartDisplay extends React.Component {
     );
   }
 
-  padPrice(price) {
-    let priceString = price;
-    if (price.split(".").length === 1) {
-      priceString = price + ".00";
-    } else if (price.split(".")[1].length === 1) {
-      priceString = priceString + "0";
-    }
-    return priceString;
-  }
-
   renderFilledCartPage() {
     let numItems = 0;
     let subtotal = 0;
@@ -90,7 +81,7 @@ class ShoppingCartDisplay extends React.Component {
       numItems += item.quantity;
       subtotal += item.quantity*parseFloat(item.price);
     });
-    let subtotalString = this.padPrice(`${subtotal}`);
+    let subtotalString = padPrice(`${subtotal}`);
 
     return (
       <div className="filled-cart-page-container">
@@ -194,7 +185,7 @@ class ShoppingCartDisplay extends React.Component {
 
   renderItemSummary(item) {
     let title = `${item.brand} ${item.name}`;
-    let price = this.padPrice(item.price);
+    let price = padPrice(item.price);
     return(
       <div className="shopping-cart-item-summary-container">
         <span className="shopping-cart-item-title">{title}</span>
@@ -232,7 +223,7 @@ class ShoppingCartDisplay extends React.Component {
 
   renderItemTotal(item) {
     let itemTotal = parseFloat(item.price) * item.quantity;
-    let paddedTotal = this.padPrice(`${itemTotal}`);
+    let paddedTotal = padPrice(`${itemTotal}`);
     return (
       <div className="shopping-cart-item-total-container">
         <span className="shopping-cart-item-total">
