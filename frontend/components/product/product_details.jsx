@@ -1,4 +1,6 @@
 import React from 'react';
+import { stringifyWeight, parseFareinheitToCelsius }
+        from '../helper_functions/product_details_helper';
 
 class ProductDisplay extends React.Component {
   constructor(props) {
@@ -150,23 +152,6 @@ class ProductDisplay extends React.Component {
     );
   }
 
-  roundToOneDecimal(value) {
-    return Math.round(value * 10) / 10;
-  }
-
-  stringifyWeight(weight) {
-    let pounds = Math.floor(weight);
-    if (pounds > 0) {
-      let ounces = this.roundToOneDecimal((weight - pounds)*16);
-      weight = `${pounds} lbs. ${ounces} oz.`;
-    } else {
-      let ounces = this.roundToOneDecimal(weight*16);
-      weight = `${ounces} ounces`;
-      // console.log(weight);
-    }
-    return weight;
-  }
-
   getTableValues(item, categories) {
     let tableValues = {};
     let value;
@@ -177,17 +162,17 @@ class ProductDisplay extends React.Component {
       switch(key) {
         case "temperature_rating":
           let tempF = value;
-          let tempC = this.roundToOneDecimal(parseFloat(tempF)*(5/9)+32);
+          let tempC = parseFareinheitToCelsius(parseFloat(tempF));
           tableValues[key] = `${tempF} F   /   ${tempC} C`;
           break;
 
         case "weight":
-          tableValues[key] = this.stringifyWeight(parseFloat(value));
+          tableValues[key] = stringifyWeight(parseFloat(value));
           break;
 
         case "fill_weight":
           if (value) {
-            tableValues[key] = this.stringifyWeight(parseFloat(value));
+            tableValues[key] = stringifyWeight(parseFloat(value));
             break;
           } else {
             break;

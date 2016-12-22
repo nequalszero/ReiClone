@@ -104,3 +104,6 @@ lookup category in categories table: gives back category_id
 search products table for category_id: give back foreign_table_ids
 search foreign_table for foreign_table ids
     foreign_table will be specified in controller based on user input
+
+
+Ruby gems: bullet, lolDBA, thin

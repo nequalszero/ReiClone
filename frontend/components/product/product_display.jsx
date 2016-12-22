@@ -1,16 +1,26 @@
 import React from 'react';
 import ProductDetailsContainer from './product_details_container';
+import { padPrice, formatRating, validQuantity }
+        from '../helper_functions/product_details_helper';
 
 class ProductDisplay extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {quantity: 1, product_id: this.props.productId};
+    this.state = {quantity: 1,
+                  quantityEmpty: false,
+                  product_id: this.props.productId};
     this.addProductToCart = this.addProductToCart.bind(this);
   }
 
   updateQuantity() {
     return (e) => {
-      this.setState({["quantity"]: e.target.value});
+      console.log(`Incoming value: ${e.target.value}`);
+      if (validQuantity(e.target.value)) {
+        this.setState({["quantity"]: e.target.value});
+        console.log(`successfully updated to ${e.target.value}`);
+      } else {
+        console.log(`Keeping state quantity at: ${this.state.quantity}`);
+      }
     };
   }
 
@@ -55,50 +65,11 @@ class ProductDisplay extends React.Component {
     );
   }
 
-  padPrice(price) {
-    let priceString = price;
-    if (price.split(".")[1].length === 1) {
-      priceString = priceString + "0";
-    }
-    return priceString;
-  }
-
-  formatRating(rating) {
-    const star = (key) => <i key={key} className="fa fa-star"
-                             aria-hidden="true"></i>;
-    const emptyStar = (key) => <i key={key} className="fa fa-star-o"
-                                  aria-hidden="true"></i>;
-    const halfStar = key => <i key={key} className="fa fa-star-half-o"
-                               aria-hidden="true"></i>;
-
-    if (rating === 0.0) {
-      return [emptyStar(1), emptyStar(2), emptyStar(3), emptyStar(4), emptyStar(5)];
-    } else {
-      let starArray = [];
-      let numStars = Math.floor(rating);
-      let residualStar = Math.round((rating - numStars)*10)/10;
-      let count = 0;
-      for (let i = 0; i < numStars; i++) {
-        starArray.push(star(i));
-        count += 1;
-      }
-      if (residualStar >= 0.3 && residualStar <= 0.8) {
-        starArray.push(halfStar(count));
-        count += 1;
-      }
-      while (starArray.length < 5) {
-        starArray.push(emptyStar(count));
-        count += 1;
-      }
-      return starArray;
-    }
-  }
-
   renderProductImagePriceAndReviews() {
     let item = this.props.product.item;
     let title = `${item.brand} ${item.name}`;
-    let price = this.padPrice(item.price);
-    let rating = this.formatRating(parseFloat(item.rating));
+    let price = padPrice(item.price);
+    let rating = formatRating(parseFloat(item.rating));
     let numRatings = `(${item.num_ratings})`;
     if (item.num_ratings === 0) {
       numRatings="";
