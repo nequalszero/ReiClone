@@ -1,26 +1,48 @@
+// Old version of shopingcart_display.jsx before shopping_cart_display_item.jsx
+//   was created to represent individual cart items.
+
 import React from 'react';
 import { withRouter, Link } from 'react-router';
 import { padPrice } from '../helper_functions/product_details_helper';
-import ShoppingCartDisplayItemContainer
-      from './shopping_cart_display_item_container';
 
 class ShoppingCartDisplay extends React.Component {
   constructor(props) {
     super(props);
     // console.log("receiving constructor props: ", props);
     this.state = {items: props.shopping_cart.items};
+    this.renderEmptyCartPage = this.renderEmptyCartPage.bind(this);
+    this.renderFilledCartPage = this.renderFilledCartPage.bind(this);
+    this.renderItemDetails = this.renderItemDetails.bind(this);
+    this.renderItemDetailAndBorder = this.renderItemDetailAndBorder.bind(this);
+    this.renderItemDetail = this.renderItemDetail.bind(this);
+    this.renderQuantity = this.renderQuantity.bind(this);
 
+    this.removeCartItem = this.removeCartItem.bind(this);
+    this.updateCartItem = this.updateCartItem.bind(this);
+    this.updateQuantityField = this.updateQuantityField.bind(this);
     this.handleCheckout = this.handleCheckout.bind(this);
   }
 
-  removeCartItem(item) {
-    this.props.removeUserItemFromDatabase(item);
+  updateCartItem(idx) {
+    this.props.updateQuantityInDatabase(this.state.items[idx]);
+  }
+
+  updateQuantityField(idx) {
+    return (e) => {
+      let newItems = this.state.items;
+      newItems[idx].quantity = parseInt(e.target.value);
+      this.setState({items: newItems});
+    };
+  }
+
+  removeCartItem(idx) {
+    this.props.removeUserItemFromDatabase(this.state.items[idx]);
   }
 
   handleCheckout(e) {
     e.preventDefault();
-    this.state.items.forEach((item) => {
-      this.removeCartItem(item);
+    this.state.items.forEach((item, idx) => {
+      this.removeCartItem(idx);
     });
   }
 
@@ -135,12 +157,81 @@ class ShoppingCartDisplay extends React.Component {
   }
 
   renderItemDetailAndBorder(item, idx, numDifferentProducts) {
+    let itemDetail = this.renderItemDetail(item, idx);
     let border = this.renderDivider(idx, numDifferentProducts);
-    
     return (
       <div key={idx} className="shopping-cart-item-details-row">
-        <ShoppingCartDisplayItemContainer item={item}/>
+        {itemDetail}
         {border}
+      </div>
+    );
+  }
+
+  renderItemDetail(item, idx) {
+    // console.log("rendering item detail");
+    let itemName = `${item.brand} ${item.name}`;
+    return (
+      <li className="shopping-cart-item-detail-container">
+        <span className="shopping-cart-item-image-container">
+          <img className="shopping-cart-item-image"
+               src={item.cart_image}
+               alt={itemName} />
+        </span>
+        <span className="shopping-cart-item-details-container">
+          {this.renderItemSummary(item)}
+          {this.renderQuantity(item, idx)}
+          {this.renderItemTotal(item)}
+        </span>
+      </li>
+    );
+  }
+
+  renderItemSummary(item) {
+    let title = `${item.brand} ${item.name}`;
+    let price = padPrice(item.price);
+    return(
+      <div className="shopping-cart-item-summary-container">
+        <span className="shopping-cart-item-title">{title}</span>
+        <span className="shopping-cart-item-price">${price}</span>
+      </div>
+    );
+  }
+
+  renderQuantity(item, idx) {
+    return(
+      <div className="shopping-cart-item-quantity-container">
+        <div className="cart-item-quantity-container-half">
+          <label className="shopping-cart-item-quantity-label">
+            Quantity
+          </label>
+          <span className="shopping-cart-item-quantity-action"
+                onClick={() => this.updateCartItem(idx)}>
+            Update
+          </span>
+        </div>
+        <div className="cart-item-quantity-container-half">
+          <input className="shopping-cart-item-quantity-input"
+                 onChange={this.updateQuantityField(idx)}
+                 defaultValue={this.state.items[idx].quantity}>
+
+          </input>
+          <span className="shopping-cart-item-quantity-action"
+                onClick={() =>this.removeCartItem(idx)}>
+            Remove
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  renderItemTotal(item) {
+    let itemTotal = parseFloat(item.price) * item.quantity;
+    let paddedTotal = padPrice(`${itemTotal}`);
+    return (
+      <div className="shopping-cart-item-total-container">
+        <span className="shopping-cart-item-total">
+          Item total: ${paddedTotal}
+        </span>
       </div>
     );
   }

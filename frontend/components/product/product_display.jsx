@@ -14,12 +14,12 @@ class ProductDisplay extends React.Component {
 
   updateQuantity() {
     return (e) => {
-      console.log(`Incoming value: ${e.target.value}`);
+      // console.log(`Incoming value: ${e.target.value}`);
       if (validQuantity(e.target.value)) {
         this.setState({["quantity"]: e.target.value});
-        console.log(`successfully updated to ${e.target.value}`);
+        // console.log(`successfully updated to ${e.target.value}`);
       } else {
-        console.log(`Keeping state quantity at: ${this.state.quantity}`);
+        // console.log(`Keeping state quantity at: ${this.state.quantity}`);
       }
     };
   }

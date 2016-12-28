@@ -158,6 +158,10 @@
   width: 25%;
 }
 
+.shopping-cart-item-image:hover {
+  cursor: pointer;
+}
+
 .shopping-cart-item-details-container {
   display: flex;
   justify-content: space-between;
@@ -178,6 +182,11 @@
   display: block;
   width: 100%;
   font-weight: bold;
+}
+
+.shopping-cart-item-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .shopping-cart-item-price{

@@ -10,7 +10,7 @@ GearFix is a full-stack web site that is inspired by REI. This web application m
 
 ### Single-Page Application
 
-In contrast to the REI site, GearFix is a single page application that runs off of a single static page, and only re-renders the components that are affected by changes in the application state.  The root html file is 'bootstrapped' to listen for an current user at any time, and then subsequently stores the user's name and id in
+In contrast to the REI site, GearFix is a single page application that runs off of a single static page, and only re-renders the components that are affected by changes in the application state.  The root html file is 'bootstrapped' to listen for a current user at any time, and then subsequently stores the user's name and id in
 the window.  Redux is then able to check the session key under the Redux store for the window's current user.
 Without this feature, exiting a window or tab would result in the user's session being terminated regardless of
 whether or not they logged out.

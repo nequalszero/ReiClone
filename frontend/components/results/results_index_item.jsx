@@ -9,11 +9,12 @@ const ResultsIndexItem = ({ item, router, dispatch }) => {
   let paddedPrice = padPrice(item.price);
   let uniqueKey = `${item.id}-${item.name}`;
   let rating = formatRating(parseFloat(item.rating));
+  let productUrl = `/product/${item.id}`;
 
   return (
     <div key={uniqueKey}>
       <div className="results-index-item"
-           onClick={handleClick(`/product/${item.id}`)}>
+           onClick={handleClick(productUrl)}>
         <div className="result-image-container">
           <img className="result-image" src={item.result_image} alt={itemName}/>
         </div>

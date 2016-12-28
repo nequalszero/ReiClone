@@ -83,6 +83,11 @@ section.brand-and-name {
   width: 215px;
 }
 
+.brand-and-name:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 span.brand-name {
   display: block;
   font-weight: bold;
