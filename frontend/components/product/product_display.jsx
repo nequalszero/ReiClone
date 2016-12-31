@@ -34,7 +34,7 @@ class ProductDisplay extends React.Component {
     if (this.props.product.item) {
       return (
         <div className="display-product-page-container">
-          {this.renderProductNameAndSummary()}
+          {this.renderProductName()}
           {this.renderProductImagePriceAndReviews()}
           <ProductDetailsContainer />
         </div>
@@ -48,26 +48,21 @@ class ProductDisplay extends React.Component {
     }
   }
 
-  renderProductNameAndSummary() {
+  renderProductName() {
     let item = this.props.product.item;
     let title = `${item.brand} ${item.name}`;
-    let description = `${item.description}`;
 
     return(
-      <div className="product-name-and-summary-container">
-        <h2 className="product-title">
-          {title}
-        </h2>
-        <span className="product-description">
-          {description}
-        </span>
-      </div>
+      <h2 className="product-title">
+        {title}
+      </h2>
     );
   }
 
   renderProductImagePriceAndReviews() {
     let item = this.props.product.item;
     let title = `${item.brand} ${item.name}`;
+    let description = `${item.description}`;
     let price = padPrice(item.price);
     let rating = formatRating(parseFloat(item.rating));
     let numRatings = `(${item.num_ratings})`;
@@ -77,8 +72,13 @@ class ProductDisplay extends React.Component {
 
     return(
       <div className="product-image-price-reviews-container">
-        <div className="product-image">
-          <img src={item.primary_image} alt={title}/>
+        <div className="product-image-and-summary-container">
+          <span className="product-description">
+            {description}
+          </span>
+          <div className="product-image-container">
+            <img className="product-image" src={item.primary_image} alt={title}/>
+          </div>
         </div>
         <div className="product-price-reviews-quantity-container">
           <div className="product-price-reviews-container">

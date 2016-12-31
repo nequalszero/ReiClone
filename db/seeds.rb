@@ -6,6 +6,40 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+def create_image_url(image_url, type)
+  upload = "upload/"
+  url_parts = image_url.split(upload)
+
+  error_message = "Error in create_image_url: cannot format ${image_url}"
+  raise error_message if url_parts.length != 2
+
+  case type
+  when :cart
+    return url_parts[0] + upload + "c_pad,h_150,w_150/" + url_parts[1]
+  when :result
+    return url_parts[0] + upload + "c_fit,h_215,w_215/" + url_parts[1]
+  when :primary
+    return url_parts[0] + upload + "c_fit,h_440,w_440/" + url_parts[1]
+  else
+    error_message = "Error in create_image_url: cannot handle type: ${type}"
+    raise error_message
+  end
+end
+
+def calc_weight(pounds, ounces)
+  (pounds + ounces.fdiv(16)).round(2)
+end
+
+brand_ids = {
+  "Marmot" => 1,
+  "REI" => 2,
+  "Mountain Hardwear" => 3,
+  "The North Face" => 4,
+  "NEMO" => 5,
+  "MSR" => 6,
+  "Heimplanet" => 7
+}
+
 User.create(username: 'Guest', password: 'asdfasdf')      # 1
 User.create(username: 'Travis', password: 'asdfasdf')     # 2
 User.create(username: 'Dinosaur', password: 'asdfasdf')   # 3
@@ -20,6 +54,8 @@ Brand.create(name: "REI")
 Brand.create(name: "Mountain Hardwear")
 Brand.create(name: "The North Face")
 Brand.create(name: "NEMO")
+Brand.create(name: "MSR")
+Brand.create(name: "Heimplanet")
 
 Category.create(name: "sleeping_bags")
 Category.create(name: "tents")
@@ -48,7 +84,7 @@ Product.create(category_id: 1,
                num_ratings: 5,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478473156/marmot_hydrogen_hyghtl.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478473156/marmot_hydrogen_hyghtl.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478473156/marmot_hydrogen_hyghtl.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478473156/marmot_hydrogen_hyghtl.jpg",
                description: "At just a pound and a half, the Marmot Hydrogen 3-season sleeping bag is constructed with curved baffles to reduce the shifting of its water-resistant 800-fill goose down for superb loft and warmth."
               )
@@ -92,7 +128,7 @@ Product.create(category_id: 1,
                num_ratings: 5,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478482708/marmot_plasma_15_qztthh.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478482708/marmot_plasma_15_qztthh.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478482708/marmot_plasma_15_qztthh.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478482708/marmot_plasma_15_qztthh.jpg",
                description: "No, you're not dreaming. The Marmot Plasma 15 Sleeping Bag comes in under 2 lbs. (regular length) with 875-fill-power, water-resistant goose down—backpacking season can't get here soon enough!"
               )
@@ -136,7 +172,7 @@ Product.create(category_id: 1,
                num_ratings: 53,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478484166/rei_igneo_tdv7hy.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478484166/rei_igneo_tdv7hy.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478484166/rei_igneo_tdv7hy.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478484166/rei_igneo_tdv7hy.jpg",
                description: "A premium backpacking bag for wet conditions, this 3-season Mummy bag features REI's double-protection design, which uses both water-repellent down and waterproof/breathable fabric panels."
               )
@@ -180,7 +216,7 @@ Product.create(category_id: 1,
                num_ratings: 18,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478484833/rei_flash_womens_t16m3w.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478484833/rei_flash_womens_t16m3w.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478484833/rei_flash_womens_t16m3w.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478484833/rei_flash_womens_t16m3w.jpg",
                description: "This 3-season, ultralight women's specific sleeping bag uses a clever hybrid of water-repellent insulations and waterproof/breathable fabric panels in its double-protection design."
               )
@@ -221,7 +257,7 @@ Product.create(category_id: 1,
                price: 199.95,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
                description: "Side sleepers rejoice! The women's 3-season Nemo Celesta 25 sleeping bag has a unique spoon shape to give side sleepers more room to find their comfort zone."
               )
@@ -255,7 +291,7 @@ Product.create(category_id: 1,
                num_ratings: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478489515/nemo_celesta_25_womens_l964ql.jpg",
                description: "The women's 3-season NEMO Celesta backpacking bag features a unique spoon shape that offers generous room at the elbows and knees, making it perfect for side sleeping."
               )
@@ -290,7 +326,7 @@ Product.create(category_id: 1,
                num_ratings: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478490599/nemo_rhapsody_15_womens_b4jars.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478490599/nemo_rhapsody_15_womens_b4jars.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478490599/nemo_rhapsody_15_womens_b4jars.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478490599/nemo_rhapsody_15_womens_b4jars.jpg",
                description: "The Nemo Rhapsody 15 backpacking bag with 750-fill DownTek down features stretch stitching and a unique spoon shape for added room at the elbows and knees, perfect for side sleepers."
               )
@@ -328,7 +364,7 @@ Product.create(category_id: 1,
                price: 630,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478497964/mountain_hardwear_phantom_torch_3_o9bjuq.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478497964/mountain_hardwear_phantom_torch_3_o9bjuq.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478497964/mountain_hardwear_phantom_torch_3_o9bjuq.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478497964/mountain_hardwear_phantom_torch_3_o9bjuq.jpg",
                description: "A favorite among cold-weather backpackers, the superlight Mountain Hardwear Phantom Torch 3 is filled with 800-fill Q.Shield Down for maximum warmth and loft in damp conditions."
               )
@@ -367,7 +403,7 @@ Product.create(category_id: 1,
                num_ratings: 3,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478497968/mountain_hardwear_lamina_z_torch_sleeping_bag_qx3gn8.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478497968/mountain_hardwear_lamina_z_torch_sleeping_bag_qx3gn8.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478497968/mountain_hardwear_lamina_z_torch_sleeping_bag_qx3gn8.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478497968/mountain_hardwear_lamina_z_torch_sleeping_bag_qx3gn8.jpg",
                description: "For maximum warmth on winter outings, this cold-weather sleeping bag has thermally zoned insulation to put extra warmth where you need it most—around your core and your feet."
               )
@@ -403,7 +439,7 @@ Product.create(category_id: 1,
                price: 259,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478498827/mountain_hardwear_lamina_z_blaze_-15_sleeping_bag_dqhjmx.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478498827/mountain_hardwear_lamina_z_blaze_-15_sleeping_bag_dqhjmx.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478498827/mountain_hardwear_lamina_z_blaze_-15_sleeping_bag_dqhjmx.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478498827/mountain_hardwear_lamina_z_blaze_-15_sleeping_bag_dqhjmx.jpg",
                description: "A warm, affordable, and water-repellent synthetic bag, with unique Lamina construction for ultimate warmth, the Mountain Hardwear Lamina Z Blaze is a great choice for winter backpacking."
               )
@@ -444,7 +480,7 @@ Product.create(category_id: 1,
                num_ratings: 9,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478499330/the_north_face_cats_meow_22_tkrnsz.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478499330/the_north_face_cats_meow_22_tkrnsz.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478499330/the_north_face_cats_meow_22_tkrnsz.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478499330/the_north_face_cats_meow_22_tkrnsz.jpg",
                description: "The quintessential synthetic, 20° bag for 3-season backpacking, the Cat's Meow 22 sleeping bag has an efficient design that maximizes warmth and compressibility while reducing weight."
               )
@@ -480,7 +516,7 @@ Product.create(category_id: 1,
                num_ratings: 1,
                best_use: "Backpacking",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478499327/the_north_face_blue_kazoo_20_qjwxru.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478499327/the_north_face_blue_kazoo_20_qjwxru.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478499327/the_north_face_blue_kazoo_20_qjwxru.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478499327/the_north_face_blue_kazoo_20_qjwxru.jpg",
                description: "It's been a long day on the trail and you're ready for a good night's sleep. The North Face Blue Kazoo 20 is filled with lofty 650-fill ProDown℥ to keep you warm on all your 3-season adventures."
               )
@@ -521,7 +557,7 @@ Product.create(category_id: 1,
                num_ratings: 5,
                best_use: "Camping",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478501986/the_north_face_dolomtite_40_sleeping_bag_ivot0n.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478501986/the_north_face_dolomtite_40_sleeping_bag_ivot0n.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478501986/the_north_face_dolomtite_40_sleeping_bag_ivot0n.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478501986/the_north_face_dolomtite_40_sleeping_bag_ivot0n.jpg",
                description: "Generously cut in a rectangular shape, The North Face Dolomite 40° synthetic sleeping bag is for those who want modern performance in an old-school camping bag."
               )
@@ -550,7 +586,7 @@ Product.create(category_id: 1,
                price: 119,
                best_use: "Camping",
                primary_image: "http://res.cloudinary.com/nequalszero/image/upload/v1478502818/the_north_face_homestead_twin_20_sleeping_bag_gsp5ew.jpg",
-               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_215/v1478502818/the_north_face_homestead_twin_20_sleeping_bag_gsp5ew.jpg",
+               result_image: "http://res.cloudinary.com/nequalszero/image/upload/c_fit,h_215,w_215/v1478502818/the_north_face_homestead_twin_20_sleeping_bag_gsp5ew.jpg",
                cart_image: "http://res.cloudinary.com/nequalszero/image/upload/c_pad,h_150,w_150/v1478502818/the_north_face_homestead_twin_20_sleeping_bag_gsp5ew.jpg",
                description: "The ultimate in base-camp comfort and style, the 20° Homestead synthetic bag from The North Face bag is sized to match a standard twin mattress, or you can zip two together for a queen-size bed."
               )
@@ -563,6 +599,270 @@ Detail.create(product_id: 14, description: "Included compression stuff sack feat
 
 
 
-# Shopping Cart Items
+# Shopping Cart Items ##########################################################################################################################################################################################################################################################################################
 ShoppingCartItem.create(user_id: 1, product_id: 1, quantity: 1)
 ShoppingCartItem.create(user_id: 1, product_id: 2, quantity: 2)
+
+
+##### Tents #########################################################################################################################################################################################################################################################################################################
+##### REI Half Dome 2 Plus Tent #####
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1482995066/REI_HalfDome_2Plus_Tent_syd7vx.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "2-person",
+            minimum_trail_weight: calc_weight(5, 1),
+            fly_footprint_pitch_weight: calc_weight(3, 9),
+            packaged_weight: calc_weight(5, 7),
+            packed_size: "7 x 21 inches",
+            floor_dimensions: "95 x 56 inches",
+            floor_area: 38.1,
+            vestibule_area: "10.2 + 10.2 square feet",
+            peak_height: 42,
+            number_of_doors: 2,
+            number_of_poles: 3,
+            pole_material: "DAC Pressfit aluminum",
+            pole_diameter: "8.7 millimeters",
+            canopy_fabric: "40-denier ripstop nylon/20-denier nylon mesh",
+            floor_fabric: "70-denier taffeta nylon",
+            rainfly_fabric: "40-denier nylon",
+            footprint_included: "No",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: 2,
+               product_table_id: 1,
+               brand_id: brand_ids["REI"],
+               name: "Half Dome 2 Plus",
+               price: 219,
+               rating: 4.3,
+               num_ratings: 22,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "Lightweight and weather worthy, the extra roomy Half Dome 2 Plus tent offers many comfortable touches for 2 backpackers, along with an expressive twist—you can choose from different fly colors."
+              )
+
+details = [
+  "Plus sizing provides more room via an extended floor plan; it's 10 in. longer and 4 in. wider than the standard REI Half Dome 2",
+  "Fly design allows sides and ends to be rolled up to maximize views and airflow; everything also rolls down quickly if a storm blows in",
+  "Curved zipper tracks on fly operate smoothly; fly's 4 ceiling vents provide airflow to prevent condensation buildup",
+  "Hubbed pole assembly simplifies setup",
+  "REI-exclusive tension-truss architecture creates stable vertical sidewalls for generous space and plenty of headroom",
+  "2 doors and 2 vestibules offer easy access and additional covered storage",
+  "Pockets and hang loops help organize the interior",
+  "Includes guylines with tighteners, stakes and pole-repair tube, compression stuff sack, pole bag and stake bag",
+  "Fly / footprint minimalist pitch option lets you leave the tent at home and use the fly, poles and footprint (sold separately) as a lightweight shelter",
+  "REI Half Dome 2 Plus Footprint is sold separately"
+]
+
+details.each { |det| Detail.create(product_id: 15, description: det) }
+
+##### REI Half Dome 2 Tent #####
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1483101094/REI_HalfDome_2_Tent_xzgqkq.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "2-person",
+            minimum_trail_weight: calc_weight(4, 9),
+            fly_footprint_pitch_weight: calc_weight(3, 4),
+            packaged_weight: calc_weight(4, 15),
+            packed_size: "6 x 21 inches",
+            floor_dimensions: "88 x 52 inches",
+            floor_area: 31.8,
+            vestibule_area: "7.9 + 7.9 square feet",
+            peak_height: 40,
+            number_of_doors: 2,
+            number_of_poles: 3,
+            pole_material: "DAC aluminum",
+            pole_diameter: "8.7 millimeters",
+            canopy_fabric: "40-denier ripstop nylon/20-denier nylon mesh",
+            floor_fabric: "70-denier nylon taffeta",
+            rainfly_fabric: "40-denier nylon",
+            footprint_included: "No",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: 2,
+               product_table_id: 2,
+               brand_id: brand_ids["REI"],
+               name: "Half Dome 2 Tent",
+               price: 199,
+               rating: 4.0,
+               num_ratings: 25,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "Lightweight and weather worthy, this sturdy 3-season tent offers many comfortable touches for 2 backpackers, along with an expressive twist—you can choose from 6 different fly colors."
+              )
+
+details = "Fly design allows sides and ends to be rolled up to maximize views and airflow; everything also rolls down quickly if a storm blows in
+Curved zipper tracks on fly operate smoothly; fly's 4 ceiling vents provide airflow to prevent condensation buildup
+Hubbed pole assembly simplifies setup
+REI-exclusive tension-truss architecture creates stable vertical sidewalls and generous headroom while minimizing pole weight
+2 doors and 2 vestibules offer easy access and additional covered storage
+Pockets and hang loops help organize the interior
+Includes guylines with tighteners, stakes and pole-repair tube, compression stuff sack, pole bag and stake bag
+Fly / footprint minimalist pitch option lets you leave the tent at home and use the fly, poles and footprint (sold separately) as a lightweight shelter
+REI Half Dome 2 Footprint is sold separately"
+
+details.split("\n").each { |det| Detail.create(product_id: 16, description: det) }
+
+
+
+##### Heimplanet Fistral 2 Tent #####
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1483101093/Heimplanet_Fistral_2_Tent_vl4wj6.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "2-person",
+            minimum_trail_weight: calc_weight(4, 8),
+            fly_footprint_pitch_weight: calc_weight(3, 8),
+            packaged_weight: calc_weight(5, 8),
+            packed_size: "8 x 15 inches",
+            floor_dimensions: "94 x 53 inches",
+            floor_area: 31,
+            vestibule_area: "6.5 + 6.5 square feet",
+            peak_height: 44,
+            number_of_doors: 2,
+            number_of_poles: 2,
+            pole_material: "Inflatable poles",
+            pole_diameter: "100 millimeters",
+            canopy_fabric: "40-denier ripstop nylon / polyester mesh",
+            floor_fabric: "70-denier nylon taffeta",
+            rainfly_fabric: "40-denier high-tenacity ripstop polyester",
+            design_type: "Semi-freestanding"
+           )
+
+Product.create(category_id: 2,
+               product_table_id: 3,
+               brand_id: brand_ids["Heimplanet"],
+               name: "Fistral 2 Tent",
+               price: 520,
+               rating: 5,
+               num_ratings: 1,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "With an ingenious inflatable design, the 3-season Heimplanet Fistral 2 tent offers flexibility with minimum packed size and low weight. 2 entrances and 2 vestibules offer maximum comfort for 2 people."
+              )
+
+details = "Intuitive, easy, fast pitching with simultaneous setup of the airframe, inner tent and rainfly
+1-pump system sets up with a single inflation process (pump sold separately)
+Multi-chamber system separates frame into independent chambers for stability—even with a leak—and ensures easy repair or replacement of inflatable Diamond Grid
+Light and well-ventilated interior has no-see-um mesh and lots of storage space integrated into the sidewalls
+2 entrances provide convenient access and protect you from wind and weather; 2 vestibules offer covered space for your gear
+Entrances open with 2-way zippers and can be used for additional ventilation
+Inflatable geodesic structure ensures outstanding stability and easy setup
+2 closable ports create air exchange to keep the tent interior ventilated
+Corner pockets, roof pockets and hang loops provide multiple storage options; stuff pockets hold doors out of the way and double as storage pockets
+Durable polyester rainfly holds a taut pitch and resists UV degradation
+Save weight and create a minimalist shelter by using just the rainfly, inflatable frame, footprint (sold separately),
+Includes guylines with tighteners, stakes, pole repair kit; compression stuff sack, pole bags and stake bags"
+
+details.split("\n").each { |det| Detail.create(product_id: 17, description: det) }
+
+
+##### NEMO Veda 1p Tent #####
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1483101094/NEMO_Veda_1P_Tent_uveafb.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "1-person",
+            minimum_trail_weight: calc_weight(2, 1),
+            packaged_weight: calc_weight(2, 7),
+            packed_size: "6 x 6 inches",
+            floor_dimensions: "98 x 36 inches",
+            floor_area: 24,
+            vestibule_area: "12 square feet",
+            peak_height: 44,
+            number_of_doors: 1,
+            number_of_poles: "2 trekking poles (not included)",
+            pole_material: "Not applicable",
+            pole_diameter: "Not applicable",
+            canopy_fabric: "40-denier waterproof ripstop polyester",
+            floor_fabric: "30-denier coated nylon",
+            rainfly_fabric: "20-denier coated nylon",
+            footprint_included: "No",
+            ultralight: "Yes",
+            design_type: "Non-freestanding"
+           )
+
+Product.create(category_id: 2,
+               product_table_id: 4,
+               brand_id: brand_ids["NEMO"],
+               name: "Veda 1P Tent",
+               price: 329.95,
+               rating: 4.3,
+               num_ratings: 8,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "This 3-season tent gives solo backpackers a magical combination of light weight, packability and livability you will love while living on the trail."
+              )
+
+Feature.create(product_id: 18, name: "Ultralight")
+
+details = "Ultralight design relies on 1 pair of trekking poles (sold separately) instead of tent poles to minimize weight and create a spacious interior with ample sitting height
+Oversize grommets locate the tips of crossed trekking poles; reinforced areas at the top of the tent receive pole handles
+Large vestibule offers generous protected space for gear; it rolls back with a shed-style overhang for weather protection and refreshing airflow
+Wicking fabric overhead effectively manages condensation; built-in light pocket makes it easy to illuminate the interior with a headlamp or other light
+Includes a drybag-style stuff sack, stakes, guy-out cord and repair kit"
+
+details.split("\n").each { |det| Detail.create(product_id: 18, description: det) }
+
+
+
+
+# ##### NEMO Galaxi 2 Tent #####
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1483101094/NEMO_Galaxy_2_Tent_dvbnag.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "2-person",
+            minimum_trail_weight: calc_weight(4, 15),
+            fly_footprint_pitch_weight: calc_weight(3, 10),
+            packaged_weight: calc_weight(5, 8),
+            packed_size: "6.5 x 18 inches",
+            floor_dimensions: "90 x 54 inches",
+            floor_area: 32,
+            vestibule_area: "11 + 11 square feet",
+            peak_height: 40,
+            number_of_doors: 2,
+            number_of_poles: 2,
+            pole_material: "Aluminum",
+            pole_diameter: "9 millimeters",
+            canopy_fabric: "No-see-um mesh",
+            floor_fabric: "70-denier coated nylon",
+            rainfly_fabric: "68-denier coated ripstop polyester",
+            footprint_included: "Yes",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: 2,
+               product_table_id: 5,
+               brand_id: brand_ids["NEMO"],
+               name: "Galaxi 2 Tent with Footprint",
+               price: 249.95,
+               rating: 4.8,
+               num_ratings: 25,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "The spacious, 3-season NEMO Galaxi 2 Tent offers quality and innovation at an affordable price, with a great suite of fabrics and hardware that creates an intuitive tent design for 2 backpackers."
+              )
+
+Feature.create(product_id: 19, name: "Footprint Included")
+
+details = "1-piece hubbed pole set makes setup simple and quick
+Generous vestibules offer protected entry and dry gear storage; tie back one or both of the doors, or close both for full protection
+MagTie™ magnetic door tie-backs make it simple to roll back your door and keep it out of the way
+Place a headlamp (not included) in the overhead Light Pocket™; its special light-diffusing fabric casts an even glow throughout your tent
+The NEMO Galaxi 2P Tent comes with a coated ripstop nylon footprint to help protect its floor from abrasion; webbing stake-outs at the corners allow easy attachment"
+
+details.split("\n").each { |det| Detail.create(product_id: 19, description: det) }

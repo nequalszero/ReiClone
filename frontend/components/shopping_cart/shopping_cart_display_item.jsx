@@ -5,9 +5,6 @@ import { padPrice, validQuantity }
 
 class ShoppingCartDisplayItem extends React.Component {
   constructor(props) {
-    // props = Object.assign({}, props, props.props);
-    // delete props.props;
-    console.log("props:", props);
     super(props);
     let item = Object.assign({}, props.item);
     item.tempQuantity = item.quantity;

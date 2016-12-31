@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20161109192727) do
     t.decimal  "rating",           default: 0.0, null: false
     t.integer  "num_ratings",      default: 0,   null: false
     t.string   "best_use"
+    t.string   "full_size_image"
     t.string   "primary_image",                  null: false
     t.string   "result_image",                   null: false
     t.string   "cart_image",                     null: false
@@ -112,15 +113,28 @@ ActiveRecord::Schema.define(version: 20161109192727) do
   end
 
   create_table "tents", force: :cascade do |t|
-    t.string   "sleeping_capacity", null: false
-    t.string   "seasons",           null: false
-    t.decimal  "weight",            null: false
-    t.integer  "number_of_doors",   null: false
-    t.decimal  "floor_area",        null: false
-    t.integer  "peak_height",       null: false
-    t.string   "design_type",       null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "seasons",                    null: false
+    t.string   "sleeping_capacity",          null: false
+    t.decimal  "minimum_trail_weight",       null: false
+    t.decimal  "fly_footprint_pitch_weight"
+    t.decimal  "packaged_weight"
+    t.string   "packed_size"
+    t.string   "floor_dimensions"
+    t.decimal  "floor_area",                 null: false
+    t.string   "vestibule_area"
+    t.integer  "peak_height",                null: false
+    t.integer  "number_of_doors",            null: false
+    t.string   "number_of_poles"
+    t.string   "pole_material"
+    t.string   "pole_diameter"
+    t.string   "canopy_fabric"
+    t.string   "floor_fabric"
+    t.string   "rainfly_fabric"
+    t.string   "footprint_included"
+    t.string   "ultralight"
+    t.string   "design_type",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|

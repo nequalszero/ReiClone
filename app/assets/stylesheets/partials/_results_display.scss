@@ -61,12 +61,17 @@ div.results-index-item:hover {
 div.result-image-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 215px;
   height: 215px;
 }
 
 img.result-image {
   align-content: center;
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
 }
 
 section.text-and-rating {

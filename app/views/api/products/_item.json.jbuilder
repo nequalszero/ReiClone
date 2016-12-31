@@ -1,3 +1,4 @@
+# Product table details
 result_attr = result.attributes
 result_attr.each do |key, value|
   if key == "brand_id"
@@ -6,7 +7,9 @@ result_attr.each do |key, value|
   json.set! key, value
 end
 
+# Specific table details
 result_details_attr = result_details.attributes
 result_details_attr.each do |key, value|
+  next if key == "id" # avoid overriding the product id with the specific table id
   json.set! key, value
 end

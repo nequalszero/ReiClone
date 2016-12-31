@@ -6,6 +6,8 @@ SleepingBag.create(weight: ,
                    bag_shape: "",
                    zipper_location: "",
                    fill_power: ,
+                   fill: ,
+                   fill_weight: ,
                    color: "",
                    packed_size:
                   )
@@ -19,6 +21,7 @@ Product.create(category_id: 1,
                num_ratings: ,
                best_use: "Backpacking",
                primary_image: "",
+               cart_image: "",
                result_image: "c_scale,h_200/",
                description: ""
               )
@@ -26,3 +29,52 @@ Product.create(category_id: 1,
 Feature.create(product_id: , name: "")
 
 Detail.create(product_id: , description: "")
+
+
+
+
+##### Tents #####
+
+image_url = ""
+
+Tent.create(seasons: "",
+            sleeping_capacity: "",
+            minimum_trail_weight: calc_weight(),
+            fly_footprint_pitch_weight: calc_weight(),
+            packaged_weight: calc_weight(),
+            packed_size: "",
+            floor_dimensions: "",
+            floor_area: ,
+            vestibule_area: "",
+            peak_height: ,
+            number_of_doors: ,
+            number_of_poles: "",
+            pole_material: "",
+            pole_diameter: "",
+            canopy_fabric: "",
+            floor_fabric: "",
+            rainfly_fabric: "",
+            footprint_included: "",
+            ultralight: "",
+            design_type: ""
+           )
+
+Product.create(category_id: 2,
+               product_table_id: ,
+               brand_id: ,
+               name: "",
+               price: ,
+               rating: ,
+               num_ratings: ,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: ""
+              )
+
+Feature.create(product_id: , name: "")
+
+details = ""
+details.split("\n").each { |det| Detail.create(product_id: , description: det) }

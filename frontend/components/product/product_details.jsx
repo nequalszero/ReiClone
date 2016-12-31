@@ -1,6 +1,7 @@
 import React from 'react';
 import { stringifyWeight, parseFareinheitToCelsius }
         from '../helper_functions/product_details_helper';
+import getCategories from '../helper_functions/product_spec_rownames';
 
 class ProductDisplay extends React.Component {
   constructor(props) {
@@ -95,43 +96,21 @@ class ProductDisplay extends React.Component {
   }
 
   specsTable() {
-    // Hardcoded for time's sake
-    const categoryOrder = {
-      1: ["best_use",
-          "temperature_rating",
-          "weight",
-          "zipper_location",
-          "insulation_type",
-          "fill",
-          "fill_weight",
-          "bag_shape",
-          "fits_up_to",
-          "packed_size",
-          "gender"
-        ],
-      2: ["best_use",
-          "seasons",
-          "weight",
-          "floor_area",
-          "peak_height",
-          "number_of_doors",
-          "design_type"
-         ]
-    };
-
     let item = this.props.product.item;
-    let categories = categoryOrder[item.category_id];
-    let tableKeys = {};
+    let categories = getCategories(item.category_id);
+    let rowNames = {};
+    let rowKeys = [];
 
-    categories.forEach((name) => {
-      let splitNames = name.split("_");
-      let titleCased = splitNames.map(splitName => {
-        return splitName[0].toUpperCase() + splitName.slice(1);
-      }).join(" ");
-      tableKeys[name] = titleCased;
+    // object is of the form {attribute_name: Attribute Name}
+    categories.forEach(object => {
+      let key = Object.keys(object)[0];
+      if (object[key]) {
+        rowNames[key] = object[key];
+        rowKeys.push(key);
+      }
     });
 
-    let tableValues = this.getTableValues(item, categories);
+    let tableValues = this.getTableValues(item, rowKeys);
 
     return(
       <div className="product-specs-table-container">
@@ -140,9 +119,9 @@ class ProductDisplay extends React.Component {
         </h3>
         <table className="product_specs">
           <tbody>
-            {categories.map(key => (
+            {Object.keys(tableValues).map(key => (
               <tr key={key} className="products-specs-table-row">
-                <th >{tableKeys[key]}</th>
+                <th>{rowNames[key]}</th>
                 <td>{tableValues[key]}</td>
               </tr>
             ))}
@@ -154,10 +133,13 @@ class ProductDisplay extends React.Component {
 
   getTableValues(item, categories) {
     let tableValues = {};
-    let value;
+    let key, value;
 
-    categories.forEach(key => {
+    for (let i = 0; i < categories.length; i++) {
+      key = categories[i];
       value = item[key];
+
+      if (!value) continue;
 
       switch(key) {
         case "temperature_rating":
@@ -171,26 +153,51 @@ class ProductDisplay extends React.Component {
           break;
 
         case "fill_weight":
-          if (value) {
-            tableValues[key] = stringifyWeight(parseFloat(value));
-            break;
-          } else {
-            break;
-          }
+          tableValues[key] = stringifyWeight(parseFloat(value));
+          break;
+
         case "fits_up_to":
           tableValues[key] = `${value*12} inches`;
           break;
 
         case "packed_size":
-          tableValues[key] = `${value} liters`;
+          if (item.category_id === 1) {
+            tableValues[key] = `${value} liters`;
+            break;
+          } else {
+            tableValues[key] = value;
+            break;
+          }
+
+        case "minimum_trail_weight":
+          tableValues[key] = stringifyWeight(parseFloat(value));
+          break;
+
+        case "fly_footprint_pitch_weight":
+          tableValues[key] = stringifyWeight(parseFloat(value));
+          break;
+
+        case "packaged_weight":
+          tableValues[key] = stringifyWeight(parseFloat(value));
+          break;
+
+        case "floor_area":
+          tableValues[key] = `${value} square feet`;
+          break;
+
+        case "peak_height":
+          tableValues[key] = `${value} inches`;
+          break;
+
+        case "number_of_doors":
+          tableValues[key] = value > 1 ? `${value} doors` : `${value} door`;
           break;
 
         default:
           tableValues[key] = value;
           break;
       }
-
-    });
+    }
 
     return tableValues;
   }

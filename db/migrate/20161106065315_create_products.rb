@@ -9,6 +9,7 @@ class CreateProducts < ActiveRecord::Migration
       t.decimal :rating, null: false, default: 0
       t.integer :num_ratings, null: false, default: 0
       t.string :best_use
+      t.string :full_size_image
       t.string :primary_image, null: false
       t.string :result_image, null: false
       t.string :cart_image, null: false
