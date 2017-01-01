@@ -40,6 +40,9 @@ const categoryKeys = {
 };
 
 const formatRowName = rowName => {
+  if (rowName === "fly_footprint_pitch_weight")
+      return "Fly / Footprint Pitch Weight";
+      
   const ignore = ["of"];
   let splitWords = rowName.split("_");
 
