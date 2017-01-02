@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# (1..5).each { |i| Review.create(user_id: i, product_id: 1, title: "Test #{i}", body: "creation test #{i}", rating: i )}
+
 def create_image_url(image_url, type)
   upload = "upload/"
   url_parts = image_url.split(upload)

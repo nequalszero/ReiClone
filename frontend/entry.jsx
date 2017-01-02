@@ -5,8 +5,8 @@ import Root from './components/root';
 
 import Modal from 'react-modal';
 
-window.error = (message) => console.log(message);
-window.success = (message) => console.log("Success", message);
+// window.error = (message) => console.log(message);
+// window.success = (message) => console.log("Success", message);
 
 // import { signup, login, logout}
 //     from './util/session_api_util';
@@ -22,13 +22,13 @@ window.success = (message) => console.log("Success", message);
 // window.fetchReviews = fetchReviews;
 // window.deleteReview = deleteReview;
 
-import { createReview, updateReview, requestReviews, deleteReview }
-    from './actions/reviews_actions';
+// import { createReview, updateReview, requestReviews, deleteReview }
+//     from './actions/reviews_actions';
 
-window.createReview = createReview;
-window.updateReview = updateReview;
-window.requestReviews = requestReviews;
-window.deleteReview = deleteReview;
+// window.createReview = createReview;
+// window.updateReview = updateReview;
+// window.requestReviews = requestReviews;
+// window.deleteReview = deleteReview;
 
 document.addEventListener("click", (event) => {
   let eventPath = event.path.map((el) => el.className);
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
 
-  window.store = store;
+  // window.store = store;
   Modal.setAppElement(document.body);
   const rootEl = document.getElementById('root');
   ReactDOM.render(<Root store={store}/>, rootEl);

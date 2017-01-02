@@ -4,7 +4,8 @@ import { REQUEST_REVIEWS,
          UPDATE_REVIEW,
          receiveReview,
          receiveReviews,
-         receiveErrors }
+         receiveErrors,
+         receiveUpdatedReview }
     from '../actions/reviews_actions';
 import { fetchReviews,
          deleteReview,
@@ -33,7 +34,7 @@ const ReviewsMiddleware = ({ getState, dispatch }) => next => action => {
       return next(action);
 
     case UPDATE_REVIEW:
-      successCallback = review => dispatch(receiveReview(review));
+      successCallback = review => dispatch(receiveUpdatedReview(review));
       updateReview(action.review, successCallback, errorCallback);
       return next(action);
 

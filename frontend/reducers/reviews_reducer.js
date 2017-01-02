@@ -1,13 +1,32 @@
 import { RECEIVE_REVIEW,
          RECEIVE_REVIEWS,
          RECEIVE_ERRORS,
+         RECEIVE_UPDATED_REVIEW
        } from '../actions/reviews_actions';
 import merge from 'lodash/merge';
 
 const _defaultResult = Object.freeze({
-  reviews: null,
+  reviews: [],
+  userReview: null,
   errors: [],
 });
+
+const updateHelper = (reviews, updatedReview) => {
+  let targetIdx;
+
+  for (let i = 0; i < reviews.length; i++) {
+    if (reviews[i].id === updatedReview.id) {
+      targetIdx = i;
+      break;
+    }
+  }
+
+  return [
+            updatedReview,
+            ...reviews.slice(0, targetIdx),
+            ...reviews.slice(targetIdx + 1)
+         ];
+};
 
 const ReviewsReducer = (oldState = _defaultResult, action) => {
   Object.freeze(oldState);
@@ -16,8 +35,7 @@ const ReviewsReducer = (oldState = _defaultResult, action) => {
 
   switch(action.type) {
     case RECEIVE_REVIEW:
-      let review = action.review;
-      newState.reviews = [review].concat(newState.reviews);
+      newState.reviews = [action.review, ...newState.reviews];
       return newState;
 
     case RECEIVE_ERRORS:
@@ -25,8 +43,13 @@ const ReviewsReducer = (oldState = _defaultResult, action) => {
       return merge(newState, { errors });
 
     case RECEIVE_REVIEWS:
-      let reviews = action.reviews;
-      return merge(newState, { reviews });
+      newState.reviews = action.reviews.reviews;
+      newState.userReview = action.reviews.user_review;
+      return newState;
+
+    case RECEIVE_UPDATED_REVIEW:
+      newState.reviews = updateHelper(newState.reviews, action.updatedReview);
+      return newState;
 
     default:
       return oldState;
