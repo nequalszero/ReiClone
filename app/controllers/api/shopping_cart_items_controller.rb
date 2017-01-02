@@ -6,7 +6,7 @@ class Api::ShoppingCartItemsController < ApplicationController
       @shopping_cart_items = ShoppingCartItem.find_by_user_id(user_id)
       render "api/shopping_cart_items/show_items"
     else
-      error = "ShoppingCartItemsController - index - No user logged in."
+      error = "ShoppingCartItemsController#index - No user logged in."
       render json: {errors: [error]}, status: 404
     end
   end
@@ -42,7 +42,7 @@ class Api::ShoppingCartItemsController < ApplicationController
         render json: @shopping_cart_item.errors.full_messages, status: 422
       end
     else
-      error = "ShoppingCartItemsController - create - no user logged in"
+      error = "ShoppingCartItemsController#create - no user logged in"
       render json: {errors: []}, status: 422
     end
   end
@@ -61,7 +61,7 @@ class Api::ShoppingCartItemsController < ApplicationController
         render json: @shopping_cart_item.errors.full_messages, status: 422
       end
     else
-      error = "ShoppingCartItemsController - update - no current user"
+      error = "ShoppingCartItemsController#update - no current user"
       render json: {errors: [error]}, status: 422
     end
   end

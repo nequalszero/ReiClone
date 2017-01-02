@@ -69,7 +69,7 @@ class ProductDisplay extends React.Component {
     if (item.num_ratings === 0) {
       numRatings="";
     }
-
+    
     return(
       <div className="product-image-price-reviews-container">
         <div className="product-image-and-summary-container">

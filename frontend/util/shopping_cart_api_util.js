@@ -36,12 +36,3 @@ export const createItem = (item, success, error) => {
     error
   });
 };
-
-// export const fetchItem = (itemId, success, error) => (
-//   $.ajax({
-//     url: `api/shopping_cart_items/${itemId}`,
-//     type: 'GET',
-//     success,
-//     error
-//   })
-// );

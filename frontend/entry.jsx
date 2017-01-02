@@ -5,24 +5,30 @@ import Root from './components/root';
 
 import Modal from 'react-modal';
 
-// import { signup, login, logout, requestCategories, requestCategoryItems }
-//     from './actions/session_actions';
+window.error = (message) => console.log(message);
+window.success = (message) => console.log("Success", message);
+
+// import { signup, login, logout}
+//     from './util/session_api_util';
 // window.signup = signup;
 // window.login = login;
 // window.logout = logout;
-// window.requestCategories = requestCategories;
-// window.requestCategoryItems = requestCategoryItems;
 
-// import { saveCartItemToDatabase,
-//          removeUserItemFromDatabase,
-//          updateQuantityInDatabase,
-//          requestUserItems
-//        } from './actions/shopping_cart_actions';
+// import { createReview, updateReview, fetchReviews, deleteReview }
+//     from './util/reviews_api_util';
 //
-// window.saveCartItemToDatabase = saveCartItemToDatabase;
-// window.updateQuantityInDatabase = updateQuantityInDatabase;
-// window.requestUserItems = requestUserItems;
-// window.removeUserItemFromDatabase = removeUserItemFromDatabase;
+// window.createReview = createReview;
+// window.updateReview = updateReview;
+// window.fetchReviews = fetchReviews;
+// window.deleteReview = deleteReview;
+
+import { createReview, updateReview, requestReviews, deleteReview }
+    from './actions/reviews_actions';
+
+window.createReview = createReview;
+window.updateReview = updateReview;
+window.requestReviews = requestReviews;
+window.deleteReview = deleteReview;
 
 document.addEventListener("click", (event) => {
   let eventPath = event.path.map((el) => el.className);
@@ -84,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
 
-  // window.store = store;
+  window.store = store;
   Modal.setAppElement(document.body);
   const rootEl = document.getElementById('root');
   ReactDOM.render(<Root store={store}/>, rootEl);
