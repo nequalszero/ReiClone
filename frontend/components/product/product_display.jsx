@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductDetailsContainer from './product_details_container';
+import ReviewsIndexContainer from '../reviews/reviews_index_container';
 import { padPrice, formatRating, validQuantity }
         from '../helper_functions/product_details_helper';
 
@@ -37,6 +38,7 @@ class ProductDisplay extends React.Component {
           {this.renderProductName()}
           {this.renderProductImagePriceAndReviews()}
           <ProductDetailsContainer />
+          <ReviewsIndexContainer item={this.props.product.item}/>
         </div>
       );
     } else {
@@ -69,7 +71,7 @@ class ProductDisplay extends React.Component {
     if (item.num_ratings === 0) {
       numRatings="";
     }
-    
+
     return(
       <div className="product-image-price-reviews-container">
         <div className="product-image-and-summary-container">

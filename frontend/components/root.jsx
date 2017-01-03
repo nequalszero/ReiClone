@@ -6,13 +6,11 @@ import ResultsIndexContainer from './results/results_index_container';
 import ProductDisplayContainer from './product/product_display_container';
 import ShoppingCartDisplayContainer
     from './shopping_cart/shopping_cart_display_container';
-// import ShoppingCartDisplayItemContainer
-//   from './shopping_cart/shopping_cart_display_item_container';
-// <IndexRoute component={ShoppingCartDisplayItemContainer}/>
-
+    
 import { requestCategoryItems } from '../actions/results_actions';
 import { requestItem } from '../actions/product_actions';
 import { requestUserItems } from '../actions/shopping_cart_actions';
+import { requestReviews } from '../actions/reviews_actions';
 
 
 
@@ -23,6 +21,7 @@ const Root = ( props ) => {
 
   const updateProduct = (nextState) => {
     props.store.dispatch(requestItem(nextState.params.productId));
+    props.store.dispatch(requestReviews(nextState.params.productId));
   };
 
   // const updateShoppingCartItems = (nextState) => {

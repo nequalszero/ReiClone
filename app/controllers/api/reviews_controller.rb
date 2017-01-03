@@ -1,5 +1,5 @@
 class Api::ReviewsController < ApplicationController
-  def show
+  def index
     # default_limit = 10
     # default_offset = 0
     # limit = params[:review][:limit] ? params[:review][:limit].to_i
@@ -7,8 +7,7 @@ class Api::ReviewsController < ApplicationController
     # offset = params[:review][:offset] ? params[:review][:offset].to_i
     #                                   : default_offset
 
-    # product_id is passed through api/reviews/id as the id
-    @reviews = Review.where( product_id: params[:id] )
+    @reviews = Review.where( product_id: params[:product_id] )
                      .order(updated_at: :desc)
                      .offset(0)
                      .limit(10)

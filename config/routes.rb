@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :show]
     resources :products, only: [:show]
     resources :shopping_cart_items, only: [:index, :show, :create, :destroy, :update]
-    resources :reviews, only: [:show, :create, :destroy, :update]
+
+    resources :products do 
+      resources :reviews, only: :index
+    end
+    resources :reviews, only: [:create, :destroy, :update]
   end
 
   root "static_pages#root"

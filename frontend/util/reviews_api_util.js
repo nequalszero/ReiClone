@@ -1,6 +1,6 @@
 export const fetchReviews = (productId, success, error) => (
   $.ajax({
-    url: `api/reviews/${productId}`,
+    url: `api/products/${productId}/reviews`,
     type: 'GET',
     success,
     error
