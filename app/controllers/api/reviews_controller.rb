@@ -11,7 +11,11 @@ class Api::ReviewsController < ApplicationController
                      .order(updated_at: :desc)
                      .offset(0)
                      .limit(10)
-    user_review = @reviews.select { |rev| rev.user_id == current_user.id }
+    if current_user
+      user_review = @reviews.select { |rev| rev.user_id == current_user.id }
+    else
+      user_review = []
+    end
     @user_review = user_review.empty? ? nil : user_review.first
     render "api/reviews/index"
   end

@@ -6,6 +6,7 @@ class CreateReviews < ActiveRecord::Migration
       t.integer :rating, null: false
       t.string :title, null: false
       t.text :body, null: false
+      t.index [:user_id, :product_id], unique: true
 
       t.timestamps null: false
     end

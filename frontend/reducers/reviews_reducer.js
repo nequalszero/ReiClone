@@ -36,6 +36,7 @@ const ReviewsReducer = (oldState = _defaultResult, action) => {
   switch(action.type) {
     case RECEIVE_REVIEW:
       newState.reviews = [action.review, ...newState.reviews];
+      newState.userReview = action.review;
       return newState;
 
     case RECEIVE_ERRORS:
@@ -49,6 +50,7 @@ const ReviewsReducer = (oldState = _defaultResult, action) => {
 
     case RECEIVE_UPDATED_REVIEW:
       newState.reviews = updateHelper(newState.reviews, action.updatedReview);
+      newState.userReview = action.updatedReview;
       return newState;
 
     default:

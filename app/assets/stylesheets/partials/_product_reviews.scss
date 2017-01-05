@@ -4,6 +4,17 @@
   width: 100%
 }
 
+.reviews-header-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-button {
+  height: 24px;
+  padding: 10px 15px;
+}
+
 .no-reviews-container {
   padding-top: 20px;
 }

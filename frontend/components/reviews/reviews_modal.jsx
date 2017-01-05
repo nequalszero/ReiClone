@@ -37,14 +37,12 @@ const defaults = { title: defaultTitleText, body: defaultBodyText };
 class ReviewsModal extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {};
     this.state.values = {title: defaultTitleText, body: defaultBodyText};
     this.state.placeHolders = {title: true, body: true};
     this.state.activeStars = noStarsSelected;
 
     if (props.review) {
-      debugger
       Object.keys(defaults).forEach(key => {
         if (props.review[key]) {
           this.state.values[key] = props.review[key];
@@ -54,6 +52,7 @@ class ReviewsModal extends React.Component {
       this.state.selectedStars = props.review.rating || 0;
       this.state.ratingText = ratingTexts[props.review.rating - 1] ||
                               defaultRatingText;
+      this.state.activeStars = this.newStarState(props.review.rating);
     } else {
       this.state.selectedStars = 0;
       this.state.ratingText = defaultRatingText;
@@ -76,11 +75,46 @@ class ReviewsModal extends React.Component {
   }
 
   afterOpenModal() {
+  }
 
+  componentWillReceiveProps(nextProps, nextState) {
+    if (nextProps.review) {
+      let values = {};
+      let placeHolders = {};
+      this.state.placeHolders = {title: true, body: true};
+
+      Object.keys(defaults).forEach((key, defaultVal) => {
+        values[key] = defaultVal;
+        placeHolders[key] = true;
+
+        if (nextProps.review[key]) {
+          values[key] = nextProps.review[key];
+          placeHolders[key] = false;
+        }
+      });
+      let selectedStars = nextProps.review.rating || 0;
+      let activeStars = this.newStarState(nextProps.review.rating);
+      let ratingText = ratingTexts[nextProps.review.rating - 1] ||
+                          defaultRatingText;
+      let id = nextProps.review.id;
+
+      this.setState({
+        values,
+        placeHolders,
+        selectedStars,
+        activeStars,
+        ratingText,
+        id
+      });
+      // this.state.ratingText =
+    }
   }
 
   newStarState(idx) {
     let newActiveStars = {};
+
+    console.log("nextProps", nextProps);
+    console.log("buttonText: ", this.configureButtonText(nextProps.userReview));
 
     for (let i = 1; i <= idx; i++) newActiveStars[i] = true;
     for (let i = idx + 1; i <= 5; i++) newActiveStars[i] = false;
@@ -164,20 +198,25 @@ class ReviewsModal extends React.Component {
     let invalid = false;
     Object.keys(defaults).forEach(key => {
       let stateValue = this.state.values[key];
-      if (stateValue === defaults[key] || stateValue === "") invalid = true;
+
+      if (this.state.placeHolders[key] || stateValue === "") invalid = true;
     });
-    if (this.stateValue.selectedStars === 0) invalid = true;
+    if (this.state.selectedStars === 0) invalid = true;
 
     return invalid;
   }
 
-  submitReview(e) {
-    e.preventDefault();
-    let review = {body: this.state.values.body,
-                  title: this.state.values.title,
-                  rating: this.state.selectedStars};
-    this.props.submitAction(review);
-    this.props.closeModal();
+  submitReview() {
+    if (!this.checkIfIncomplete()) {
+      let review = {body: this.state.values.body,
+                    title: this.state.values.title,
+                    rating: this.state.selectedStars,
+                    product_id: this.props.item.product_id,
+                    id: this.state.id};
+
+      this.props.submitAction({review});
+      this.props.closeModal();
+    }
   }
 
   manageStarContainerClass(idx) {
@@ -264,9 +303,8 @@ class ReviewsModal extends React.Component {
               </div>
             </div>
             <button className={`review-modal-submit ${blueButtonClass}`}
-              disabled={this.checkIfIncomplete}
-              onClick={this.submitReview}>
-              {this.props.submitButtonText}
+                    onClick={() => this.submitReview()}>
+                    {this.props.submitButtonText}
             </button>
           </div>
         </Modal>
