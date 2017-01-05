@@ -3,6 +3,7 @@ import SessionFormContainer from './session_form_container';
 import AccountDetailsContainer from './account_details_container';
 import GuestLoginContainer from './guest_login_container';
 import ShoppingCartContainer from '../shopping_cart/shopping_cart_container';
+import { lightGreen } from '../helper_functions/misc_elements';
 
 class Auth extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Auth extends React.Component {
       } else {
         targetForm = targetForm[0];
         let listEl = document.getElementsByClassName(parentLink)[0];
-        listEl.style.color = "#a1c900";
+        listEl.style.color = lightGreen;
         if (targetForm.style.display === "none") {
           targetForm.style.display = "block";
         } else if (targetForm.style.display === "block") {
@@ -90,11 +91,11 @@ class Auth extends React.Component {
       switch(ACStatus) {
         case "":
           accountContainer.style.display = "block";
-          accountLink.style.color = "#a1c900";
+          accountLink.style.color = lightGreen;
           break;
         case "block":
           accountContainer.style.display = "block";
-          accountLink.style.color = "#a1c900";
+          accountLink.style.color = lightGreen;
           break;
         default:
           accountContainer.style.display = "none";

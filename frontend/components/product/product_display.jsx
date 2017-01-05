@@ -3,6 +3,7 @@ import ProductDetailsContainer from './product_details_container';
 import ReviewsIndexContainer from '../reviews/reviews_index_container';
 import { padPrice, formatRating, validQuantity }
         from '../helper_functions/product_details_helper';
+import { blueButtonClass } from '../helper_functions/misc_elements';
 
 class ProductDisplay extends React.Component {
   constructor(props) {
@@ -116,7 +117,7 @@ class ProductDisplay extends React.Component {
             value={this.state.quantity}
             onChange={this.updateQuantity()}/>
         </div>
-        <button className="add-product-to-cart"
+        <button className={`add-product-to-cart ${blueButtonClass}`}
                 onClick={this.addProductToCart}>
                 Add To Cart <i className="fa fa-cart-plus fa-lg"
                                aria-hidden="true"></i>

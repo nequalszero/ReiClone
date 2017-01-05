@@ -36,15 +36,16 @@ export const padPrice = (price) => {
   return `${dollars}.${cents}`;
 };
 
+export const star = key => <i key={key} className="fa fa-star full"
+                              aria-hidden="true"></i>;
+export const emptyStar = key => <i key={key} className="fa fa-star empty"
+                                   aria-hidden="true"></i>;
+export const halfStar = key => <i key={key} className="fa fa-star-half-o"
+                                  aria-hidden="true"></i>;
+
 export const formatRating = (rating) => {
   // Returns appropriate star icons.
   // Takes a key to appease React's need for unique keys.
-  const star = (key) => <i key={key} className="fa fa-star"
-                           aria-hidden="true"></i>;
-  const emptyStar = (key) => <i key={key} className="fa fa-star-o"
-                                aria-hidden="true"></i>;
-  const halfStar = key => <i key={key} className="fa fa-star-half-o"
-                             aria-hidden="true"></i>;
 
   if (rating === 0.0) {
     return [emptyStar(1), emptyStar(2), emptyStar(3), emptyStar(4), emptyStar(5)];

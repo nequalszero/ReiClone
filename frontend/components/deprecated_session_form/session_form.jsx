@@ -1,4 +1,5 @@
 import React from 'react';
+import { blueButtonClass } from '../helper_functions/misc_elements';
 import { withRouter } from 'react-router';
 
 class SessionForm extends React.Component {
@@ -65,7 +66,10 @@ class SessionForm extends React.Component {
                    value={this.state.password}
                    className="login-input"/>
             <br/>
-            <button onClick={this.submitSessionForm}>{buttonText}</button>
+            <button onClick={this.submitSessionForm}
+                    className={blueButtonClass}>
+              {buttonText}
+            </button>
           </div>
         </div>
       </form>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {blueButtonClass} from '../helper_functions/misc_elements';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -62,7 +63,10 @@ class SessionForm extends React.Component {
           </label>
           <br/>
 
-          <button onClick={this.submitSessionForm}>{buttonText}</button>
+          <button onClick={this.submitSessionForm}
+                  className={blueButtonClass}>
+            {buttonText}
+          </button>
         </div>
       </div>
     );

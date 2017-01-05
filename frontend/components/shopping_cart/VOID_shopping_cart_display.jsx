@@ -4,6 +4,7 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router';
 import { padPrice } from '../helper_functions/product_details_helper';
+import { blueButtonClass } from '../helper_functions/misc_elements';
 
 class ShoppingCartDisplay extends React.Component {
   constructor(props) {
@@ -113,7 +114,7 @@ class ShoppingCartDisplay extends React.Component {
               ${subtotalString}
             </span>
           </span>
-          <button className="checkout-button"
+          <button className={`checkout-button ${blueButtonClass}`}
                   onClick={this.handleCheckout}>
             Checkout
           </button>
@@ -134,7 +135,7 @@ class ShoppingCartDisplay extends React.Component {
               ${subtotalString}
             </span>
           </span>
-          <button className="checkout-button"
+          <button className={`checkout-button ${blueButtonClass}`}
                   onClick={this.handleCheckout}>
             Checkout
           </button>

@@ -204,23 +204,3 @@ tr.products-specs-table-row > td {
   padding: 8px;
   border-bottom: 1px solid gray;
 }
-
-.product-reviews-container {
-  display: block;
-  padding-top: 24px;
-  width: 100%
-}
-
-.no-reviews-container {
-  padding-top: 20px;
-}
-
-.no-reviews-text {
-  display: block;
-  padding-top: 10px;
-}
-
-.no-reviews-text:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}

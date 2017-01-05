@@ -6,7 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# (1..5).each { |i| Review.create(user_id: i, product_id: 1, title: "Test #{i}", body: "creation test #{i}", rating: i )}
+# (1..5).each do |i|
+#   review = Review.create(user_id: i, product_id: 1, title: "Test #{i}", body: "creation test #{i}", rating: i )
+#   randDate = DateTime.now - rand(10).days
+#   review.update_attribute :created_at, randDate
+#   review.update_attribute :updated_at, randDate
+# end
 
 def create_image_url(image_url, type)
   upload = "upload/"
@@ -43,13 +48,45 @@ brand_ids = {
 }
 
 User.create(username: 'Guest', password: 'asdfasdf')      # 1
-User.create(username: 'Travis', password: 'asdfasdf')     # 2
-User.create(username: 'Dinosaur', password: 'asdfasdf')   # 3
-User.create(username: 'Sheldon', password: 'asdfasdf')    # 4
-User.create(username: 'Leonard', password: 'asdfasdf')    # 5
-User.create(username: 'Howard', password: 'asdfasdf')     # 6
-User.create(username: 'Penny', password: 'asdfasdf')      # 7
-User.create(username: 'Rajesh', password: 'asdfasdf')     # 8
+User.create(username: 'Travis Ludlum', password: 'asdfasdf')     # 2
+User.create(username: 'Ima Dinosaur', password: 'asdfasdf')   # 3
+User.create(username: 'Sheldon Cooper', password: 'asdfasdf')    # 4
+User.create(username: 'Leonard Hofstadter', password: 'asdfasdf')    # 5
+User.create(username: 'Howard Wallowitz', password: 'asdfasdf')     # 6
+User.create(username: 'Penny Hofstadter', password: 'asdfasdf')      # 7
+User.create(username: 'Rajesh Koothrappali', password: 'asdfasdf')     # 8
+User.create(username: 'Amy Fowler', password: 'asdfasdf')     # 9
+User.create(username: 'Bernadette Wallowitz', password: 'asdfasdf')     # 10
+User.create(username: 'Alex Honnold', password: 'asdfasdf')     # 11
+User.create(username: 'Caesar Wright', password: 'asdfasdf')     # 12
+User.create(username: 'Jimmy Chin', password: 'asdfasdf')     # 13
+User.create(username: 'Renan Ozturk', password: 'asdfasdf')     # 14
+User.create(username: 'Hazel Findlay', password: 'asdfasdf')     # 15
+User.create(username: 'Alex Megos', password: 'asdfasdf')     # 16
+User.create(username: 'Daniel Woods', password: 'asdfasdf')     # 17
+User.create(username: 'Paul Robinson', password: 'asdfasdf')     # 18
+User.create(username: 'Alex Puccio', password: 'asdfasdf')     # 19
+User.create(username: 'Nina Williams', password: 'asdfasdf')     # 20
+User.create(username: 'Meaghan Martin', password: 'asdfasdf')     # 21
+User.create(username: 'Ashima Shiraishi', password: 'asdfasdf')     # 22
+User.create(username: 'Chris Sharma', password: 'asdfasdf')     # 23
+User.create(username: 'Carlo Traversi', password: 'asdfasdf')     # 24
+User.create(username: 'Adam Ondra', password: 'asdfasdf')     # 25
+User.create(username: 'Akiyo Noguchi', password: 'asdfasdf')     # 26
+User.create(username: 'Avi Kertsomething', password: 'asdfasdf')     # 27
+User.create(username: 'Josh Schmidt', password: 'asdfasdf')     # 28
+User.create(username: 'Alvin Lin', password: 'asdfasdf')     # 29
+User.create(username: 'Shauna Coxsey', password: 'asdfasdf')     # 30
+User.create(username: 'Julianne Wurm', password: 'asdfasdf')     # 31
+User.create(username: 'Jan Hojer', password: 'asdfasdf')     # 32
+User.create(username: 'Jain Kim', password: 'asdfasdf')     # 33
+User.create(username: 'Leo Qiu', password: 'asdfasdf')     # 34
+User.create(username: 'Noelle Patterson', password: 'asdfasdf')     # 35
+User.create(username: 'Andrew Kim', password: 'asdfasdf')     # 36
+User.create(username: 'Conrad Anker', password: 'asdfasdf')     # 37
+User.create(username: 'Jordy Margid', password: 'asdfasdf')     # 38
+User.create(username: 'Indiana Jones', password: 'asdfasdf')     # 39
+User.create(username: 'Bruce Wayne', password: 'asdfasdf')     # 40
 
 Brand.create(name: "Marmot")
 Brand.create(name: "REI")

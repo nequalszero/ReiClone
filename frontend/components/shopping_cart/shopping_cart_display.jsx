@@ -1,6 +1,9 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router';
 import { padPrice } from '../helper_functions/product_details_helper';
+import { bottomDivider } from '../helper_functions/misc_elements';
+import { blueButtonClass } from '../helper_functions/misc_elements';
+
 import ShoppingCartDisplayItemContainer
       from './shopping_cart_display_item_container';
 
@@ -91,7 +94,7 @@ class ShoppingCartDisplay extends React.Component {
               ${subtotalString}
             </span>
           </span>
-          <button className="checkout-button"
+          <button className={`checkout-button ${blueButtonClass}`}
                   onClick={this.handleCheckout}>
             Checkout
           </button>
@@ -112,7 +115,7 @@ class ShoppingCartDisplay extends React.Component {
               ${subtotalString}
             </span>
           </span>
-          <button className="checkout-button"
+          <button className={`checkout-button ${blueButtonClass}`}
                   onClick={this.handleCheckout}>
             Checkout
           </button>
@@ -135,22 +138,12 @@ class ShoppingCartDisplay extends React.Component {
   }
 
   renderItemDetailAndBorder(item, idx, numDifferentProducts) {
-    let border = this.renderDivider(idx, numDifferentProducts);
-    
     return (
       <div key={idx} className="shopping-cart-item-details-row">
         <ShoppingCartDisplayItemContainer item={item}/>
-        {border}
+        { idx === numDifferentProducts - 1 ? undefined : bottomDivider }
       </div>
     );
-  }
-
-  renderDivider(idx, numDifferentProducts) {
-    if (idx === numDifferentProducts - 1) {
-      return;
-    } else {
-      return (<span className="shopping-cart-item-divider" />);
-    }
   }
 
   render() {

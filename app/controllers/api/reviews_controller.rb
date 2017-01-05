@@ -13,7 +13,7 @@ class Api::ReviewsController < ApplicationController
                      .limit(10)
     user_review = @reviews.select { |rev| rev.user_id == current_user.id }
     @user_review = user_review.empty? ? nil : user_review.first
-    render "api/reviews/show"
+    render "api/reviews/index"
   end
 
   def create

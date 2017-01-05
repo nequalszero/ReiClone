@@ -1,0 +1,17 @@
+.fa-star.full, .fa-star-half-o {
+  padding-left: 1px;
+  padding-right: 1px;
+  color: $lime-green;
+}
+
+.fa-star.empty {
+  padding-left: 1px;
+  padding-right: 1px;
+  color: $light-gray;
+}
+
+.fa-star.white {
+  padding-left: 2px;
+  padding-right: 2px;
+  color: white;
+}

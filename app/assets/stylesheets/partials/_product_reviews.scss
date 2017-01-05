@@ -1,0 +1,65 @@
+.product-reviews-container {
+  display: block;
+  padding-top: 50px;
+  width: 100%
+}
+
+.no-reviews-container {
+  padding-top: 20px;
+}
+
+.no-reviews-text {
+  display: block;
+  padding-top: 10px;
+}
+
+.no-reviews-text:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.reviews-list {
+
+}
+
+h4.average-rating-label {
+  margin-bottom: 10px;
+}
+
+div.average-rating {
+  padding-bottom: 40px;
+}
+
+.review-list-item {
+}
+
+.review-heading {
+  display: flex;
+  padding-left: 7px;
+  padding-bottom: 20px;
+}
+
+.review-heading > * {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.review-username {
+  font-weight: bold;
+}
+
+.review-creation-time {
+  font-weight: normal;
+  color: $hex-gray;
+}
+
+.review-title {
+  font-weight: bold;
+  padding-left: 12px;
+  padding-bottom: 12px;
+}
+
+.review-body {
+  padding-top: 12px;
+  padding-left: 12px;
+}

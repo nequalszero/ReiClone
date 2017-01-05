@@ -1,4 +1,5 @@
 import React from 'react';
+import {blueButtonClass} from '../helper_functions/misc_elements';
 
 class AccountDetails extends React.Component {
   constructor(props) {
@@ -20,7 +21,10 @@ class AccountDetails extends React.Component {
       <div className="account-details-container">
         <label>Hello {username}</label>
         <br/><br/>
-        <button onClick={this.submitSessionForm}>{buttonText}</button>
+        <button onClick={this.submitSessionForm}
+                className={blueButtonClass}>
+          {buttonText}
+        </button>
       </div>
     );
   }

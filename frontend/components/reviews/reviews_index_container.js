@@ -5,7 +5,7 @@ import { requestReviews,
          updateReview,
          deleteReview
        }
-       from '../../actions/reviews_actions';
+       from '../../actions/reviews_actions';       
 
 const mapStateToProps = state => ({
   reviews: state.reviews.reviews
