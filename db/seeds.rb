@@ -6,12 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# (1..5).each do |i|
-#   review = Review.create(user_id: i, product_id: 1, title: "Test #{i}", body: "creation test #{i}", rating: i )
-#   randDate = DateTime.now - rand(10).days
-#   review.update_attribute :created_at, randDate
-#   review.update_attribute :updated_at, randDate
-# end
 
 def create_image_url(image_url, type)
   upload = "upload/"
@@ -905,3 +899,11 @@ Place a headlamp (not included) in the overhead Light Pocket™; its special lig
 The NEMO Galaxi 2P Tent comes with a coated ripstop nylon footprint to help protect its floor from abrasion; webbing stake-outs at the corners allow easy attachment"
 
 details.split("\n").each { |det| Detail.create(product_id: 19, description: det) }
+
+
+# (1..5).each do |i|
+#   review = Review.create(user_id: i, product_id: 1, title: "Test #{i}", body: "creation test #{i}", rating: i )
+#   randDate = DateTime.now - rand(10).days
+#   review.update_attribute :created_at, randDate
+#   review.update_attribute :updated_at, randDate
+# end

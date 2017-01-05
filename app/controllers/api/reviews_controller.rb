@@ -31,6 +31,7 @@ class Api::ReviewsController < ApplicationController
         @review.user_id = current_user.id
 
         if @review.save
+          Product.add_rating(@review.product, @review.rating)
           render "api/reviews/review"
         else
           render json: {errors: @review.errors.full_messages }, status: 422
@@ -47,6 +48,7 @@ class Api::ReviewsController < ApplicationController
 
     if current_user.reviews.include?(@review)
       @review.delete
+      Product.delete_rating(@review.product, @review.rating)
       render "api/reviews/review"
     else
       render json: { errors: ["Current user does not match review creator"] }, status: 401
@@ -55,11 +57,13 @@ class Api::ReviewsController < ApplicationController
 
   def update
     if current_user
-
       @review = Review.find(params[:id])
 
       if current_user.reviews.include?(@review)
+        old_rating = @review.rating
+
         if @review.update(review_params)
+          Product.update_rating(@review.product, @review.rating-old_rating) unless @review.rating == old_rating
           render "api/reviews/review"
         else
           render json: { errors: @review.errors.full_messages }, status: 422
@@ -75,6 +79,7 @@ class Api::ReviewsController < ApplicationController
   end
 
   private
+
   def review_params
     params.require(:review).permit(:rating, :title, :body, :product_id)
   end

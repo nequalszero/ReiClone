@@ -6,6 +6,7 @@ export const RECEIVE_REVIEWS = "RECEIVE_REVIEWS";
 export const RECEIVE_REVIEW = "RECEIVE_REVIEW";
 export const RECEIVE_UPDATED_REVIEW = "RECEIVE_UPDATED_REVIEW";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
+export const CLEAR_REVIEWS_STATE = "CLEAR_REVIEWS_STATE";
 
 export const requestReviews = productId => ({
   type: REQUEST_REVIEWS,
@@ -45,4 +46,8 @@ export const receiveUpdatedReview = updatedReview => ({
 export const receiveErrors = errors => ({
   type: RECEIVE_ERRORS,
   errors
+});
+
+export const clearReviewsState = () => ({
+  type: CLEAR_REVIEWS_STATE
 });

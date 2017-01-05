@@ -2,6 +2,8 @@ import { REQUEST_REVIEWS,
          DELETE_REVIEW,
          CREATE_REVIEW,
          UPDATE_REVIEW,
+         RECEIVE_UPDATED_REVIEW,
+         RECEIVE_REVIEW,
          receiveReview,
          receiveReviews,
          receiveErrors,
@@ -12,6 +14,8 @@ import { fetchReviews,
          createReview,
          updateReview
        } from '../util/reviews_api_util';
+import { receiveItem } from '../actions/product_actions';
+import { fetchItem } from '../util/product_api_util';
 
 const ReviewsMiddleware = ({ getState, dispatch }) => next => action => {
   let successCallback;
@@ -36,6 +40,17 @@ const ReviewsMiddleware = ({ getState, dispatch }) => next => action => {
     case UPDATE_REVIEW:
       successCallback = review => dispatch(receiveUpdatedReview(review));
       updateReview(action.review, successCallback, errorCallback);
+      return next(action);
+
+    case RECEIVE_UPDATED_REVIEW:
+      let productId = action.updatedReview.product_id;
+      successCallback = item => dispatch(receiveItem(item));
+      fetchItem(productId, successCallback, errorCallback);
+      return next(action);
+
+    case RECEIVE_REVIEW:
+      successCallback = item => dispatch(receiveItem(item));
+      fetchItem(action.review.product_id, successCallback, errorCallback);
       return next(action);
 
     default:

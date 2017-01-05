@@ -69,7 +69,7 @@ class ReviewsIndex extends React.Component {
   }
 
   configureButtonText(userReview) {
-    return userReview ? "Update your review" : "Leave a review";
+    return userReview ? "Update your review" : "Write a review";
   }
 
   renderReviews() {

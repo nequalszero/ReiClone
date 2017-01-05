@@ -35,4 +35,33 @@ class Product < ActiveRecord::Base
 
     specs
   end
+
+  def self.add_rating(product, rating)
+    old_rating, num_ratings = product.rating, product.num_ratings
+
+    new_rating = ((old_rating * num_ratings) + rating) / (num_ratings+=1)
+    product.update_attribute :rating, new_rating
+    product.update_attribute :num_ratings, num_ratings
+  end
+
+  def self.delete_rating(product, rating)
+    old_rating, num_ratings = product.rating, product.num_ratings
+
+    if num_ratings == 1
+      new_rating = 0
+      num_ratings -= 1
+    else
+      new_rating = ((old_rating * num_ratings) - rating) / (num_ratings-=1)
+    end
+
+    product.update_attribute :rating, new_rating
+    product.update_attribute :num_ratings, num_ratings
+  end
+
+  def self.update_rating(product, rating_diff)
+    old_rating, num_ratings = product.rating, product.num_ratings
+
+    new_rating = ((old_rating * num_ratings) + rating_diff) / num_ratings
+    product.update_attribute :rating, new_rating
+  end
 end

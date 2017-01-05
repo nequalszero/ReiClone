@@ -90,8 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
 
-  console.log("Warning: store current bound to window");
-  window.store = store;
+  // console.log("Warning: store current bound to window");
+  // window.store = store;
 
   Modal.setAppElement(document.body);
   const rootEl = document.getElementById('root');

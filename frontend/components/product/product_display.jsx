@@ -11,32 +11,42 @@ class ProductDisplay extends React.Component {
     this.state = {quantity: 1,
                   quantityEmpty: false,
                   product_id: this.props.productId,
-                  numProductsInCart: this.props.numProducts};
-    console.log("this.state.numProducts", this.state.numProductsInCart);
+                  numProductsInCart: this.props.numProducts,
+                  disableAdd: false,
+                  processingOrder: false
+                };
     this.addProductToCart = this.addProductToCart.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.numProducts !== this.state.numProductsInCart) {
+      if (this.state.processingOrder) {
+        this.setState({processingOrder: false, quantity: 1, disableAdd: false});
+      }
+    }
     this.setState({numProductsInCart: nextProps.numProducts});
-    console.log("this.state.numProducts", nextProps.numProducts);
+  }
+
+  componentWillUnmount() {
+    this.props.clearReviewsState();
   }
 
   updateQuantity() {
     return (e) => {
-      // console.log(`Incoming value: ${e.target.value}`);
-      if (validQuantity(e.target.value)) {
-        this.setState({["quantity"]: e.target.value});
-        // console.log(`successfully updated to ${e.target.value}`);
-      } else {
-        // console.log(`Keeping state quantity at: ${this.state.quantity}`);
+      if (validQuantity(e.target.value) && !this.state.processingOrder) {
+        let blank = e.target.value === "" ? true : false;
+        this.setState({quantity: e.target.value, disableAdd: blank});
       }
     };
   }
 
   addProductToCart(e) {
     e.preventDefault();
-    let item = this.state;
-    this.props.saveCartItemToDatabase(item);
+    if (!this.state.disableAdd && !this.state.processingOrder) {
+      let item = this.state;
+      this.setState({processingOrder: true});
+      this.props.saveCartItemToDatabase(item);
+    }
   }
 
   displayProduct() {

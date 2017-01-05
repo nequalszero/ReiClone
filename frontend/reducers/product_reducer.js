@@ -1,5 +1,5 @@
 import { RECEIVE_ITEM,
-         RECEIVE_ERRORS
+         RECEIVE_ERRORS,
        } from '../actions/product_actions';
 import merge from 'lodash/merge';
 
