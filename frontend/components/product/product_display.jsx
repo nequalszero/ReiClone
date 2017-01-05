@@ -10,8 +10,15 @@ class ProductDisplay extends React.Component {
     super(props);
     this.state = {quantity: 1,
                   quantityEmpty: false,
-                  product_id: this.props.productId};
+                  product_id: this.props.productId,
+                  numProductsInCart: this.props.numProducts};
+    console.log("this.state.numProducts", this.state.numProductsInCart);
     this.addProductToCart = this.addProductToCart.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({numProductsInCart: nextProps.numProducts});
+    console.log("this.state.numProducts", nextProps.numProducts);
   }
 
   updateQuantity() {

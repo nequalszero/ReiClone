@@ -1,20 +1,19 @@
 import { connect } from 'react-redux';
 import ProductDisplay from './product_display';
 import { requestItem } from '../../actions/product_actions';
-import { addItemToCart,
-         saveCartItemToDatabase
+import { saveCartItemToDatabase
        } from '../../actions/shopping_cart_actions';
 
 
 const mapStateToProps = (state, {params}) => ({
   productId: parseInt(params.productId),
-  product: state.product
+  product: state.product,
+  numProducts: state.shopping_cart.items.length
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     requestItem: (id) => dispatch(requestItem(id)),
-    addItemToCart: (item) => dispatch(addItemToCart(item)),
     saveCartItemToDatabase: (item) => dispatch(saveCartItemToDatabase(item))
   };
 };

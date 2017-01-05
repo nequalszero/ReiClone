@@ -113,9 +113,6 @@ class ReviewsModal extends React.Component {
   newStarState(idx) {
     let newActiveStars = {};
 
-    console.log("nextProps", nextProps);
-    console.log("buttonText: ", this.configureButtonText(nextProps.userReview));
-
     for (let i = 1; i <= idx; i++) newActiveStars[i] = true;
     for (let i = idx + 1; i <= 5; i++) newActiveStars[i] = false;
 
@@ -213,7 +210,6 @@ class ReviewsModal extends React.Component {
                     rating: this.state.selectedStars,
                     product_id: this.props.item.product_id,
                     id: this.state.id};
-
       this.props.submitAction({review});
       this.props.closeModal();
     }
