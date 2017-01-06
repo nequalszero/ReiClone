@@ -280,7 +280,7 @@ class ReviewsModal extends React.Component {
                   onChange={this.handleInputChange("title")}
                   onFocus={this.handleInputFocus("title")}
                   onBlur={this.handleInputBlur("title")}
-                  maxLength="50"
+                  maxLength="60"
                   value={this.state.values["title"]}>
                 </input>
               </div>

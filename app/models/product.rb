@@ -40,6 +40,8 @@ class Product < ActiveRecord::Base
     old_rating, num_ratings = product.rating, product.num_ratings
 
     new_rating = ((old_rating * num_ratings) + rating) / (num_ratings+=1)
+    new_rating = new_rating.round(1)
+
     product.update_attribute :rating, new_rating
     product.update_attribute :num_ratings, num_ratings
   end
@@ -52,6 +54,7 @@ class Product < ActiveRecord::Base
       num_ratings -= 1
     else
       new_rating = ((old_rating * num_ratings) - rating) / (num_ratings-=1)
+      new_rating = new_rating.round(1)
     end
 
     product.update_attribute :rating, new_rating
@@ -62,6 +65,8 @@ class Product < ActiveRecord::Base
     old_rating, num_ratings = product.rating, product.num_ratings
 
     new_rating = ((old_rating * num_ratings) + rating_diff) / num_ratings
+    new_rating = new_rating.round(1)
+
     product.update_attribute :rating, new_rating
   end
 end

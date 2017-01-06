@@ -1,10 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# # This file should contain all the record creation needed to seed the database with its default values.
+# # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# #
+# # Examples:
+# #
+# #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+# #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
 def create_image_url(image_url, type)
@@ -40,29 +40,6 @@ brand_ids = {
   "MSR" => 6,
   "Heimplanet" => 7
 }
-
-wookie_speech =
-"Yrroonn mumwa gwyaaaag ooma ur wyogg roooarrgh roooarrgh huewaa ooma ru?
-Youw yrroonn ruh!
-Gwyaaaag kabukk rarr ga gwyaaaag rarr!
-Kabukk!
-Ga ruh ma muaa ru roo roo ga kabukk nng!
-Youw wua?
-Gwyaaaag.
-Huewaa rarr ooma roooarrgh muaa gwyaaaag wua muaa.
-Roooarrgh wua wyogg muaa mumwa ruh nng roo huewaa?
-Youw wua?
-Ur wyogg mumwa wua youw?
-Ruh wyogg ooma ooma rarr ur mumwa huewaa!
-Muaa?
-Ahuma rarr wyogg?
-Rarr wua nng ur youw muaa?
-Ooma wua ru wyogg ma ahuma muaa rarr!
-Roooarrgh ma muaa ma?
-Ooma wyaaaaaa.
-Nng muaa gwyaaaag ruh yrroonn ga muaa wyogg hnn-rowr nng!
-Roo ooma huewaa ruh gwyaaaag yrroonn ruh roo yrroonn nng gwyaaaag?
-Ga ur.".split("\n")
 
 User.create(username: 'Guest', password: 'asdfasdf')      # 1
 User.create(username: 'Travis', password: 'asdfasdf')     # 2
@@ -135,39 +112,42 @@ User.create(username: 'Barliman Butterbur', password: 'asdfasdf')     # 68
 User.create(username: 'Beregond', password: 'asdfasdf')     # 69
 User.create(username: 'Éomer', password: 'asdfasdf')     # 70
 User.create(username: 'Arwen Evenstar', password: 'asdfasdf')     # 71
-User.create(username: 'Glorfindel', password: 'asdfasdf')     # 72
-User.create(username: 'Sauron', password: 'asdfasdf')     # 73
-User.create(username: 'Peregrin Took', password: 'asdfasdf')     # 74
-User.create(username: 'Éowyn', password: 'asdfasdf')     # 75
-User.create(username: 'Denethor', password: 'asdfasdf')     # 76
-User.create(username: 'Galadriel', password: 'asdfasdf')     # 77
-User.create(username: 'Meriadoc Brandybuck', password: 'asdfasdf')     # 78
-User.create(username: 'Grìma Wormtongue', password: 'asdfasdf')     # 79
-User.create(username: 'Boromir', password: 'asdfasdf')     # 80
-User.create(username: 'Treebeard', password: 'asdfasdf')     # 81
-User.create(username: 'Shadowfax', password: 'asdfasdf')     # 82
-User.create(username: 'Saruman the White', password: 'asdfasdf')     # 83
-User.create(username: 'Tom Bombadil', password: 'asdfasdf')     # 84
-User.create(username: 'Gimli', password: 'asdfasdf')     # 85
-User.create(username: 'Faramir', password: 'asdfasdf')     # 86
-User.create(username: 'Aragorn', password: 'asdfasdf')     # 87
-User.create(username: 'Legolas', password: 'asdfasdf')     # 88
-User.create(username: 'Frodo Baggins', password: 'asdfasdf')     # 89
-User.create(username: 'Elrond', password: 'asdfasdf')     # 90
-User.create(username: 'Gandalf the Grey', password: 'asdfasdf')     # 91
-User.create(username: 'Shelob', password: 'asdfasdf')     # 92
-User.create(username: 'Golum', password: 'asdfasdf')     # 93
-User.create(username: 'Théoden', password: 'asdfasdf')     # 94
-User.create(username: 'Bilbo Baggins', password: 'asdfasdf')     # 95
-User.create(username: 'Quickbeam', password: 'asdfasdf')     # 96
-User.create(username: 'Samwise Gamgee', password: 'asdfasdf')     # 97
-User.create(username: 'Barliman Butterbur', password: 'asdfasdf')     # 98
-User.create(username: 'Beregond', password: 'asdfasdf')     # 99
-User.create(username: 'Éomer', password: 'asdfasdf')     # 100
-User.create(username: 'Arwen Evenstar', password: 'asdfasdf')     # 101
+User.create(username: 'Borvo the Hutt', password: 'asdfasdf')     # 72
+User.create(username: 'Yoda', password: 'asdfasdf')     # 73
+User.create(username: 'Darth Maul', password: 'asdfasdf')     # 74
+User.create(username: 'Sheev Palpatine', password: 'asdfasdf')     # 75
+User.create(username: 'Padme Amidala', password: 'asdfasdf')     # 76
+User.create(username: 'Kylo Ren', password: 'asdfasdf')     # 77
+User.create(username: 'Qui-Gon Jinn', password: 'asdfasdf')     # 78
+User.create(username: 'Han Solo', password: 'asdfasdf')     # 79
+User.create(username: 'Poe Dameron', password: 'asdfasdf')     # 80
+User.create(username: 'Luke Skywalker', password: 'asdfasdf')     # 81
+User.create(username: 'Rune Haako', password: 'asdfasdf')     # 82
+User.create(username: 'Lando Calrissian', password: 'asdfasdf')     # 83
+User.create(username: 'Obi-Wan Kenobi', password: 'asdfasdf')     # 84
+User.create(username: 'Nute Gunray', password: 'asdfasdf')     # 85
+User.create(username: 'Ki-Adi-Mundi', password: 'asdfasdf')     # 86
+User.create(username: 'Sebulba', password: 'asdfasdf')     # 87
+User.create(username: 'Mace Windu', password: 'asdfasdf')     # 88
+User.create(username: 'Bail Organa', password: 'asdfasdf')     # 89
+User.create(username: 'Count Dooku', password: 'asdfasdf')     # 90
+User.create(username: 'Watto', password: 'asdfasdf')     # 91
+User.create(username: 'Leia Organa', password: 'asdfasdf')     # 92
+User.create(username: 'Jar Jar Binks', password: 'asdfasdf')     # 93
+User.create(username: 'Ben Solo', password: 'asdfasdf')     # 94
+User.create(username: 'Boba Fett', password: 'asdfasdf')     # 95
+User.create(username: 'Anakin Skywalker', password: 'asdfasdf')     # 96
+User.create(username: 'Panaka', password: 'asdfasdf')     # 97
+User.create(username: 'Jabba the Hutt', password: 'asdfasdf')     # 98
+User.create(username: 'Darth Vader', password: 'asdfasdf')     # 99
+User.create(username: 'Wedge Antilles', password: 'asdfasdf')     # 100
+User.create(username: 'Darth Caedus', password: 'asdfasdf')     # 101
+User.create(username: 'Jango Fett', password: 'asdfasdf')     # 102
+User.create(username: 'Darth Sidious', password: 'asdfasdf')     # 103
+
 
 # For parsing characters from GOT into above format
-# count = 101
+# count = 103
 # "".split("\n").each { |name| puts "User.create(username: '#{name}', password: 'asdfasdf')     # #{count+=1}"}
 
 Brand.create(name: "Marmot")
@@ -756,7 +736,7 @@ Product.create(category_id: 2,
                name: "Half Dome 2 Plus",
                price: 219,
                rating: 4.3,
-               num_ratings: 22,
+               num_ratings: 92,
                best_use: "Backpacking",
                full_size_image: image_url,
                primary_image: create_image_url(image_url, :primary),
@@ -810,7 +790,7 @@ Product.create(category_id: 2,
                name: "Half Dome 2 Tent",
                price: 199,
                rating: 4.0,
-               num_ratings: 25,
+               num_ratings: 74,
                best_use: "Backpacking",
                full_size_image: image_url,
                primary_image: create_image_url(image_url, :primary),
@@ -989,17 +969,154 @@ The NEMO Galaxi 2P Tent comes with a coated ripstop nylon footprint to help prot
 details.split("\n").each { |det| Detail.create(product_id: 19, description: det) }
 
 
-####### Reviews ##########################################################################################################################################################################################################################################################
-dist = {1: [40, 30, 15, 10, 5],
-        2: [25, 35, 20, 10, 10],
-        3: [10, 25, 30, 20, 15],
-        4: [10, 10, 20, 35, 25],
-        5: [5, 10, 15, 30, 40]
+# ####### Reviews ##########################################################################################################################################################################################################################################################
+
+# Since my ruby version / Faker version are currently behind
+wookie_speech =
+"Youw yrroonn ruh!
+Gwyaaaag kabukk rarr ga gwyaaaag rarr!
+Kabukk!
+Ga ruh ma muaa ru roo roo ga kabukk nng!
+Youw wua?
+Gwyaaaag.
+Huewaa rarr ooma roooarrgh muaa gwyaaaag wua muaa.
+Roooarrgh wua wyogg muaa mumwa ruh nng roo huewaa?
+Youw wua?
+Ur wyogg mumwa wua youw?
+Ruh wyogg ooma ooma rarr ur mumwa huewaa!
+Muaa?
+Ahuma rarr wyogg?
+Rarr wua nng ur youw muaa?
+Ooma wua ru wyogg ma ahuma muaa rarr!
+Roooarrgh ma muaa ma?
+Ooma wyaaaaaa.
+Nng muaa gwyaaaag ruh yrroonn ga muaa wyogg hnn-rowr nng!
+Roo ooma huewaa ruh gwyaaaag yrroonn ruh roo yrroonn nng gwyaaaag?
+Yrroonn mumwa gwyaaaag ooma ur wyogg roooarrgh roooarrgh huewaa ooma ru?".split("\n")
+
+ondra_speech =
+"Oahhhhhhhhh!
+ahhhhhhhhh!
+Oahhhhhhhhhhh!
+Hnnggghhhhhhh!
+ARRRGGGGHHHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ARRRGGGGHHHHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ARRRGGGGHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+ondra_title = "ARGHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+dist = {1 => [80, 12, 3, 2, 3],
+        2 => [25, 35, 20, 10, 10],
+        3 => [10, 10, 40, 20, 20],
+        4 => [2.5, 5, 7.5, 20, 65],
+        5 => [1.4, 1.4, 1.4, 7.1, 88.7]
        }
 
-Product.all.each do |prod|
-  
+chewwie_id = User.where(username: "Chewbacca").first.id
+ondra_id = User.where(username: "Adam Ondra").first.id
+
+def build_dist(dist)
+  percents = {1 => dist.first}
+  key = 1;
+  dist.drop(1).each { |num| percents[key+=1] = num + percents[key-1]}
+  percents.map { |key, val| percents[key] = val.fdiv(100) }
 end
+
+def random_noun()
+  val = rand()
+
+  if val < 0.33
+    Faker::Food.ingredient
+  elsif val < 0.67
+    Faker::Food.spice
+  else
+    Faker::Music.instrument
+  end
+end
+
+def random_title()
+  while true
+    title = "#{Faker::Hacker.adjective.capitalize} #{random_noun()}"
+    return title if title.length <= 60
+  end
+end
+
+def random_body()
+  val = rand()
+
+  if val <= 0.25
+    bool = val < 0.125 ? true : false
+    return Faker::Hipster.sentence(rand(3..12), bool, rand(0..5))
+  elsif val <= 0.50
+    bool = val < 0.375 ? true : false
+    return Faker::Hipster.sentences(rand(2..4), bool).join(" ")
+  elsif val <= 0.75
+    bool = val < 0.625 ? true : false
+    return Faker::Hipster.paragraph(rand(2..5), bool, rand(0..5))
+  else
+    bool = val < 0.875 ? true : false
+    return Faker::Hipster.paragraphs(rand(2..5), bool).join("\n\n")
+  end
+end
+
+def random_rating(dist)
+  val = rand()
+
+  (1..5).each { |i| return i if val <= dist[i] }
+end
+
+def random_date()
+  val = rand()
+
+  if val <= 0.05
+    return DateTime.now - rand(0..45).minutes
+  elsif val <= 0.25
+    return DateTime.now - rand(1..18).hours
+  elsif val <= 0.50
+    return DateTime.now - rand(1..25).days
+  elsif val <= 0.80
+    return DateTime.now - rand(1..12).months
+  else
+    return DateTime.now - rand(1..3).years
+  end
+end
+
+Product.all.each do |product|
+  next if product.num_ratings == 0;
+  num_ratings = product.num_ratings;
+  avg_rating = product.rating.round;
+  product.update_attribute :rating, 0
+  product.update_attribute :num_ratings, 0
+
+  user_ids = (1..User.count).to_a
+  user_ids.shuffle!
+  rating_dist = build_dist(dist[avg_rating])
+
+  num_ratings.times do
+    user_id = user_ids.pop
+
+    case user_id
+    when chewwie_id
+      title = wookie_speech[rand(0..wookie_speech.length-2)]
+      body = rand(0) > 0.5 ? wookie_speech.sample : "#{wookie_speech.sample} #{wookie_speech.sample}"
+    when ondra_id
+      title = ondra_title
+      body = ondra_speech
+    else
+      title = random_title()
+      body = random_body()
+    end
+
+    rating = random_rating(rating_dist)
+    date = random_date()
+
+    review = Review.create(user_id: user_id, product_id: product.id, title: title, body: body, rating: rating)
+    Product.add_rating(product, rating)
+    review.update_attribute :created_at, date
+    review.update_attribute :updated_at, date
+  end
+end
+
 # (1..5).each do |i|
 #   review = Review.create(user_id: i, product_id: 1, title: "Test #{i}", body: "creation test #{i}", rating: i )
 #   randDate = DateTime.now - rand(10).days

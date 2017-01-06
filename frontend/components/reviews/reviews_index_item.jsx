@@ -47,7 +47,12 @@ class ReviewsIndexItem extends React.Component {
           {this.props.review.title}
         </div>
         <div className="review-body">
-          {this.props.review.body}
+          {this.props.review.body.split("\n").map((section, idx) => (
+            <span key={idx}>
+              {section}
+              <br/>
+            </span>
+          ))}
         </div>
       </div>
     );

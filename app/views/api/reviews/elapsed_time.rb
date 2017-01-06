@@ -13,7 +13,7 @@ module ElapsedTime
     months = (seconds / 3600 / 24 / 30).round
     return "#{months} #{months == 1 ? "month" : "months"} ago" if months < 12
 
-    years = (seconds / 3600 / 24).round
+    years = (seconds / 3600 / 24 / 30 / 12).round
     return "#{years} #{years == 1 ? "year" : "years"} ago"
   end
 end
