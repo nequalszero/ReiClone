@@ -2,6 +2,17 @@ export const fetchReviews = (productId, success, error) => (
   $.ajax({
     url: `api/products/${productId}/reviews`,
     type: 'GET',
+    data: {review: {user_only: false}},
+    success,
+    error
+  })
+);
+
+export const fetchUserReview = (productId, success, error) => (
+  $.ajax({
+    url: `api/products/${productId}/reviews`,
+    type: 'GET',
+    data: {review: {user_only: true}},
     success,
     error
   })

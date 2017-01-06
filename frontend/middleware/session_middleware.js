@@ -13,6 +13,8 @@ import { requestUserItems,
          emptyCartOnLogout
        } from '../actions/shopping_cart_actions';
 
+import { clearUserReviewState } from '../actions/reviews_actions';
+
 // Deconstruct state (via getState) and dispatch from store
 const SessionMiddleware = ({ getState, dispatch }) => next => action => {
   const loginSuccessCallback = user => {
@@ -20,7 +22,10 @@ const SessionMiddleware = ({ getState, dispatch }) => next => action => {
     dispatch(requestUserItems());
   };
   const receiveUserCallback = () => dispatch(requestUserItems());
-  const logoutSuccessCallback = () => dispatch(emptyCartOnLogout());
+  const logoutSuccessCallback = () => {
+    dispatch(emptyCartOnLogout());
+    dispatch(clearUserReviewState());
+  };
 
   // xhr = xml http response, responseJson is the key where our json is stored
   //   when the ajax request fails and returns an error object.

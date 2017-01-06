@@ -26,6 +26,8 @@ and the displaying of account information, with numerous event listeners setting
 Numerous tables were utilized for categorizing and storing product information, by spreading a single product's information over numerous tables.
 
 ![results screenshot](docs/screenshots/results_display.png)
+
+
 ![product screenshot](docs/screenshots/product_display.png)
 
 ## Future Directions for the Project

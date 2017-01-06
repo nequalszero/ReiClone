@@ -6,18 +6,23 @@ class Api::ReviewsController < ApplicationController
     #                                 : default_limit
     # offset = params[:review][:offset] ? params[:review][:offset].to_i
     #                                   : default_offset
-
-    @reviews = Review.where( product_id: params[:product_id] )
-                     .order(updated_at: :desc)
-                     .offset(0)
-                     .limit(10)
-    if current_user
-      user_review = @reviews.select { |rev| rev.user_id == current_user.id }
+    if review_params[:user_only] == "true"
+      user_review = Review.where(product_id: params[:product_id], user_id: current_user.id)
+      @user_review = user_review.empty? ? nil : user_review.first
+      render "api/reviews/index_user_review"
     else
-      user_review = []
+      @reviews = Review.where(product_id: params[:product_id])
+                       .order(updated_at: :desc)
+                       .offset(0)
+                       .limit(10)
+      if current_user
+        user_review = @reviews.select { |rev| rev.user_id == current_user.id }
+      else
+        user_review = []
+      end
+      @user_review = user_review.empty? ? nil : user_review.first
+      render "api/reviews/index"
     end
-    @user_review = user_review.empty? ? nil : user_review.first
-    render "api/reviews/index"
   end
 
   def create
@@ -81,6 +86,6 @@ class Api::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:rating, :title, :body, :product_id)
+    params.require(:review).permit(:rating, :title, :body, :product_id, :user_only)
   end
 end

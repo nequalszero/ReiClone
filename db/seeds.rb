@@ -41,8 +41,31 @@ brand_ids = {
   "Heimplanet" => 7
 }
 
+wookie_speech =
+"Yrroonn mumwa gwyaaaag ooma ur wyogg roooarrgh roooarrgh huewaa ooma ru?
+Youw yrroonn ruh!
+Gwyaaaag kabukk rarr ga gwyaaaag rarr!
+Kabukk!
+Ga ruh ma muaa ru roo roo ga kabukk nng!
+Youw wua?
+Gwyaaaag.
+Huewaa rarr ooma roooarrgh muaa gwyaaaag wua muaa.
+Roooarrgh wua wyogg muaa mumwa ruh nng roo huewaa?
+Youw wua?
+Ur wyogg mumwa wua youw?
+Ruh wyogg ooma ooma rarr ur mumwa huewaa!
+Muaa?
+Ahuma rarr wyogg?
+Rarr wua nng ur youw muaa?
+Ooma wua ru wyogg ma ahuma muaa rarr!
+Roooarrgh ma muaa ma?
+Ooma wyaaaaaa.
+Nng muaa gwyaaaag ruh yrroonn ga muaa wyogg hnn-rowr nng!
+Roo ooma huewaa ruh gwyaaaag yrroonn ruh roo yrroonn nng gwyaaaag?
+Ga ur.".split("\n")
+
 User.create(username: 'Guest', password: 'asdfasdf')      # 1
-User.create(username: 'Travis Ludlum', password: 'asdfasdf')     # 2
+User.create(username: 'Travis', password: 'asdfasdf')     # 2
 User.create(username: 'Ima Dinosaur', password: 'asdfasdf')   # 3
 User.create(username: 'Sheldon Cooper', password: 'asdfasdf')    # 4
 User.create(username: 'Leonard Hofstadter', password: 'asdfasdf')    # 5
@@ -80,7 +103,72 @@ User.create(username: 'Andrew Kim', password: 'asdfasdf')     # 36
 User.create(username: 'Conrad Anker', password: 'asdfasdf')     # 37
 User.create(username: 'Jordy Margid', password: 'asdfasdf')     # 38
 User.create(username: 'Indiana Jones', password: 'asdfasdf')     # 39
-User.create(username: 'Bruce Wayne', password: 'asdfasdf')     # 40
+User.create(username: 'John Muir', password: 'asdfasdf')     # 40
+User.create(username: 'Chewbacca', password: 'asdfasdf')     # 41
+User.create(username: 'Glorfindel', password: 'asdfasdf')     # 42
+User.create(username: 'Sauron', password: 'asdfasdf')     # 43
+User.create(username: 'Peregrin Took', password: 'asdfasdf')     # 44
+User.create(username: 'Éowyn', password: 'asdfasdf')     # 45
+User.create(username: 'Denethor', password: 'asdfasdf')     # 46
+User.create(username: 'Galadriel', password: 'asdfasdf')     # 47
+User.create(username: 'Meriadoc Brandybuck', password: 'asdfasdf')     # 48
+User.create(username: 'Grìma Wormtongue', password: 'asdfasdf')     # 49
+User.create(username: 'Boromir', password: 'asdfasdf')     # 50
+User.create(username: 'Treebeard', password: 'asdfasdf')     # 51
+User.create(username: 'Shadowfax', password: 'asdfasdf')     # 52
+User.create(username: 'Saruman the White', password: 'asdfasdf')     # 53
+User.create(username: 'Tom Bombadil', password: 'asdfasdf')     # 54
+User.create(username: 'Gimli', password: 'asdfasdf')     # 55
+User.create(username: 'Faramir', password: 'asdfasdf')     # 56
+User.create(username: 'Aragorn', password: 'asdfasdf')     # 57
+User.create(username: 'Legolas', password: 'asdfasdf')     # 58
+User.create(username: 'Frodo Baggins', password: 'asdfasdf')     # 59
+User.create(username: 'Elrond', password: 'asdfasdf')     # 60
+User.create(username: 'Gandalf the Grey', password: 'asdfasdf')     # 61
+User.create(username: 'Shelob', password: 'asdfasdf')     # 62
+User.create(username: 'Golum', password: 'asdfasdf')     # 63
+User.create(username: 'Théoden', password: 'asdfasdf')     # 64
+User.create(username: 'Bilbo Baggins', password: 'asdfasdf')     # 65
+User.create(username: 'Quickbeam', password: 'asdfasdf')     # 66
+User.create(username: 'Samwise Gamgee', password: 'asdfasdf')     # 67
+User.create(username: 'Barliman Butterbur', password: 'asdfasdf')     # 68
+User.create(username: 'Beregond', password: 'asdfasdf')     # 69
+User.create(username: 'Éomer', password: 'asdfasdf')     # 70
+User.create(username: 'Arwen Evenstar', password: 'asdfasdf')     # 71
+User.create(username: 'Glorfindel', password: 'asdfasdf')     # 72
+User.create(username: 'Sauron', password: 'asdfasdf')     # 73
+User.create(username: 'Peregrin Took', password: 'asdfasdf')     # 74
+User.create(username: 'Éowyn', password: 'asdfasdf')     # 75
+User.create(username: 'Denethor', password: 'asdfasdf')     # 76
+User.create(username: 'Galadriel', password: 'asdfasdf')     # 77
+User.create(username: 'Meriadoc Brandybuck', password: 'asdfasdf')     # 78
+User.create(username: 'Grìma Wormtongue', password: 'asdfasdf')     # 79
+User.create(username: 'Boromir', password: 'asdfasdf')     # 80
+User.create(username: 'Treebeard', password: 'asdfasdf')     # 81
+User.create(username: 'Shadowfax', password: 'asdfasdf')     # 82
+User.create(username: 'Saruman the White', password: 'asdfasdf')     # 83
+User.create(username: 'Tom Bombadil', password: 'asdfasdf')     # 84
+User.create(username: 'Gimli', password: 'asdfasdf')     # 85
+User.create(username: 'Faramir', password: 'asdfasdf')     # 86
+User.create(username: 'Aragorn', password: 'asdfasdf')     # 87
+User.create(username: 'Legolas', password: 'asdfasdf')     # 88
+User.create(username: 'Frodo Baggins', password: 'asdfasdf')     # 89
+User.create(username: 'Elrond', password: 'asdfasdf')     # 90
+User.create(username: 'Gandalf the Grey', password: 'asdfasdf')     # 91
+User.create(username: 'Shelob', password: 'asdfasdf')     # 92
+User.create(username: 'Golum', password: 'asdfasdf')     # 93
+User.create(username: 'Théoden', password: 'asdfasdf')     # 94
+User.create(username: 'Bilbo Baggins', password: 'asdfasdf')     # 95
+User.create(username: 'Quickbeam', password: 'asdfasdf')     # 96
+User.create(username: 'Samwise Gamgee', password: 'asdfasdf')     # 97
+User.create(username: 'Barliman Butterbur', password: 'asdfasdf')     # 98
+User.create(username: 'Beregond', password: 'asdfasdf')     # 99
+User.create(username: 'Éomer', password: 'asdfasdf')     # 100
+User.create(username: 'Arwen Evenstar', password: 'asdfasdf')     # 101
+
+# For parsing characters from GOT into above format
+# count = 101
+# "".split("\n").each { |name| puts "User.create(username: '#{name}', password: 'asdfasdf')     # #{count+=1}"}
 
 Brand.create(name: "Marmot")
 Brand.create(name: "REI")
@@ -901,6 +989,17 @@ The NEMO Galaxi 2P Tent comes with a coated ripstop nylon footprint to help prot
 details.split("\n").each { |det| Detail.create(product_id: 19, description: det) }
 
 
+####### Reviews ##########################################################################################################################################################################################################################################################
+dist = {1: [40, 30, 15, 10, 5],
+        2: [25, 35, 20, 10, 10],
+        3: [10, 25, 30, 20, 15],
+        4: [10, 10, 20, 35, 25],
+        5: [5, 10, 15, 30, 40]
+       }
+
+Product.all.each do |prod|
+  
+end
 # (1..5).each do |i|
 #   review = Review.create(user_id: i, product_id: 1, title: "Test #{i}", body: "creation test #{i}", rating: i )
 #   randDate = DateTime.now - rand(10).days

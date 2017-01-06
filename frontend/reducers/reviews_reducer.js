@@ -2,7 +2,9 @@ import { RECEIVE_REVIEW,
          RECEIVE_REVIEWS,
          RECEIVE_ERRORS,
          RECEIVE_UPDATED_REVIEW,
-         CLEAR_REVIEWS_STATE
+         CLEAR_REVIEWS_STATE,
+         CLEAR_USER_REVIEW_STATE,
+         RECEIVE_USER_REVIEW
        } from '../actions/reviews_actions';
 import merge from 'lodash/merge';
 
@@ -55,7 +57,16 @@ const ReviewsReducer = (oldState = _defaultResult, action) => {
       return newState;
 
     case CLEAR_REVIEWS_STATE:
-      return _defaultResult;
+      newState = _defaultResult;
+      return newState;
+
+    case CLEAR_USER_REVIEW_STATE:
+      newState.userReview = null;
+      return newState;
+
+    case RECEIVE_USER_REVIEW:
+      newState.userReview = action.userReview.user_review;
+      return newState;
 
     default:
       return oldState;

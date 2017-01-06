@@ -4,15 +4,18 @@ import { REQUEST_REVIEWS,
          UPDATE_REVIEW,
          RECEIVE_UPDATED_REVIEW,
          RECEIVE_REVIEW,
+         REQUEST_USER_REVIEW,
          receiveReview,
          receiveReviews,
          receiveErrors,
-         receiveUpdatedReview }
+         receiveUpdatedReview,
+         receiveUserReview }
     from '../actions/reviews_actions';
 import { fetchReviews,
          deleteReview,
          createReview,
-         updateReview
+         updateReview,
+         fetchUserReview
        } from '../util/reviews_api_util';
 import { receiveItem } from '../actions/product_actions';
 import { fetchItem } from '../util/product_api_util';
@@ -48,9 +51,15 @@ const ReviewsMiddleware = ({ getState, dispatch }) => next => action => {
       fetchItem(productId, successCallback, errorCallback);
       return next(action);
 
+    // inefficient way of updating average rating
     case RECEIVE_REVIEW:
       successCallback = item => dispatch(receiveItem(item));
       fetchItem(action.review.product_id, successCallback, errorCallback);
+      return next(action);
+
+    case REQUEST_USER_REVIEW:
+      successCallback = userReview => dispatch(receiveUserReview(userReview));
+      fetchUserReview(action.productId, successCallback, errorCallback);
       return next(action);
 
     default:

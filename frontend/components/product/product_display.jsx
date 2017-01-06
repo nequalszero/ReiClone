@@ -10,10 +10,11 @@ class ProductDisplay extends React.Component {
     super(props);
     this.state = {quantity: 1,
                   quantityEmpty: false,
-                  product_id: this.props.productId,
+                  productId: this.props.productId,
                   numProductsInCart: this.props.numProducts,
                   disableAdd: false,
-                  processingOrder: false
+                  processingOrder: false,
+                  currentUserId: this.props.currentUserId
                 };
     this.addProductToCart = this.addProductToCart.bind(this);
   }
@@ -24,11 +25,18 @@ class ProductDisplay extends React.Component {
         this.setState({processingOrder: false, quantity: 1, disableAdd: false});
       }
     }
-    this.setState({numProductsInCart: nextProps.numProducts});
+    if (!this.state.currentUserId && nextProps.currentUserId) {
+      this.props.requestUserReview(this.state.productId);
+    }
+    this.setState({
+      numProductsInCart: nextProps.numProducts,
+      currentUserId: nextProps.currentUserId
+    });
   }
 
   componentWillUnmount() {
     this.props.clearReviewsState();
+    this.props.clearItemFromState();
   }
 
   updateQuantity() {
