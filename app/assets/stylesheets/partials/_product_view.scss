@@ -128,7 +128,7 @@ button.add-product-to-cart {
 // Beginning styling for details, specs, and reviews container
 
 div.details-specs-and-reviews-container {
-
+  width: 100%;
 }
 
 ul.product-details-nav {
@@ -168,7 +168,8 @@ ul.details-list {
   flex-direction: column;
   justify-content: flex-start;
   min-height: 300px;
-  width: 670px;
+  max-width: 670px;
+  width: 100%;
   padding-left: 30px;
   padding-right: 100px;
   list-style-type: disc;
@@ -177,30 +178,41 @@ ul.details-list {
 li.details-list {
   line-height: 1.5;
   margin-bottom: 12px;
+  padding-right: 12px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 div.product-specs-table-container {
   display: block;
   padding-top: 24px;
+  width: 100%;
+}
+
+table.product-specs, table.product-specs > tbody {
+  width: 100%;
 }
 
 tr.products-specs-table-row {
   display: flex;
+  width: 100%;
 }
 
 tr.products-specs-table-row > th {
   display: block;
   text-align: left;
-  width: 438px;
+  width: 40%;
   height: 24px;
   padding: 8px;
   border-bottom: 1px solid gray;
+  // box-sizing: border-box;
 }
 
 tr.products-specs-table-row > td {
   display: block;
-  width: 670px;
+  width: 60%;
   height: 24px;
   padding: 8px;
   border-bottom: 1px solid gray;
+  // box-sizing: border-box;
 }

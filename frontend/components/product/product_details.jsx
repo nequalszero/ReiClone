@@ -117,7 +117,7 @@ class ProductDisplay extends React.Component {
         <h3 className="product-specs-table-title" id="product-specs-table">
           Specs
         </h3>
-        <table className="product_specs">
+        <table className="product-specs">
           <tbody>
             {Object.keys(tableValues).map(key => (
               <tr key={key} className="products-specs-table-row">

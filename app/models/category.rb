@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
   validates :name, uniqueness: true
-  has_many :products
+  has_many :products, dependent: :destroy
 
   has_many :brands, through: :products
 

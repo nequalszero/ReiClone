@@ -10,6 +10,8 @@ export const CLEAR_REVIEWS_STATE = "CLEAR_REVIEWS_STATE";
 export const CLEAR_USER_REVIEW_STATE = "CLEAR_USER_REVIEW_STATE";
 export const REQUEST_USER_REVIEW = "REQUEST_USER_REVIEW";
 export const RECEIVE_USER_REVIEW = "RECEIVE_USER_REVIEW";
+export const REQUEST_ADDITIONAL_REVIEWS = "REQUEST_ADDITIONAL_REVIEWS";
+export const RECEIVE_ADDITIONAL_REVIEWS = "RECEIVE_ADDITIONAL_REVIEWS";
 
 export const requestReviews = productId => ({
   type: REQUEST_REVIEWS,
@@ -67,4 +69,15 @@ export const requestUserReview = productId => ({
 export const receiveUserReview = userReview => ({
   type: RECEIVE_USER_REVIEW,
   userReview
+});
+
+export const requestAdditionalReviews = ({productId, offset}) => ({
+  type: REQUEST_ADDITIONAL_REVIEWS,
+  productId,
+  offset
+});
+
+export const receiveAdditionalReviews = reviews => ({
+  type: RECEIVE_ADDITIONAL_REVIEWS,
+  reviews,
 });

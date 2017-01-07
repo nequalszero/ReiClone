@@ -8,6 +8,16 @@ export const fetchReviews = (productId, success, error) => (
   })
 );
 
+export const fetchAdditionalReviews = ({productId, offset}, success, error) => (
+  $.ajax({
+    url: `api/products/${productId}/reviews`,
+    type: 'GET',
+    data: {review: {user_only: false, offset}},
+    success,
+    error
+  })
+);
+
 export const fetchUserReview = (productId, success, error) => (
   $.ajax({
     url: `api/products/${productId}/reviews`,

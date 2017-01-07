@@ -3,7 +3,8 @@ import ReviewsIndex from './reviews_index';
 import { requestReviews,
          createReview,
          updateReview,
-         deleteReview
+         deleteReview,
+         requestAdditionalReviews
        }
        from '../../actions/reviews_actions';
 
@@ -13,9 +14,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    createReview: (review) => dispatch(createReview(review)),
-    updateReview: (review) => dispatch(updateReview(review)),
-    deleteReview: (review) => dispatch(deleteReview(review))
+    createReview: review => dispatch(createReview(review)),
+    updateReview: review => dispatch(updateReview(review)),
+    deleteReview: review => dispatch(deleteReview(review)),
+    requestAdditionalReviews: data => dispatch(requestAdditionalReviews(data))
 });
 
 export default connect(

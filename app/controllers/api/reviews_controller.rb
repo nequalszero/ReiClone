@@ -1,25 +1,27 @@
 class Api::ReviewsController < ApplicationController
   def index
     # default_limit = 10
-    # default_offset = 0
+    default_offset = 0
     # limit = params[:review][:limit] ? params[:review][:limit].to_i
     #                                 : default_limit
-    # offset = params[:review][:offset] ? params[:review][:offset].to_i
-    #                                   : default_offset
+    offset = params[:review][:offset] ? params[:review][:offset].to_i
+                                      : default_offset
     if review_params[:user_only] == "true"
       user_review = Review.where(product_id: params[:product_id], user_id: current_user.id)
       @user_review = user_review.empty? ? nil : user_review.first
       render "api/reviews/index_user_review"
+    elsif review_params[:additional] == "true"
+      @reviews = Review.where(product_id: params[:product_id])
+                       .order(updated_at: :desc)
+                       .offset(offset)
+                       .limit(10)
+      render "api/reviews/additional_reviews"
     else
       @reviews = Review.where(product_id: params[:product_id])
                        .order(updated_at: :desc)
-                       .offset(0)
+                       .offset(offset)
                        .limit(10)
-      if current_user
-        user_review = @reviews.select { |rev| rev.user_id == current_user.id }
-      else
-        user_review = []
-      end
+      user_review = current_user ? Review.where(user_id: current_user.id, product_id: params[:product_id]) : []
       @user_review = user_review.empty? ? nil : user_review.first
       render "api/reviews/index"
     end
@@ -86,6 +88,6 @@ class Api::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:rating, :title, :body, :product_id, :user_only)
+    params.require(:review).permit(:rating, :title, :body, :product_id, :user_only, :offset)
   end
 end

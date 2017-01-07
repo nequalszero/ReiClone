@@ -15,7 +15,8 @@ class ReviewsIndex extends React.Component {
                    errors: props.errors,
                    userReview: props.userReview,
                    item: props.item,
-                   modalIsOpen: false};
+                   modalIsOpen: false,
+                   loadingAdditionalReviews: false};
 
     this.state.reviewItem = {image: this.props.item.primary_image,
                              brand: this.props.item.brand,
@@ -27,29 +28,22 @@ class ReviewsIndex extends React.Component {
     this.openReviewModal = this.openReviewModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.reviewModalElement = this.reviewModalElement.bind(this);
+
+    this.additionalReviews = this.additionalReviews.bind(this);
+    this.requestAdditionalReviews = this.requestAdditionalReviews.bind(this);
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (nextProps.reviews !== this.state.reviews ||
-  //       nextState.modalIsOpen !== this.state.modalIsOpen) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-  //
-  // componentWillUpdate(nextProps) {
-  //   this.setState( {reviews: nextProps.reviews,
-  //                   errors: nextProps.errors,
-  //                   userReview: nextProps.userReview,
-  //                   item: nextProps.item} );
-  // }
-
   componentWillReceiveProps(nextProps) {
-    this.setState( {reviews: nextProps.reviews,
-                    errors: nextProps.errors,
-                    userReview: nextProps.userReview,
-                    item: nextProps.item} );
+    console.log("nextProps.reviews", nextProps.reviews)
+    if (nextProps.reviews.length !== this.state.reviews.length &&
+        this.state.loadingAdditionalReviews) {
+      console.log("loadingAdditionalReviews", this.state.loadingAdditionalReviews);
+      this.setState({loadingAdditionalReviews: false});
+    }
+    this.setState({reviews: nextProps.reviews,
+                   errors: nextProps.errors,
+                   userReview: nextProps.userReview,
+                   item: nextProps.item});
     this.setState({reviewItem: {
       image: nextProps.item.primary_image,
       brand: nextProps.item.brand,
@@ -58,6 +52,16 @@ class ReviewsIndex extends React.Component {
     }});
 
     this.setState({buttonText: this.configureButtonText(nextProps.userReview)});
+  }
+
+  requestAdditionalReviews() {
+    if (!this.state.loadingAdditionalReviews) {
+      this.props.requestAdditionalReviews({
+        productId: this.state.item.id,
+        offset: this.state.reviews.length
+      });
+      this.setState({loadingAdditionalReviews: true});
+    }
   }
 
   openReviewModal() {
@@ -97,8 +101,24 @@ class ReviewsIndex extends React.Component {
             { idx === numReviewsDisplaying - 1 ? undefined : bottomDivider }
           </div>
         ))}
+        {this.additionalReviews()}
       </div>
     );
+  }
+
+  additionalReviews() {
+    if (this.state.item.num_ratings !== this.state.reviews.length &&
+        !this.state.loadingAdditionalReviews) {
+      console.log("returning button");
+      return (
+        <div className="load-reviews-container">
+          <button className={`${blueButtonClass} load-reviews`}
+            onClick={this.requestAdditionalReviews}>
+            Load more reviews
+          </button>
+        </div>
+      );
+    }
   }
 
   renderNoReviews() {

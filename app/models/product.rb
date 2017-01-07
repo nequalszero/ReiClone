@@ -1,8 +1,8 @@
 class Product < ActiveRecord::Base
-  has_many :reviews
-  has_many :features
-  has_many :details
-  has_many :shopping_cart_items;
+  has_many :reviews, dependent: :destroy
+  has_many :features, dependent: :destroy
+  has_many :details, dependent: :destroy
+  has_many :shopping_cart_items, dependent: :destroy
   belongs_to :brand
   belongs_to :category
 

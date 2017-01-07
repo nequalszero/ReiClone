@@ -5,17 +5,20 @@ import { REQUEST_REVIEWS,
          RECEIVE_UPDATED_REVIEW,
          RECEIVE_REVIEW,
          REQUEST_USER_REVIEW,
+         REQUEST_ADDITIONAL_REVIEWS,
          receiveReview,
          receiveReviews,
          receiveErrors,
          receiveUpdatedReview,
-         receiveUserReview }
+         receiveUserReview,
+         receiveAdditionalReviews }
     from '../actions/reviews_actions';
 import { fetchReviews,
          deleteReview,
          createReview,
          updateReview,
-         fetchUserReview
+         fetchUserReview,
+         fetchAdditionalReviews
        } from '../util/reviews_api_util';
 import { receiveItem } from '../actions/product_actions';
 import { fetchItem } from '../util/product_api_util';
@@ -60,6 +63,12 @@ const ReviewsMiddleware = ({ getState, dispatch }) => next => action => {
     case REQUEST_USER_REVIEW:
       successCallback = userReview => dispatch(receiveUserReview(userReview));
       fetchUserReview(action.productId, successCallback, errorCallback);
+      return next(action);
+
+    case REQUEST_ADDITIONAL_REVIEWS:
+      successCallback = reviews => dispatch(receiveAdditionalReviews(reviews));
+      let data = {productId: action.productId, offset: action.offset};
+      fetchAdditionalReviews(data, successCallback, errorCallback);
       return next(action);
 
     default:
