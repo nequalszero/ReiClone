@@ -34,10 +34,8 @@ class ReviewsIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("nextProps.reviews", nextProps.reviews)
     if (nextProps.reviews.length !== this.state.reviews.length &&
         this.state.loadingAdditionalReviews) {
-      console.log("loadingAdditionalReviews", this.state.loadingAdditionalReviews);
       this.setState({loadingAdditionalReviews: false});
     }
     this.setState({reviews: nextProps.reviews,
@@ -109,7 +107,6 @@ class ReviewsIndex extends React.Component {
   additionalReviews() {
     if (this.state.item.num_ratings !== this.state.reviews.length &&
         !this.state.loadingAdditionalReviews) {
-      console.log("returning button");
       return (
         <div className="load-reviews-container">
           <button className={`${blueButtonClass} load-reviews`}

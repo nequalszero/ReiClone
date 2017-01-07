@@ -31,7 +31,7 @@ const App = ( props ) => {
               <div className="search-auth-container-divider">
                 <div className="search-auth-container">
                   <div className="header-search-bar">
-                    <input value="Search for great gear & clothing"/>
+                    <input placeholder="Search bar in progress..."/>
                   </div>
 
                   <nav className="authForms">

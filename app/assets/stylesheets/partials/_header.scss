@@ -37,14 +37,14 @@ header{
   justify-content: flex-start;
 }
 
-.categories-ul > li {
+.categories-ul > a {
   display: inline-block;
   padding-right: 25px;
   font: 18px sans-serif;
   font-weight: bold;
 }
 
-.categories-ul > li:hover {
+.categories-ul > a:hover {
   color: $lime-green;
   cursor: pointer;
 }

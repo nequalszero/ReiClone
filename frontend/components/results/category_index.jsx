@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router';
 
 class CategoryIndex extends React.Component {
   constructor(props) {
@@ -8,12 +8,6 @@ class CategoryIndex extends React.Component {
 
   componentWillMount() {
     this.props.requestCategories();
-  }
-
-  handleCategoryClick(url) {
-    return (e) => {
-      this.props.router.push(url);
-    };
   }
 
   render(){
@@ -25,9 +19,10 @@ class CategoryIndex extends React.Component {
     return (
       <ul className="categories-ul">
         {this.props.categories.map((category) => (
-          <li key={category.id}
-              onClick={this.handleCategoryClick(`category/${category.id}`)}
-              >{displayText[category.name]}</li>
+          <Link to={`/category/${category.id}`}
+                key={category.id}>
+              {displayText[category.name]}
+          </Link>
           ))}
       </ul>
     );

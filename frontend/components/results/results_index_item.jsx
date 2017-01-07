@@ -1,10 +1,9 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router';
 import { padPrice, formatRating }
         from '../helper_functions/product_details_helper';
 
 const ResultsIndexItem = ({ item, router, dispatch }) => {
-  const handleClick = url => e => router.push(url);
   let itemName = `${item.brand} ${item.name}`;
   let paddedPrice = padPrice(item.price);
   let uniqueKey = `${item.id}-${item.name}`;
@@ -13,8 +12,8 @@ const ResultsIndexItem = ({ item, router, dispatch }) => {
 
   return (
     <div key={uniqueKey}>
-      <div className="results-index-item"
-           onClick={handleClick(productUrl)}>
+      <Link to={`product/${item.id}`}
+            className="results-index-item">
         <div className="result-image-container">
           <img className="result-image" src={item.result_image} alt={itemName}/>
         </div>
@@ -25,10 +24,11 @@ const ResultsIndexItem = ({ item, router, dispatch }) => {
           </section>
           <span className="item_price">${paddedPrice}</span>
           <span className="rating">
-            {rating} {item.rating} ({item.num_ratings})
+            {rating}
+            {item.num_ratings > 0 ? `(${item.num_ratings})` : ""}
           </span>
         </section>
-      </div>
+      </Link>
     </div>
   );
 };

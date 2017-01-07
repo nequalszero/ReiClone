@@ -117,7 +117,9 @@ class ProductDisplay extends React.Component {
             </div>
             <div className="product-rating-container">
               <span className="product-rating">
-                {rating.map((el) => el)} {item.rating} {numRatings}
+                {rating.map((el) => el)}
+                {item.rating > 0 ? item.rating : ""} 
+                {numRatings}
               </span>
             </div>
           </div>

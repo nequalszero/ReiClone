@@ -44,10 +44,12 @@ class ShoppingCartDisplayItem extends React.Component {
     return (
       <li className="shopping-cart-item-detail-container">
         <span className="shopping-cart-item-image-container">
-          <img className="shopping-cart-item-image"
-               src={item.cart_image}
-               alt={itemName}
-               onClick={() => this.redirectToProduct()}/>
+          <Link to={`product/${item.product_id}`}
+                onClick={() => this.redirectToProduct()}>
+              <img className="shopping-cart-item-image"
+                   src={item.cart_image}
+                   alt={itemName}/>
+          </Link>
         </span>
         <span className="shopping-cart-item-details-container">
           {this.renderItemSummary(item)}
@@ -63,10 +65,11 @@ class ShoppingCartDisplayItem extends React.Component {
     let price = padPrice(item.price);
     return(
       <div className="shopping-cart-item-summary-container">
-        <span className="shopping-cart-item-title"
+        <Link to={`product/${item.product_id}`}
+              className="shopping-cart-item-title"
               onClick={() => this.redirectToProduct()}>
               {title}
-        </span>
+        </Link>
         <span className="shopping-cart-item-price">${price}</span>
       </div>
     );
