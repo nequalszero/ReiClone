@@ -36,38 +36,94 @@ export const padPrice = (price) => {
   return `${dollars}.${cents}`;
 };
 
-export const star = key => <i key={key} className="fa fa-star full"
-                              aria-hidden="true"></i>;
-export const emptyStar = key => <i key={key} className="fa fa-star empty"
-                                   aria-hidden="true"></i>;
-export const halfStar = key => <i key={key} className="fa fa-star-half-o"
-                                  aria-hidden="true"></i>;
+const starClass = (baseClass, large = false) => {
+  return large ? `${baseClass} fa-lg` : baseClass;
+};
 
-export const formatRating = (rating) => {
-  // Returns appropriate star icons.
-  // Takes a key to appease React's need for unique keys.
+// Returns appropriate star icons.
+// Takes a key to appease React's need for unique keys.
+export const star = (key, large = false) => {
+  const baseClass = "fa fa-star full";
+
+  return <i key={key}
+            className={starClass(baseClass, large)}
+            aria-hidden="true">
+          </i>;
+};
+export const emptyStar = (key, large = false) => {
+  const baseClass = "fa fa-star empty";
+
+  return <i key={key}
+            className={starClass(baseClass, large)}
+            aria-hidden="true">
+         </i>;
+};
+export const halfStar = (key, large = false) => {
+  const baseClass = "fa fa-star-half-o";
+
+  return <i key={key}
+            className={starClass(baseClass, large)}
+            aria-hidden="true">
+         </i>;
+};
+
+export const emptyObject = (object) => {
+  if (typeof object !== "object")
+    throw "ERROR product_details_helper#emptyObject: input not of type Object";
+  else if (Object.keys(object).length === 0)
+    return true;
+  else
+    return false;
+};
+
+export const formatRating = (ratingObject) => {
+  if (typeof ratingObject !== 'object' || emptyObject(ratingObject)) {
+    throw "ERROR in product_details_helper#formatRating - invalid ratingObject";
+  }
+  let rating = ratingObject.rating;
+  let large = ratingObject.large;
+  let numRatings, ratingText;
+
+  if (ratingObject.numRatings && ratingObject.numRatings > 0) {
+    if (ratingObject.displayRatingText) {
+      ratingText = <span className="rating-text">{rating}</span>;
+    }
+    if (ratingObject.displayNumRatings){
+      numRatings = ratingObject.numRatings;
+      numRatings = <span className="rating-text">({numRatings})</span>;
+    }
+  }
+
+  let starArray = [];
 
   if (rating === 0.0) {
-    return [emptyStar(1), emptyStar(2), emptyStar(3), emptyStar(4), emptyStar(5)];
+    for (let i = 1; i <= 5; i++) starArray.push(emptyStar(i, large));
   } else {
-    let starArray = [];
     let numStars = Math.floor(rating);
     let residualStar = roundToDecimal((rating - numStars), 1);
     let count = 0;
     for (let i = 0; i < numStars; i++) {
-      starArray.push(star(i));
+      starArray.push(star(i, large));
       count += 1;
     }
-    if (residualStar >= 0.3 && residualStar <= 0.8) {
-      starArray.push(halfStar(count));
+    if (residualStar >= 0.3 && residualStar < 0.8) {
+      starArray.push(halfStar(count, large));
+      count += 1;
+    } else if (residualStar >= 0.8) {
+      starArray.push(star(count, large));
       count += 1;
     }
     while (starArray.length < 5) {
-      starArray.push(emptyStar(count));
+      starArray.push(emptyStar(count, large));
       count += 1;
     }
-    return starArray;
   }
+
+  return (
+    <span key={ratingObject.key} className={ratingObject.className}>
+      {starArray} {ratingText} {numRatings}
+    </span>
+  );
 };
 
 // Parses float of weight in pounds into string form.

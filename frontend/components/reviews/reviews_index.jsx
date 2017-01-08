@@ -75,7 +75,12 @@ class ReviewsIndex extends React.Component {
   }
 
   renderReviews() {
-    let rating = formatRating(this.state.item.rating);
+    let rating = formatRating({
+      rating: this.state.item.rating,
+      numRatings: this.state.item.num_ratings,
+      displayRatingText: true,
+      className:"average-rating"
+    });
     let numReviews = this.state.item.num_ratings;
     let numReviewsDisplaying = this.state.reviews.length;
 
@@ -84,8 +89,8 @@ class ReviewsIndex extends React.Component {
         <h4 className="average-rating-label">
           Average Customer Ratings
         </h4>
-        <div className="average-rating">
-          {this.state.item.rating} {rating.map((star) => star)}
+        <div className="average-rating-container">
+          {rating}
         </div>
         <p>
           1-{numReviewsDisplaying} of {numReviews} Reviews
@@ -119,11 +124,14 @@ class ReviewsIndex extends React.Component {
   }
 
   renderNoReviews() {
-    const noStars = formatRating(0);
+    const noStars = formatRating({
+      rating: 0,
+      className: "no-reviews-stars"
+    });
 
     return (
       <div className="no-reviews-container">
-        {noStars.map((emptyStar) => emptyStar)}
+        {noStars}
         <p className="no-reviews-text"
            onClick={this.openReviewModal}>
           Be the first to review this product.

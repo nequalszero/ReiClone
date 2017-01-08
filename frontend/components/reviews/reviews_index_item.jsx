@@ -25,14 +25,15 @@ class ReviewsIndexItem extends React.Component {
   }
 
   render() {
-    let rating = formatRating(this.props.review.rating);
+    let rating = formatRating({
+      rating: this.props.review.rating,
+      className: "review-stars"
+    });
 
     return (
       <div className="review-list-item">
         <div className="review-heading">
-          <div className="review-stars">
-            {rating.map(star => (star))}
-          </div>
+          {rating}
           <p className="review-username">
             {this.props.review.user}
           </p>

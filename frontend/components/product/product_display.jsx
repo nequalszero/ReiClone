@@ -1,6 +1,5 @@
 import React from 'react';
 import ProductDetailsContainer from './product_details_container';
-import ReviewsIndexContainer from '../reviews/reviews_index_container';
 import { padPrice, formatRating, validQuantity }
         from '../helper_functions/product_details_helper';
 import { blueButtonClass } from '../helper_functions/misc_elements';
@@ -64,7 +63,6 @@ class ProductDisplay extends React.Component {
           {this.renderProductName()}
           {this.renderProductImagePriceAndReviews()}
           <ProductDetailsContainer />
-          <ReviewsIndexContainer item={this.props.product.item}/>
         </div>
       );
     } else {
@@ -92,7 +90,14 @@ class ProductDisplay extends React.Component {
     let title = `${item.brand} ${item.name}`;
     let description = `${item.description}`;
     let price = padPrice(item.price);
-    let rating = formatRating(parseFloat(item.rating));
+    let rating = formatRating({
+      rating: item.rating,
+      numRatings: item.num_ratings,
+      className: "product-page-rating",
+      large: true,
+      displayRatingText: true,
+      displayNumRatings: true
+    });
     let numRatings = `(${item.num_ratings})`;
     if (item.num_ratings === 0) {
       numRatings="";
@@ -115,13 +120,7 @@ class ProductDisplay extends React.Component {
                 ${price}
               </span>
             </div>
-            <div className="product-rating-container">
-              <span className="product-rating">
-                {rating.map((el) => el)}
-                {item.rating > 0 ? item.rating : ""} 
-                {numRatings}
-              </span>
-            </div>
+            {rating}
           </div>
           {this.renderAddProductToCart()}
         </div>

@@ -7,7 +7,13 @@ const ResultsIndexItem = ({ item, router, dispatch }) => {
   let itemName = `${item.brand} ${item.name}`;
   let paddedPrice = padPrice(item.price);
   let uniqueKey = `${item.id}-${item.name}`;
-  let rating = formatRating(parseFloat(item.rating));
+  let rating = formatRating({
+    rating: parseFloat(item.rating),
+    numRatings: item.num_ratings,
+    className: "results-page-rating",
+    key: item.id,
+    displayNumRatings: true
+  });
   let productUrl = `/product/${item.id}`;
 
   return (
@@ -23,10 +29,7 @@ const ResultsIndexItem = ({ item, router, dispatch }) => {
             <span className="item_name">{item.name}</span>
           </section>
           <span className="item_price">${paddedPrice}</span>
-          <span className="rating">
-            {rating}
-            {item.num_ratings > 0 ? `(${item.num_ratings})` : ""}
-          </span>
+          {rating}
         </section>
       </Link>
     </div>

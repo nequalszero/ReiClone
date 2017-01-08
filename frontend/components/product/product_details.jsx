@@ -1,4 +1,6 @@
 import React from 'react';
+import ReviewsIndexContainer from '../reviews/reviews_index_container';
+
 import { stringifyWeight, parseFareinheitToCelsius }
         from '../helper_functions/product_details_helper';
 import getCategories from '../helper_functions/product_spec_rownames';
@@ -29,6 +31,7 @@ class ProductDisplay extends React.Component {
     const reviewsLink = "product-reviews-link";
     let detailsId = "product-details-section";
     let specsId = "product-specs-table";
+    // let reviewsId = "product-specs-table";
 
     const idHash = {
                     "product-details-link": "product-details-section",
@@ -208,6 +211,7 @@ class ProductDisplay extends React.Component {
         {this.detailsNavigationBar()}
         {this.detailsSection()}
         {this.specsTable()}
+        <ReviewsIndexContainer item={this.props.product.item}/>
       </div>
     );
   }

@@ -47,8 +47,12 @@ h4.average-rating-label {
   margin-bottom: 10px;
 }
 
-div.average-rating {
+.average-rating-container {
   padding-bottom: 40px;
+}
+
+span.average-rating > span.rating-text {
+  font-size: 16px;
 }
 
 .review-list-item {

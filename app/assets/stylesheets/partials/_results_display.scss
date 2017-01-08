@@ -2,15 +2,18 @@ div.product-results-page {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  width: 1140px;
+  max-width: 1140px;
+  width: 100%;
   min-height: 3000px;
   margin: 0 auto;
   font: 16px sans-serif;
+  padding: 0px 30px;
+  box-sizing: border-box;
 }
 
 div.sidebar-container {
   display: block;
-  width: 280px;
+  max-width: 280px;
   height: 1000px;
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
@@ -37,11 +40,12 @@ div.product-results-container {
   flex-wrap: wrap;
   align-content: flex-start;
   justify-content: space-around;
-  width: 820px;
+  width: 72.5%;
   max-height: 15000px;
   min-height: 1500px;
-  padding-left: 30px;
+  padding-left: 50px;
   padding-right: 30px;
+  box-sizing: border-box;
 }
 
 div.results-index-item {
@@ -111,9 +115,9 @@ span.item_price {
   text-align: center;
 }
 
-span.rating {
+span.results-page-rating {
   display: block;
   margin-bottom: 20px;
-  width: 215px;
+  width: 100%;
   text-align: center;
 }
