@@ -3,7 +3,7 @@ class Api::ShoppingCartItemsController < ApplicationController
     if current_user
       user_id = current_user.id
       @redirect_create = false
-      @shopping_cart_items = ShoppingCartItem.find_by_user_id(user_id)
+      @shopping_cart_items = current_user.shopping_cart_items.order(updated_at: :desc)
       render "api/shopping_cart_items/show_items"
     else
       error = "ShoppingCartItemsController#index - No user logged in."
@@ -13,6 +13,7 @@ class Api::ShoppingCartItemsController < ApplicationController
 
   def show
     @redirect_create = false
+    @local_item = false
     @shopping_cart_item = ShoppingCartItem.find(params[:id])
     render "api/shopping_cart_items/show_item"
   end
@@ -36,7 +37,7 @@ class Api::ShoppingCartItemsController < ApplicationController
       @shopping_cart_item.user_id = current_user.id
 
       if @shopping_cart_item.save
-        @local_item = true if params[:local]
+        @local_item = params[:local] == "true" ? true : false
         render "api/shopping_cart_items/show_item"
       else
         render json: @shopping_cart_item.errors.full_messages, status: 422
@@ -72,6 +73,7 @@ class Api::ShoppingCartItemsController < ApplicationController
     @shopping_cart_item = ShoppingCartItem.find(params[:id])
     if @shopping_cart_item
       @shopping_cart_item.delete
+      @redirect_create = false
       render "api/shopping_cart_items/show_item"
     else
       render json: @shopping_cart_item.errors.full_messages, status: 422
@@ -80,6 +82,6 @@ class Api::ShoppingCartItemsController < ApplicationController
 
   private
   def shopping_cart_item_params
-    params.permit(:user_id, :product_id, :quantity, :local)
+    params.permit(:user_id, :product_id, :quantity)
   end
 end

@@ -85,7 +85,7 @@ const ShoppingCartReducer = (oldState = _defaultShoppingCart, action) => {
     case UPDATE_QUANTITY:
       let newItem = action.item;
       if (newItem.redirect_create) delete newItem["redirect_create"];
-      if (item.local) processLocal(newState);
+      if (newItem.local) processLocal(newState);
       newState.items = updateQuantityHelper(newState.items, newItem);
       return newState;
 
@@ -99,7 +99,6 @@ const ShoppingCartReducer = (oldState = _defaultShoppingCart, action) => {
       return newState;
 
     case ADD_ITEM_TO_LOCAL_CART:
-      console.log("In add item to local cart action");
       newState.localItems = pushOrUpdateLocal(newState.localItems, action.item);
       saveItemToLocalStorage(action.item);
       return newState;
@@ -118,6 +117,7 @@ const ShoppingCartReducer = (oldState = _defaultShoppingCart, action) => {
 
     case TRIGGER_MERGE_STATE:
       newState.merging = true;
+      newState.mergeCountRemaining = action.count;
       return newState;
 
     default:

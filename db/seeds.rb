@@ -1062,7 +1062,7 @@ end
 def random_rating(dist)
   val = rand()
 
-  (1..5).each { |i| return i if val <= dist[i] }
+  (1...5).each { |i| return i if val <= dist[i] }
 end
 
 def random_date()

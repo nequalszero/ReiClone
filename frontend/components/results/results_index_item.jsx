@@ -19,9 +19,8 @@ const ResultsIndexItem = ({ item, router, dispatch }) => {
   let productUrl = `/product/${item.id}`;
 
   return (
-    <div key={uniqueKey}>
-      <Link to={`product/${item.id}`}
-            className="results-index-item">
+    <div key={uniqueKey} className="results-index-item-container">
+      <Link to={`product/${item.id}`}>
         <div className="result-image-container">
           <img className="result-image" src={item.result_image} alt={itemName}/>
         </div>
