@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import ResultsIndex from './results_index';
-import { requestCategoryItems } from '../../actions/results_actions';
+import { requestCategoryItems,
+         clearResultsFromState
+       } from '../../actions/results_actions';
 
 const sortResults = (results) => {
   if (results.items) {
@@ -22,7 +24,8 @@ const mapStateToProps = (state, {params}) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    requestCategoryItems: (id) => dispatch(requestCategoryItems(id))
+    requestCategoryItems: (id) => dispatch(requestCategoryItems(id)),
+    clearResultsFromState: () => dispatch(clearResultsFromState())
   };
 };
 

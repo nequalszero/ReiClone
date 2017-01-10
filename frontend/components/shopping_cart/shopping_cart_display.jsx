@@ -10,35 +10,51 @@ import ShoppingCartDisplayItemContainer
 class ShoppingCartDisplay extends React.Component {
   constructor(props) {
     super(props);
-    // console.log("receiving constructor props: ", props);
-    this.state = {items: props.shopping_cart.items};
+    let stateCartLength = props.shopping_cart.items.length;
+    let localCartLength = props.shopping_cart.localItems.length;
 
+    if (localCartLength > 0 && stateCartLength > 0) {
+      throw "ERROR ShoppingCartDisplay#constructor both the localStorage " +
+      "and state have shopping cart items";
+    } else if (localCartLength > 0) {
+      this.state = { items: props.shopping_cart.localItems };
+    } else if (stateCartLength > 0) {
+      this.state = { items: props.shopping_cart.items };
+    } else {
+      this.state = { items: [] };
+    }
+
+    this.state.currentUser = props.currentUser;
     this.handleCheckout = this.handleCheckout.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({currentUser: nextProps.currentUser});
+
+    if (nextProps.currentUser) {
+      this.setState({items: nextProps.shopping_cart.items});
+    } else {
+      this.setState({items: nextProps.shopping_cart.localItems});
+    }
+  }
+
   removeCartItem(item) {
-    this.props.removeUserItemFromDatabase(item);
+    if (this.state.currentUser)
+      this.props.removeUserItemFromDatabase(item);
+    else {
+      this.props.deleteItemInLocalCart(item);
+    }
   }
 
   handleCheckout(e) {
     e.preventDefault();
-    this.state.items.forEach((item) => {
-      this.removeCartItem(item);
-    });
-  }
-
-  shouldComponentUpdate(nextProps) {
-    // console.log("ShoppingCartDisplay shouldComponentUpdate");
-    if (nextProps.shopping_cart.items !== this.state.items) {
-      return true;
+    if (this.state.currentUser) {
+      this.state.items.forEach((item) => {
+        this.removeCartItem(item);
+      });
     } else {
-      return false;
+      this.props.emptyLocalCart();
     }
-  }
-
-  componentWillUpdate(nextProps) {
-    // console.log("ShoppingCartDisplay componentWillUpdate");
-    this.setState({items: nextProps.shopping_cart.items});
   }
 
   renderEmptyCartPage() {
@@ -61,9 +77,9 @@ class ShoppingCartDisplay extends React.Component {
   renderFilledCartPage() {
     let numItems = 0;
     let subtotal = 0;
-    this.props.shopping_cart.items.forEach(item => {
-      numItems += item.quantity;
-      subtotal += item.quantity*parseFloat(item.price);
+    this.state.items.forEach(item => {
+      numItems += parseInt(item.quantity);
+      subtotal += parseInt(item.quantity)*parseFloat(item.price);
     });
     let subtotalString = padPrice(`${subtotal}`);
 
@@ -125,7 +141,6 @@ class ShoppingCartDisplay extends React.Component {
   }
 
   renderItemDetails() {
-    // console.log("rendering item details");
     let numDifferentProducts = this.props.shopping_cart.items.length;
 
     return (
@@ -147,13 +162,12 @@ class ShoppingCartDisplay extends React.Component {
   }
 
   render() {
-    // console.log("shopping cart display", this.props);
+    let empty = true;
+    if (this.state.items && this.state.items.length > 0) empty = false;
+
     return (
       <div className="shopping_cart_page_container">
-        {this.props.shopping_cart.items.length === 0
-                                                ? this.renderEmptyCartPage()
-                                                : this.renderFilledCartPage()
-        }
+        { empty ? this.renderEmptyCartPage() : this.renderFilledCartPage() }
       </div>
     );
   }

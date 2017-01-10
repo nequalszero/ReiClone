@@ -83,15 +83,17 @@ document.addEventListener("click", (event) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
+
   if (window.currentUser) {
     const preloadedState = {session: {currentUser: window.currentUser}};
     store = configureStore(preloadedState);
   } else {
     store = configureStore();
   }
-  //
-  // console.log("Warning: store current bound to window");
-  // window.store = store;
+
+
+  console.log("Warning: store current bound to window");
+  window.store = store;
 
   Modal.setAppElement(document.body);
   const rootEl = document.getElementById('root');

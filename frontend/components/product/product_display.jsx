@@ -1,25 +1,28 @@
 import React from 'react';
 import ProductDetailsContainer from './product_details_container';
-import { padPrice, formatRating, validQuantity }
+import { padPrice, validQuantity }
         from '../helper_functions/product_details_helper';
+import { formatRating } from '../helper_functions/rating_helper';
+
 import { blueButtonClass } from '../helper_functions/misc_elements';
 
 class ProductDisplay extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {quantity: 1,
-                  quantityEmpty: false,
-                  productId: this.props.productId,
-                  numProductsInCart: this.props.numProducts,
-                  disableAdd: false,
-                  processingOrder: false,
-                  currentUserId: this.props.currentUserId
-                };
+    this.state = {
+                    quantity: 1,
+                    quantityEmpty: false,
+                    productId: this.props.productId,
+                    numProducts: this.props.numProducts,
+                    disableAdd: false,
+                    processingOrder: false,
+                    currentUserId: this.props.currentUserId
+                 };
     this.addProductToCart = this.addProductToCart.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.numProducts !== this.state.numProductsInCart) {
+    if (nextProps.numProducts !== this.state.numProducts) {
       if (this.state.processingOrder) {
         this.setState({processingOrder: false, quantity: 1, disableAdd: false});
       }
@@ -28,7 +31,7 @@ class ProductDisplay extends React.Component {
       this.props.requestUserReview(this.state.productId);
     }
     this.setState({
-      numProductsInCart: nextProps.numProducts,
+      numProducts: nextProps.numProducts,
       currentUserId: nextProps.currentUserId
     });
   }
@@ -50,9 +53,24 @@ class ProductDisplay extends React.Component {
   addProductToCart(e) {
     e.preventDefault();
     if (!this.state.disableAdd && !this.state.processingOrder) {
-      let item = this.state;
-      this.setState({processingOrder: true});
-      this.props.saveCartItemToDatabase(item);
+      let item = {
+        product_id: this.state.productId,
+        quantity: parseInt(this.state.quantity),
+      };
+      if (this.props.currentUserId) {
+        this.props.saveCartItemToDatabase(item);
+        this.setState({processingOrder: true});
+      } else {
+        item = Object.assign(item, {
+          brand: this.props.product.item.brand,
+          cart_image: this.props.product.item.cart_image,
+          category_id: this.props.product.item.category_id,
+          name: this.props.product.item.name,
+          price: this.props.product.item.price,
+          product_table_id: this.props.product.item.product_table_id,
+        });
+        this.props.addItemInLocalCart(item);
+      }
     }
   }
 
@@ -110,7 +128,9 @@ class ProductDisplay extends React.Component {
             {description}
           </span>
           <div className="product-image-container">
-            <img className="product-image" src={item.primary_image} alt={title}/>
+            <img className="product-image"
+                 src={item.primary_image}
+                 alt={title}/>
           </div>
         </div>
         <div className="product-price-reviews-quantity-container">

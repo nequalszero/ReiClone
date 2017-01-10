@@ -1,7 +1,9 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router';
-import { padPrice, formatRating }
+import { padPrice }
         from '../helper_functions/product_details_helper';
+import { formatRating } from '../helper_functions/rating_helper';
+
 
 const ResultsIndexItem = ({ item, router, dispatch }) => {
   let itemName = `${item.brand} ${item.name}`;

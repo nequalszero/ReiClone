@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewsIndexItem from './reviews_index_item';
-import { formatRating }
-      from '../helper_functions/product_details_helper';
+import { formatRating } from '../helper_functions/rating_helper';
+
 import { bottomDivider } from '../helper_functions/misc_elements';
 import { blueButtonClass } from '../helper_functions/misc_elements';
 
@@ -166,7 +166,7 @@ class ReviewsIndex extends React.Component {
     return (
       <div className="product-reviews-container">
         <div className="reviews-header-button-container">
-          <h3 className="reviews-label">
+          <h3 className="reviews-label" id={this.props.idName}>
             Reviews
           </h3>
           <button className={`${blueButtonClass} review-button`}

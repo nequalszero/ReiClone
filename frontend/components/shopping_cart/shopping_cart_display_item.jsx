@@ -7,30 +7,46 @@ class ShoppingCartDisplayItem extends React.Component {
   constructor(props) {
     super(props);
     let item = Object.assign({}, props.item);
-    item.tempQuantity = item.quantity;
-    this.state = {item: item};
+    this.state = {item: item,
+                  currentUser: props.currentUser,
+                  tempQuantity: item.quantity};
 
     this.updateQuantityField = this.updateQuantityField.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      item: nextProps.item,
+      currentUser: nextProps.currentUser,
+      tempQuantity: nextProps.item.quantity
+    });
+  }
+
   updateCartItem() {
     let newItem = this.state.item;
-    newItem.quantity = newItem.tempQuantity;
-    this.props.updateQuantityInDatabase(newItem);
+    if (parseInt(newItem.quantity) !== parseInt(this.state.tempQuantity)) {
+      newItem.quantity = this.state.tempQuantity;
+      if (this.state.currentUser) {
+        this.props.updateQuantityInDatabase(newItem);
+      } else {
+        this.props.updateItemInLocalCart(newItem);
+      }
+    }
   }
 
   updateQuantityField() {
     return (e) => {
       if (validQuantity(e.target.value)) {
-        let newItem = this.state.item;
-        newItem.tempQuantity = e.target.value;
-        this.setState({item: newItem});
+        this.setState({tempQuantity: e.target.value});
       }
     };
   }
 
   removeCartItem() {
-    this.props.removeUserItemFromDatabase(this.state.item);
+    if (this.state.currentUser)
+      this.props.removeUserItemFromDatabase(this.state.item);
+    else
+      this.props.deleteItemInLocalCart(this.state.item);
   }
 
   redirectToProduct(e) {
@@ -90,7 +106,7 @@ class ShoppingCartDisplayItem extends React.Component {
         <div className="cart-item-quantity-container-half">
           <input className="shopping-cart-item-quantity-input"
                  onChange={this.updateQuantityField()}
-                 value={this.state.item.tempQuantity}>
+                 value={this.state.tempQuantity}>
 
           </input>
           <span className="shopping-cart-item-quantity-action"

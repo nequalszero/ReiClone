@@ -3,12 +3,17 @@ import { REQUEST_USER_ITEMS,
          REMOVE_USER_ITEM_FROM_DATABASE,
          UPDATE_QUANTITY_IN_DATABASE,
          ADD_ITEM_TO_CART,
+         RECEIVE_USER_ITEMS,
+         saveCartItemToDatabase,
          receiveErrors,
          receiveUserItems,
          updateQuantity,
          addItemToCart,
          removeItemFromCart
         } from '../actions/shopping_cart_actions';
+import { triggerMergeState,
+         emptyLocalCart
+       } from '../actions/local_shopping_cart_actions';
 import { fetchUserItems,
          createItem,
          deleteUserItem,
@@ -44,6 +49,18 @@ const ShoppingCartMiddleware = ({ getState, dispatch }) => next => action => {
         updateItemQuantity(action.item, updateSuccessCb, errorCb);
       }
       return next(action);
+
+    case RECEIVE_USER_ITEMS:
+      let localItems = JSON.parse(window.localStorage.items);
+      if (localItems.length > 0) {
+        dispatch(triggerMergeState(localItems.length));
+        localItems.forEach((item, idx) => {
+          item.local = true;
+          dispatch(saveCartItemToDatabase(item));
+        });
+        dispatch(emptyLocalCart());
+      }
+
 
     default:
       return next(action);

@@ -1,10 +1,13 @@
 import React from 'react';
 import ResultsIndexItem from './results_index_item';
 
-
 class ResultsIndex extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillUnmount() {
+    this.props.clearResultsFromState();
   }
 
   displayResults() {

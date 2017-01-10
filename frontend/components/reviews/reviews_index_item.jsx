@@ -1,7 +1,6 @@
 import React from 'react';
 // import ReviewsModal from './reviews_modal';
-import { formatRating }
-      from '../helper_functions/product_details_helper';
+import { formatRating } from '../helper_functions/rating_helper';
 
 class ReviewsIndexItem extends React.Component {
   constructor(props) {

@@ -1,6 +1,7 @@
 import { RECEIVE_ITEMS,
          RECEIVE_ERRORS,
-         RECEIVE_CATEGORIES
+         RECEIVE_CATEGORIES,
+         CLEAR_RESULTS_FROM_STATE
        } from '../actions/results_actions';
 import merge from 'lodash/merge';
 
@@ -26,6 +27,9 @@ const ResultsReducer = (oldState = _defaultResult, action) => {
     case RECEIVE_CATEGORIES:
       let categories = action.categories;
       return merge(newState, { categories });
+    case CLEAR_RESULTS_FROM_STATE:
+      newState.items = [];
+      return newState;
     default:
       return oldState;
   }

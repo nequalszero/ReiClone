@@ -4,15 +4,18 @@ import { saveCartItemToDatabase,
          updateQuantityInDatabase
        } from '../../actions/shopping_cart_actions';
 import ShoppingCartDisplayItem from './shopping_cart_display_item';
+import { deleteItemInLocalCart, updateItemInLocalCart }
+      from '../../actions/local_shopping_cart_actions';
 
 const mapStateToProps = state => ({
-  testVar: 1
+  currentUser: state.session.currentUser ? state.session.currentUser.id : null
 });
 
 const mapDispatchToProps = dispatch => ({
-  // saveCartItemToDatabase: (item) => dispatch(saveCartItemToDatabase(item)),
-  removeUserItemFromDatabase: (item) => dispatch(removeUserItemFromDatabase(item)),
-  updateQuantityInDatabase: (item) => dispatch(updateQuantityInDatabase(item))
+  updateQuantityInDatabase: item => dispatch(updateQuantityInDatabase(item)),
+  updateItemInLocalCart: item => dispatch(updateItemInLocalCart(item)),
+  deleteItemInLocalCart: item => dispatch(deleteItemInLocalCart(item)),
+  removeUserItemFromDatabase: item => dispatch(removeUserItemFromDatabase(item))
 });
 
 export default connect(

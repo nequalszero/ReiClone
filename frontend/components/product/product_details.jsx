@@ -1,9 +1,20 @@
 import React from 'react';
 import ReviewsIndexContainer from '../reviews/reviews_index_container';
 
-import { stringifyWeight, parseFareinheitToCelsius }
-        from '../helper_functions/product_details_helper';
+import { getTableValues } from '../helper_functions/product_details_helper';
 import getCategories from '../helper_functions/product_spec_rownames';
+
+const detailsLink = "product-details-link";
+const specsLink = "product-specs-link";
+const reviewsLink = "product-reviews-link";
+const detailsId = "product-details-section";
+const specsId = "product-specs-table";
+const reviewsId = "product-reviews";
+
+const idHash = {};
+idHash[detailsLink] = detailsId;
+idHash[specsLink] = specsId;
+idHash[reviewsLink] = reviewsId;
 
 class ProductDisplay extends React.Component {
   constructor(props) {
@@ -14,29 +25,22 @@ class ProductDisplay extends React.Component {
   componentDidMount() {
     // console.log("componentDidMount");
     window.scrollTo(0, 0);
-    let details = document.getElementsByClassName("product-details-link")[0];
+    let details = document.getElementsByClassName(detailsLink)[0];
     details.style.borderBottom = "6px solid #06c";
     details.style.color = "black";
 
-    let specs = document.getElementsByClassName("product-specs-link")[0];
+    let specs = document.getElementsByClassName(specsLink)[0];
     specs.style.borderBottom = "none";
     specs.style.color = "#06c";
+
+    let reviews = document.getElementsByClassName(reviewsLink)[0];
+    reviews.style.borderBottom = "none";
+    reviews.style.color = "#06c";
   }
 
   toggleLink(targetLink) {
     // console.log("toggling", targetLink);
-    let details = document.getElementsByClassName("product-details-link")[0];
-    const detailsLink = "product-details-link";
-    const specsLink = "product-specs-link";
-    const reviewsLink = "product-reviews-link";
-    let detailsId = "product-details-section";
-    let specsId = "product-specs-table";
-    // let reviewsId = "product-specs-table";
-
-    const idHash = {
-                    "product-details-link": "product-details-section",
-                    "product-specs-link": "product-specs-table"
-                   };
+    let details = document.getElementsByClassName(detailsLink)[0];
 
     const links = [detailsLink, specsLink, reviewsLink];
 
@@ -48,7 +52,7 @@ class ProductDisplay extends React.Component {
           currentElement.style.borderBottom = "6px solid #06c";
           currentElement.style.color = "black";
           let scrollToTarget = document.getElementById(idHash[link]);
-          let scrollToPos = window.scrollY
+          let scrollToPos = window.scrollY - 82
                             + scrollToTarget.getBoundingClientRect().top;
           // console.log(`${idHash[link]} position`, scrollToPos);
           window.scrollTo(0, scrollToPos);
@@ -65,15 +69,16 @@ class ProductDisplay extends React.Component {
   detailsNavigationBar() {
     return(
       <ul className="product-details-nav">
-        <li className="product-details-link"
-            onClick={() => this.toggleLink("product-details-link")}>
+        <li className={detailsLink}
+            onClick={() => this.toggleLink(detailsLink)}>
             Details
         </li>
         <li className="product-specs-link"
-            onClick={() => this.toggleLink("product-specs-link")}>
+            onClick={() => this.toggleLink(specsLink)}>
             Specs
         </li>
-        <li className="product-reviews-link">
+        <li className="product-reviews-link"
+            onClick={() => this.toggleLink(reviewsLink)}>
           Reviews
         </li>
       </ul>
@@ -83,8 +88,8 @@ class ProductDisplay extends React.Component {
   detailsSection(){
     let details = this.props.product.item.details;
     return(
-      <section className="product-details-section">
-        <h3 className="details-label" id="product-details-section">
+      <section className={detailsId}>
+        <h3 className="details-label" id={detailsId}>
           Details
         </h3>
         <ul className="details-list">
@@ -113,11 +118,11 @@ class ProductDisplay extends React.Component {
       }
     });
 
-    let tableValues = this.getTableValues(item, rowKeys);
+    let tableValues = getTableValues(item, rowKeys);
 
     return(
       <div className="product-specs-table-container">
-        <h3 className="product-specs-table-title" id="product-specs-table">
+        <h3 className="product-specs-table-title" id={specsId}>
           Specs
         </h3>
         <table className="product-specs">
@@ -134,84 +139,14 @@ class ProductDisplay extends React.Component {
     );
   }
 
-  getTableValues(item, categories) {
-    let tableValues = {};
-    let key, value;
-
-    for (let i = 0; i < categories.length; i++) {
-      key = categories[i];
-      value = item[key];
-
-      if (!value) continue;
-
-      switch(key) {
-        case "temperature_rating":
-          let tempF = value;
-          let tempC = parseFareinheitToCelsius(parseFloat(tempF));
-          tableValues[key] = `${tempF} F   /   ${tempC} C`;
-          break;
-
-        case "weight":
-          tableValues[key] = stringifyWeight(parseFloat(value));
-          break;
-
-        case "fill_weight":
-          tableValues[key] = stringifyWeight(parseFloat(value));
-          break;
-
-        case "fits_up_to":
-          tableValues[key] = `${value*12} inches`;
-          break;
-
-        case "packed_size":
-          if (item.category_id === 1) {
-            tableValues[key] = `${value} liters`;
-            break;
-          } else {
-            tableValues[key] = value;
-            break;
-          }
-
-        case "minimum_trail_weight":
-          tableValues[key] = stringifyWeight(parseFloat(value));
-          break;
-
-        case "fly_footprint_pitch_weight":
-          tableValues[key] = stringifyWeight(parseFloat(value));
-          break;
-
-        case "packaged_weight":
-          tableValues[key] = stringifyWeight(parseFloat(value));
-          break;
-
-        case "floor_area":
-          tableValues[key] = `${value} square feet`;
-          break;
-
-        case "peak_height":
-          tableValues[key] = `${value} inches`;
-          break;
-
-        case "number_of_doors":
-          tableValues[key] = value > 1 ? `${value} doors` : `${value} door`;
-          break;
-
-        default:
-          tableValues[key] = value;
-          break;
-      }
-    }
-
-    return tableValues;
-  }
-
   render() {
     return (
       <div className="details-specs-and-reviews-container">
         {this.detailsNavigationBar()}
         {this.detailsSection()}
         {this.specsTable()}
-        <ReviewsIndexContainer item={this.props.product.item}/>
+        <ReviewsIndexContainer item={this.props.product.item}
+                               idName={reviewsId}/>
       </div>
     );
   }

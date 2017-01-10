@@ -1,40 +1,6 @@
-// Need to import React because functions are returning HTML that must be parsed
-//   by React.
 import React from 'react';
 
-// Rounds a number to a specified number of decimal places.
-const roundToDecimal = (value, numDecimals) => {
-  let factor = Math.pow(10, numDecimals);
-  return Math.round(value * factor) / factor;
-};
-
-// Pads prices that are even dollars with an extra 0 for display
-export const padPrice = (price) => {
-  let priceString = String(price);
-  let cents = price.split(".")[1] || '00';
-  let dollars = price.split(".")[0];
-  let centsLength = cents.length;
-  let dollarsLength = dollars.length;
-
-  if (centsLength === 1) {
-    cents = cents + "0";
-  }
-  if (dollarsLength > 3) {
-    let dollarString = [];
-    let n = 1;
-    let maxN = Math.floor((dollarsLength - 1)/3);
-
-    dollars.split('').reverse().forEach((el, idx) => {
-      if (3*n === idx) {
-        dollarString.push(',');
-        n += 1;
-      }
-      dollarString.push(el);
-    });
-    dollars = dollarString.reverse().join('');
-  }
-  return `${dollars}.${cents}`;
-};
+import { roundToDecimal, emptyObject } from './misc_helpers';
 
 const starClass = (baseClass, large = false) => {
   return large ? `${baseClass} fa-lg` : baseClass;
@@ -65,15 +31,6 @@ export const halfStar = (key, large = false) => {
             className={starClass(baseClass, large)}
             aria-hidden="true">
          </i>;
-};
-
-export const emptyObject = (object) => {
-  if (typeof object !== "object")
-    throw "ERROR product_details_helper#emptyObject: input not of type Object";
-  else if (Object.keys(object).length === 0)
-    return true;
-  else
-    return false;
 };
 
 export const formatRating = (ratingObject) => {
@@ -124,34 +81,4 @@ export const formatRating = (ratingObject) => {
       {starArray} {ratingText} {numRatings}
     </span>
   );
-};
-
-// Parses float of weight in pounds into string form.
-export const stringifyWeight = (weight) => {
-  weight = parseFloat(weight);  // in case value comes in as string
-
-  let pounds = Math.floor(weight);
-  if (pounds > 0) {
-    let ounces = roundToDecimal((weight - pounds)*16, 1);
-    weight = `${pounds} lbs. ${ounces} oz.`;
-  } else {
-    let ounces = roundToDecimal(weight*16, 1);
-    weight = `${ounces} ounces`;
-    // console.log(weight);
-  }
-  return weight;
-};
-
-// Converts fareinheit temperature to celsius.
-export const parseFareinheitToCelsius = (tempF) => {
-  tempF = parseFloat(tempF); // in case value comes in as string
-  return roundToDecimal(parseFloat(tempF)*(5/9) + 32, 1);
-};
-
-// Validate item quantity input.
-export const validQuantity = (value) => {
-  const valid = /[0-9]{0,4}/;
-  let match = valid.exec(value)["0"];
-
-  return match.length === value.length;
 };

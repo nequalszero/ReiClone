@@ -35,8 +35,8 @@ class Api::ShoppingCartItemsController < ApplicationController
       @shopping_cart_item = ShoppingCartItem.new(shopping_cart_item_params)
       @shopping_cart_item.user_id = current_user.id
 
-
       if @shopping_cart_item.save
+        @local_item = true if params[:local]
         render "api/shopping_cart_items/show_item"
       else
         render json: @shopping_cart_item.errors.full_messages, status: 422
@@ -52,9 +52,11 @@ class Api::ShoppingCartItemsController < ApplicationController
       @shopping_cart_item = ShoppingCartItem.find(params[:id])
 
       if @shopping_cart_item.update(shopping_cart_item_params)
-        @redirect_create = false
-        if params.has_key?(:redirect_create)
-          @redirect_create = true
+        @redirect_create, @local_item = false, false
+
+        if params.has_key?(:redirect_create) || params.has_key?(:local)
+          @redirect_create = true if params.has_key?(:redirect_create)
+          @local_item = true if params.has_key?(:local)
         end
         render "api/shopping_cart_items/show_item"
       else
@@ -78,6 +80,6 @@ class Api::ShoppingCartItemsController < ApplicationController
 
   private
   def shopping_cart_item_params
-    params.permit(:user_id, :product_id, :quantity)
+    params.permit(:user_id, :product_id, :quantity, :local)
   end
 end
