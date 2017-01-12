@@ -25,8 +25,7 @@ const Root = ( props ) => {
   };
 
   const getSearchResults = nextState => {
-    console.log(nextState.location);
-    let query = { keywords: `keywords=${nextState.location.query.keywords}` };
+    let query = { keywords: `${nextState.location.search}` };
     props.store.dispatch(search(query));
   };
 

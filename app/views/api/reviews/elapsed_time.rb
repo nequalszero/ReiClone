@@ -1,7 +1,7 @@
 module ElapsedTime
   # before I realized DateTime had a #time_ago_in_words method...
   def self.compute(seconds)
-    minutes = seconds / 60
+    minutes = (seconds / 60).round
     return (minutes < 3 ? "moments ago" : "#{minutes} minutes ago") if minutes <= 45
 
     hours = (seconds / 3600).round

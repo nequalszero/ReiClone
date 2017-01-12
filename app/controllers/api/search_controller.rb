@@ -2,7 +2,8 @@ require 'set'
 
 class Api::SearchController < ApplicationController
   def index
-    keywords = CGI.parse(params[:keywords])["keywords"].first.split(" ")
+    @keywords = keywords = CGI.parse(params[:keywords])["?keywords"].first
+    keywords = @keywords.split(" ")
     keywords.map! { |kw| stripKeyword(kw) }
     queries = keywords.map { |keyword| "%#{keyword}%" }
     query = queries.map { "search_keywords ILIKE ?" }.join(" AND ")
@@ -13,6 +14,6 @@ class Api::SearchController < ApplicationController
   private
   def stripKeyword(keyword)
     keyword = keyword.gsub(/\+/, 'plus')
-    keyword = keyword.gsub(/^\(+|\)+$/, '')
+    keyword = keyword.gsub(/^\(|\)+$/, '')
   end
 end

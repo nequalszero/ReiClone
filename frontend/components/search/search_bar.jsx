@@ -30,21 +30,34 @@ class SearchBar extends React.Component {
   submitSearch(e) {
     e.preventDefault();
     if (this.validEntry()) {
-      let url = this.props.router.createPath({
-        pathname: '/search',
-        query: { keywords: encodeURIComponent(this.state.value) }
-      });
-      this.props.router.push(url);
+      const pathName = '/search'
 
-      // If the url pathname is not '/search', onEnter hook in root.jsx
-      // will dispatch the search
-      if (this.props.router.location.pathname === "/search") {
-        this.props.search({
-          keywords: `keywords=${encodeURIComponent(this.state.value)}`
-        });
+      let url = this.props.router.createPath({
+        pathname: pathName,
+        query: { keywords: this.state.value }
+      });
+
+      let currentURL = this.props.router.location.pathname +
+                       this.props.router.location.search;
+
+      // Don't create new search if duplicate request
+      if (currentURL !== url) {
+        this.props.router.push(url);
+
+        // If the url pathname is not '/search', onEnter hook in root.jsx
+        // will dispatch the search
+        if (this.props.router.location.pathname === "/search") {
+          this.props.search({
+            keywords: url.slice(pathName.length)
+          });
+        }
+
+        // Blur child input of form to reset placeholder when the form is
+        // submitted via the Enter key; ensures that onFocus is triggered
+        // if the user immediately wants to conduct a new search.
+        e.target.childNodes[0].blur();
+        this.setState({ value: defaultText, placeHolder: true });
       }
-      e.target.childNodes[0].blur();
-      this.setState({ value: defaultText, placeHolder: true });
     }
   }
 
