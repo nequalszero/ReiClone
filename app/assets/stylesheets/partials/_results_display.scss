@@ -8,6 +8,7 @@ div.product-results-page {
   margin: 0 auto;
   font: 16px sans-serif;
   padding: 0px 30px;
+  margin-top: 40px;
   box-sizing: border-box;
 }
 
@@ -30,13 +31,21 @@ div.product-results-container-with-title {
   box-sizing: content-box;
 }
 
-h2.category-name {
+.results-name-and-matches {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h2.results-name {
   display: block;
-  text-align: center;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 20px;
+}
+
+.num-matches {
+  margin-top: 10px;
+  margin-bottom: 12px;
 }
 
 div.product-results-container {

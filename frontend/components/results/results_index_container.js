@@ -17,17 +17,18 @@ const sortResults = (results) => {
   return results;
 };
 
-const displayText = params => {
+const displayText = (params, keywords) => {
   const categories = {
     1: "Sleeping Bags",
     2: "Tents"
   };
   if (params.categoryId) return categories[parseInt(params.categoryId)];
+  if (keywords) return `Results for "${keywords}"`;
 };
 
 const mapStateToProps = (state, {params}) => {
   return {
-  displayText: displayText(params),
+  displayText: displayText(params, state.results.keywords),
   results: sortResults(state.results)
 };};
 
