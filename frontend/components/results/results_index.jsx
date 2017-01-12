@@ -11,14 +11,9 @@ class ResultsIndex extends React.Component {
   }
 
   displayResults() {
-    const displayText = {
-      1: "Sleeping Bags",
-      2: "Tents"
-    };
-
     return(
       <div className="product-results-container-with-title">
-        <h2 className="category-name">{displayText[this.props.categoryId]}</h2>
+        <h2 className="category-name">{this.props.displayText}</h2>
         <div className="product-results-container">
           {
             this.props.results.items.map((item) => (

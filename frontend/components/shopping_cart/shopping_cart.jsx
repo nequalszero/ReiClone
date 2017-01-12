@@ -1,15 +1,9 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router';
 
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
-    this.redirectToCartPage = this.redirectToCartPage.bind(this);
-  }
-
-  redirectToCartPage(e) {
-    e.preventDefault();
-    this.props.router.push("/shoppingCart");
   }
 
   render() {
@@ -35,12 +29,12 @@ class ShoppingCart extends React.Component {
 
     numItems = numItems > 999 ? '999+' : numItems;
     return(
-      <li className="visible-li"
-          onClick={this.redirectToCartPage}>
+      <Link className="visible-li"
+            to='/shoppingCart'>
         CART <i className="fa fa-shopping-cart fa-lg"
                 aria-hidden="true"></i>
               <strong className="num-cart-items"> {numItems}</strong>
-      </li>
+      </Link>
     );
   }
 }

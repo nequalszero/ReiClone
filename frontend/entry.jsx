@@ -5,8 +5,12 @@ import Root from './components/root';
 
 import Modal from 'react-modal';
 
-// window.error = (message) => console.log(message);
-// window.success = (message) => console.log("Success", message);
+window.error = (message) => console.log(message);
+window.success = (message) => console.log("Success", message);
+window.data = {keywords: ["sleeping", "bags"]};
+
+import { search } from './util/search_api_util';
+window.search = search;
 
 // import { signup, login, logout}
 //     from './util/session_api_util';

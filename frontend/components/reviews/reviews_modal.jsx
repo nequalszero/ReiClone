@@ -297,11 +297,13 @@ class ReviewsModal extends React.Component {
                   value={this.state.values["body"]}>
                 </textarea>
               </div>
+              <div className="review-modal-submit-container">
+                <button className={`review-modal-submit ${blueButtonClass}`}
+                  onClick={() => this.submitReview()}>
+                  {this.props.submitButtonText}
+                </button>
+              </div>
             </div>
-            <button className={`review-modal-submit ${blueButtonClass}`}
-                    onClick={() => this.submitReview()}>
-                    {this.props.submitButtonText}
-            </button>
           </div>
         </Modal>
     );

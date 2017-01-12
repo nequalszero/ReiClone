@@ -8,6 +8,7 @@
   flex-direction: row;
   position: relative;
   width: auto;
+  max-height: 700px;
 }
 
 .modal-sidepanel-subcontainer {
@@ -20,7 +21,9 @@
 .modal-image-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding-bottom: 20px;
+  width: 170px;
 }
 
 .modal-image-container > img {
@@ -107,16 +110,21 @@ input.modal-review-title, textarea.modal-review-body {
 
 textarea.modal-review-body {
   min-height: 75px;
+  max-height: 360px;
 }
 
 .modal-review-body-container {
   border-bottom: 1px solid $review-border-gray;
 }
 
+.review-modal-submit-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 10px 0px;
+}
+
 .review-modal-submit {
-  position: absolute;
-  right: 25%;
-  bottom: 10px;
   width: 200px;
   height: 24px;
   padding: 10px 0px;

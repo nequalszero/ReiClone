@@ -4,9 +4,11 @@ import { REQUEST_CATEGORY_ITEMS,
          receiveItems,
          receiveErrors }
     from '../actions/results_actions';
+import { SEARCH } from '../actions/search_actions';
 import { fetchCategoryItems,
          fetchCategories
        } from '../util/results_api_util';
+import { search } from '../util/search_api_util';
 
 const ResultsMiddleware = ({ getState, dispatch }) => next => action => {
   let successCallback;
@@ -17,12 +19,19 @@ const ResultsMiddleware = ({ getState, dispatch }) => next => action => {
       successCallback = items => dispatch(receiveItems(items));
       fetchCategoryItems(action.categoryId, successCallback, errorCallback);
       return next(action);
+
     case REQUEST_CATEGORIES:
       successCallback = categories => {
         return dispatch(receiveCategories(categories));
       };
       fetchCategories(successCallback, errorCallback);
       return next(action);
+
+    case SEARCH:
+      successCallback = items => dispatch(receiveItems(items));
+      search(action.keywords, successCallback, errorCallback);
+      return next(action);
+
     default:
       return next(action);
   }

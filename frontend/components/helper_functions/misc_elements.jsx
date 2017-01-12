@@ -5,3 +5,4 @@ export const lightGreen = "a1c900";
 export const activeStarClass = "activeStar";
 export const defaultFieldTextClass = "default-field-text";
 export const blueButtonClass = "blue-button";
+export const activeHeaderText = "light-up-green";

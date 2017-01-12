@@ -50,6 +50,7 @@ header{
 }
 
 .header-search-bar {
+  position: relative;
   display: flex;
   align-items: center;
   max-width: 420px;
@@ -60,10 +61,19 @@ header{
   font-weight: bold;
 }
 
-.header-search-bar > input {
+.search-bar-input {
   max-width: 360px;
   width: 90%;
   padding-left: 20px;
+}
+
+.search-button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0px 12px;
+  right: 0px;
 }
 
 .search-auth-container {

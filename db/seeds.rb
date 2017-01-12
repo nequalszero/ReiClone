@@ -31,16 +31,6 @@ def calc_weight(pounds, ounces)
   (pounds + ounces.fdiv(16)).round(2)
 end
 
-brand_ids = {
-  "Marmot" => 1,
-  "REI" => 2,
-  "Mountain Hardwear" => 3,
-  "The North Face" => 4,
-  "NEMO" => 5,
-  "MSR" => 6,
-  "Heimplanet" => 7
-}
-
 User.create(username: 'Guest', password: 'asdfasdf')      # 1
 User.create(username: 'Travis', password: 'asdfasdf')     # 2
 User.create(username: 'Ima Dinosaur', password: 'asdfasdf')   # 3
@@ -144,22 +134,58 @@ User.create(username: 'Wedge Antilles', password: 'asdfasdf')     # 100
 User.create(username: 'Darth Caedus', password: 'asdfasdf')     # 101
 User.create(username: 'Jango Fett', password: 'asdfasdf')     # 102
 User.create(username: 'Darth Sidious', password: 'asdfasdf')     # 103
+User.create(username: 'Charles Cole', password: 'asdfasdf')     # 104
+User.create(username: 'Yvon Chouinard', password: 'asdfasdf')     # 105
+User.create(username: 'Tommy Caldwell', password: 'asdfasdf')     # 106
+User.create(username: 'Kevin Jorgenson', password: 'asdfasdf')     # 107
+User.create(username: 'Dean Potter', password: 'asdfasdf')     # 108
+User.create(username: 'Steph Davis', password: 'asdfasdf')     # 109
+User.create(username: 'Sasha DiGiulian', password: 'asdfasdf')     # 110
+User.create(username: 'John Bachar', password: 'asdfasdf')     # 111
+User.create(username: 'Anna Stohr', password: 'asdfasdf')     # 112
+User.create(username: 'Melissa Le Neve', password: 'asdfasdf')     # 113
+User.create(username: 'Douglas Tompkins', password: 'asdfasdf')     # 114
+User.create(username: 'Susie Tompkins Buell', password: 'asdfasdf')     # 115
+User.create(username: 'Tom Boyce', password: 'asdfasdf')     # 116
+User.create(username: 'Eric Reynolds', password: 'asdfasdf')     # 117
+User.create(username: 'David Huntley', password: 'asdfasdf')     # 118
+User.create(username: 'Mike Pfotenhauer', password: 'asdfasdf')     # 119
+User.create(username: 'Laurie White', password: 'asdfasdf')     # 120
+User.create(username: 'Gary Erickson', password: 'asdfasdf')     # 121
+User.create(username: 'Kit Crawford', password: 'asdfasdf')     # 122
+User.create(username: 'Larry Penberthy', password: 'asdfasdf')     # 123
+User.create(username: 'Peter Metcalf', password: 'asdfasdf')     # 124
+User.create(username: 'Cam Brensinger', password: 'asdfasdf')     # 125
+User.create(username: 'Jim Holland', password: 'asdfasdf')     # 126
+User.create(username: 'Jerry Stritzke', password: 'asdfasdf')     # 127
 
 
 # For parsing characters from GOT into above format
-# count = 103
-# "".split("\n").each { |name| puts "User.create(username: '#{name}', password: 'asdfasdf')     # #{count+=1}"}
+# count = 115
+# "Tom Boyce
+# Eric Reynolds
+# David Huntley
+# Mike Pfotenhauer
+# Laurie White
+# Gary Erickson
+# Kit Crawford
+# Larry Penberthy
+# Peter Metcalf
+# Cam Brensinger".split("\n").each { |name| puts "User.create(username: '#{name}', password: 'asdfasdf')     # #{count+=1}"}
 
-Brand.create(name: "Marmot")
-Brand.create(name: "REI")
-Brand.create(name: "Mountain Hardwear")
-Brand.create(name: "The North Face")
-Brand.create(name: "NEMO")
-Brand.create(name: "MSR")
-Brand.create(name: "Heimplanet")
+brands = ["Marmot", "REI", "Mountain Hardwear", "The North Face", "NEMO",
+          "MSR", "Heimplanet"]
+brand_ids = {}
+brands.each_with_index { |brand, idx| brand_ids[brand] = idx + 1 }
+brands.each { |brand| Brand.create(name: brand) }
 
-Category.create(name: "sleeping_bags")
-Category.create(name: "tents")
+categories = ["sleeping_bags", "tents"]
+category_ids = {}
+categories.each_with_index { |cat, idx| category_ids[cat] = idx + 1 }
+categories.each { |cat| Category.create(name: cat) }
+
+mens = "mens men's"
+womens = "womens women's"
 
 # Marmot Hydrogen Regular
 SleepingBag.create(weight: 1.45625,
@@ -176,7 +202,8 @@ SleepingBag.create(weight: 1.45625,
                    packed_size: 5.6
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{mens} marmot hydrogen down 800-fill backpacking water-resistant",
                product_table_id: 1,
                brand_id: 1,
                name: "Hydrogen Down Sleeping Bag",
@@ -190,8 +217,8 @@ Product.create(category_id: 1,
                description: "At just a pound and a half, the Marmot Hydrogen 3-season sleeping bag is constructed with curved baffles to reduce the shifting of its water-resistant 800-fill goose down for superb loft and warmth."
               )
 
-Feature.create(product_id: 1,
-               name: "Water-Resistant Down")
+Feature.create(product_id: 1, name: "Water-Resistant Down")
+Feature.create(product_id: 1, name: "Ultralight")
 
 Detail.create(product_id: 1, description: "Certified 800-fill goose down with Down Defender treatment for improved water-resistance in wet conditions")
 Detail.create(product_id: 1, description: "Smooth, curved baffles reduce down shifting; stretch tricot baffles provide strength and durability for long bag life")
@@ -220,7 +247,8 @@ SleepingBag.create(weight: 2.125,
                    packed_size: 7
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{mens} marmot plasma down 875-fill backpacking water-resistant ultralight",
                product_table_id: 2,
                brand_id: 1,
                name: "Plasma 15 Sleeping Bag",
@@ -264,7 +292,8 @@ SleepingBag.create(weight: 1.8125,
                    packed_size: 5.2
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{mens} REI igneo down 700-fill backpacking water-resistant ultralight",
                product_table_id: 3,
                brand_id: 2,
                name: "Igneo Sleeping Bag",
@@ -308,7 +337,8 @@ SleepingBag.create(weight: 1.6875,
                    packed_size: 3.7
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{womens} REI flash down primaloft 700-fill backpacking water-resistant ultralight",
                product_table_id: 4,
                brand_id: 2,
                name: "Flash Sleeping Bag - Women's",
@@ -351,7 +381,8 @@ SleepingBag.create(weight: 3.625,
                    packed_size: 8.5
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{womens} NEMO celesta 25 synthetic backpacking",
                product_table_id: 5,
                brand_id: 5,
                name: "Celesta 25 Sleeping Bag - Women's",
@@ -383,7 +414,8 @@ SleepingBag.create(weight: 3.0625,
                    packed_size: 7.5
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags NEMO #{womens} celesta 35 synthetic backpacking",
                product_table_id: 6,
                brand_id: 5,
                name: "Celesta 35 Sleeping Bag - Women's",
@@ -418,7 +450,8 @@ SleepingBag.create(weight: 2.6875,
                    packed_size: 7.5
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags NEMO #{womens} 750-fill down rhapsody synthetic backpacking",
                product_table_id: 7,
                brand_id: 5,
                name: "Rhapsody 15 Sleeping Bag - Women's",
@@ -458,7 +491,8 @@ SleepingBag.create(weight: 2.75,
                    packed_size: 10.5
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{mens} mountain hardware hardwear phantom torch 3 800-fill down water-resistant backpacking",
                product_table_id: 8,
                brand_id: 3,
                name: "Phantom Torch 3 Sleeping Bag",
@@ -495,7 +529,8 @@ SleepingBag.create(weight: 3.9375,
                    packed_size: 10.25
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{mens} mountain hardware hardwear lamina z torch synthetic backpacking",
                product_table_id: 9,
                brand_id: 3,
                name: "Lamina Z Torch Sleeping Bag",
@@ -533,7 +568,8 @@ SleepingBag.create(weight: 4.5625,
                    packed_size: 17.7
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{mens} mountain hardware hardwear phantom torch 3 800-fill down water-resistant backpacking",
                product_table_id: 10,
                brand_id: 3,
                name: "Lamina Z Blaze -15 Sleeping Bag",
@@ -572,7 +608,8 @@ SleepingBag.create(weight: 2.6875,
                    packed_size: 16.6
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{mens} the north face tnf cats cat's meow 22 synthetic backpacking",
                product_table_id: 11,
                brand_id: 4,
                name: "Cat's Meow 22 Sleeping Bag",
@@ -608,7 +645,8 @@ SleepingBag.create(weight: 2.5625,
                    packed_size: 9.3
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{mens} the north face tnf blue kazoo 20 650-fill down synthetic backpacking",
                product_table_id: 12,
                brand_id: 4,
                name: "Blue Kazoo 20 Sleeping Bag",
@@ -649,7 +687,8 @@ SleepingBag.create(weight: 1.3125,
                    packed_size: 10.7
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{mens} the north face tnf dolomite 40 synthetic camping",
                product_table_id: 13,
                brand_id: 4,
                name: "Dolomite 40 Sleeping Bag",
@@ -680,7 +719,8 @@ SleepingBag.create(weight: 4.8125,
                    packed_size: 14.9
                   )
 
-Product.create(category_id: 1,
+Product.create(category_id: category_ids["sleeping_bags"],
+               search_keywords: "sleepingbags #{mens} the north face tnf homestead twin 20 synthetic camping",
                product_table_id: 14,
                brand_id: 4,
                name: "Homestead Twin 20 Sleeping Bag",
@@ -730,10 +770,11 @@ Tent.create(seasons: "3-season",
             design_type: "Freestanding"
            )
 
-Product.create(category_id: 2,
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "tents 2-person 3-seasons REI half dome 2plus 2+ backpacking",
                product_table_id: 1,
                brand_id: brand_ids["REI"],
-               name: "Half Dome 2 Plus",
+               name: "Half Dome 2 Plus Tent",
                price: 219,
                rating: 4.3,
                num_ratings: 92,
@@ -784,7 +825,8 @@ Tent.create(seasons: "3-season",
             design_type: "Freestanding"
            )
 
-Product.create(category_id: 2,
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "tents 2-person 3-seasons REI half dome 2 backpacking",
                product_table_id: 2,
                brand_id: brand_ids["REI"],
                name: "Half Dome 2 Tent",
@@ -836,7 +878,8 @@ Tent.create(seasons: "3-season",
             design_type: "Semi-freestanding"
            )
 
-Product.create(category_id: 2,
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "tents 2-person 3-seasons heimplanet fistral 2 backpacking",
                product_table_id: 3,
                brand_id: brand_ids["Heimplanet"],
                name: "Fistral 2 Tent",
@@ -891,7 +934,8 @@ Tent.create(seasons: "3-season",
             design_type: "Non-freestanding"
            )
 
-Product.create(category_id: 2,
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "tents 1-person 3-seasons ultralight nemo veda 1p backpacking trekkingpoles",
                product_table_id: 4,
                brand_id: brand_ids["NEMO"],
                name: "Veda 1P Tent",
@@ -943,7 +987,8 @@ Tent.create(seasons: "3-season",
             design_type: "Freestanding"
            )
 
-Product.create(category_id: 2,
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "tents 2-person 3-seasons nemo galaxi galaxy 2 with footprint backpacking",
                product_table_id: 5,
                brand_id: brand_ids["NEMO"],
                name: "Galaxi 2 Tent with Footprint",
@@ -1014,6 +1059,7 @@ dist = {1 => [80, 12, 3, 2, 3],
 
 chewwie_id = User.where(username: "Chewbacca").first.id
 ondra_id = User.where(username: "Adam Ondra").first.id
+dinosaur_id = User.where(username: "Ima Dinosaur").first.id
 
 def build_dist(dist)
   percents = {1 => dist.first}
@@ -1102,6 +1148,9 @@ Product.all.each do |product|
     when ondra_id
       title = ondra_title
       body = ondra_speech
+    when dinosaur_id
+      title = "Rawr! Rawr! Rawr! Rawr!"
+      body = "Chomp! Chomp! Chomp! Chomp!"
     else
       title = random_title()
       body = random_body()

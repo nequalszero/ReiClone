@@ -17,10 +17,19 @@ const sortResults = (results) => {
   return results;
 };
 
-const mapStateToProps = (state, {params}) => ({
-  categoryId: parseInt(params.categoryId),
+const displayText = params => {
+  const categories = {
+    1: "Sleeping Bags",
+    2: "Tents"
+  };
+  if (params.categoryId) return categories[parseInt(params.categoryId)];
+};
+
+const mapStateToProps = (state, {params}) => {
+  return {
+  displayText: displayText(params),
   results: sortResults(state.results)
-});
+};};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {

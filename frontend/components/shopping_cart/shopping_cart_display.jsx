@@ -141,7 +141,7 @@ class ShoppingCartDisplay extends React.Component {
   }
 
   renderItemDetails() {
-    let numDifferentProducts = this.props.shopping_cart.items.length;
+    let numDifferentProducts = this.state.items.length;
 
     return (
       <div className="shopping-cart-item-details-list">

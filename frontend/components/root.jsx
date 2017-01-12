@@ -6,12 +6,12 @@ import ResultsIndexContainer from './results/results_index_container';
 import ProductDisplayContainer from './product/product_display_container';
 import ShoppingCartDisplayContainer
     from './shopping_cart/shopping_cart_display_container';
-    
+
 import { requestCategoryItems } from '../actions/results_actions';
 import { requestItem } from '../actions/product_actions';
 import { requestUserItems } from '../actions/shopping_cart_actions';
 import { requestReviews } from '../actions/reviews_actions';
-
+import { search } from '../actions/search_actions';
 
 
 const Root = ( props ) => {
@@ -24,9 +24,11 @@ const Root = ( props ) => {
     props.store.dispatch(requestReviews(nextState.params.productId));
   };
 
-  // const updateShoppingCartItems = (nextState) => {
-  //   props.store.dispatch(requestUserItems());
-  // };
+  const getSearchResults = nextState => {
+    console.log(nextState.location);
+    let query = { keywords: `keywords=${nextState.location.query.keywords}` };
+    props.store.dispatch(search(query));
+  };
 
   return(
     <Provider store={props.store}>
@@ -40,6 +42,9 @@ const Root = ( props ) => {
                  onEnter={updateProduct}/>
           <Route path="/shoppingCart"
                  component={ShoppingCartDisplayContainer}/>
+          <Route path="/search"
+                 component={ResultsIndexContainer}
+                 onEnter={getSearchResults}/>
         </Route>
       </Router>
     </Provider>

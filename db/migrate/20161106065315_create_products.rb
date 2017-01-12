@@ -14,6 +14,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :result_image, null: false
       t.string :cart_image, null: false
       t.text :description, null: false
+      t.text :search_keywords, null: false
 
       t.index [:category_id, :product_table_id], unique: true
       t.timestamps null: false
