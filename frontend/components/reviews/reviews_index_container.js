@@ -10,7 +10,8 @@ import { requestReviews,
 
 const mapStateToProps = state => ({
   reviews: state.reviews.reviews,
-  userReview: state.reviews.userReview
+  userReview: state.reviews.userReview,
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
