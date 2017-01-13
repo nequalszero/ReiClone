@@ -1,0 +1,162 @@
+.banner-image-container {
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // height: 500px;
+  // width: 2666px;
+}
+
+.homepage-banner {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 22% 0%;
+  // color: #faf8fd;
+  // font-size: 40px;
+  // text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font: 18px sans-serif;
+}
+
+.homepage-banner:hover {
+  cursor: pointer;
+}
+
+.marmot-banner {
+  background-image: url(http://res.cloudinary.com/nequalszero/image/upload/v1484193222/REI_Clone/Home_Page/marmot_banner_ndtb0m.jpg);
+}
+
+.marmot-blurb {
+  position: absolute;
+  right: 40px;
+
+}
+
+.banner-blurb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.marmot-title {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #555;
+  font-size: 35px;
+  width: 775px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+.marmot-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: #555;
+  width: 404px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+.marmot-banner-button {
+  margin-top: 20px;
+}
+
+.strong-red {
+  color: red;
+}
+
+.opt-outside {
+  display: flex;
+  justify-content: center;
+  height: 62px;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.featured-items-container {
+  max-width: 1140px;
+  width: 100%;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+.feature-description-container {
+  width: 100%;
+  font: 24px sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+
+// .feature-title {
+//   font-weight: bold;
+// }
+
+.feature-button {
+  border: 1px solid black;
+  padding: 13px 32px;
+}
+
+.feature-button:hover {
+  background-color: #f2f2f2;
+}
+
+.full-feature {
+  width: 100%;
+}
+
+.feature-image {
+  width: 100%;
+  height: 450px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 20px;
+}
+
+.feature-image:hover {
+  cursor: pointer;
+}
+
+.nemo-veda-image {
+  background-position: 0% 88%;
+  background-image: url(http://res.cloudinary.com/nequalszero/image/upload/v1484342685/REI_Clone/Home_Page/veda_1p_tm58xb.jpg);
+}
+
+.medium-featured-items-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 30px;
+}
+
+.half-feature {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.half-feature:first-of-type {
+  padding-right: 30px;
+}
+
+.half-feature:last-of-type {
+  padding-left: 30px;
+}
+
+.marmot-plasma-image {
+  background-position: 85% 0%;
+  background-image: url(http://res.cloudinary.com/nequalszero/image/upload/v1484342684/REI_Clone/Home_Page/Plasma_15_ufh6df.jpg);
+}
+
+.mh-lamina-image {
+  background-position: 18% 0%;
+  background-image: url(http://res.cloudinary.com/nequalszero/image/upload/v1484342684/REI_Clone/Home_Page/mountain_hardwear_lamina_tohhel.jpg);
+}

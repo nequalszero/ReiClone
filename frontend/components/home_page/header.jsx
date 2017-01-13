@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import AuthContainer from './auth_container';
+import AuthContainer from '../auth/auth_container';
 import SearchBarContainer from '../search/search_bar_container';
 import CategoryIndexContainer from '../results/category_index_container';
 

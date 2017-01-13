@@ -1,9 +1,7 @@
-require 'set'
-
 class Api::SearchController < ApplicationController
   def index
     @keywords = keywords = CGI.parse(params[:keywords])["?keywords"].first
-    keywords = @keywords.split(/[\s-](?!\d)/).select { |kw| kw != "" }
+    keywords = @keywords.downcase.split(/[\s-](?!\d)/).select { |kw| kw != "" }
     keywords.map! { |kw| strip_keyword(kw) }
 
     queries, query = [], []
