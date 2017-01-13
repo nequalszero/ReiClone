@@ -21,20 +21,33 @@ class SearchBar extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputFocus = this.handleInputFocus.bind(this);
     this.handleInputBlur = this.handleInputBlur.bind(this);
+    this.formatKeywords = this.formatKeywords.bind(this);
   }
 
+  // check if placeHolder is present and if entry is all whitespace/dashes
   validEntry() {
-    return !this.state.placeHolder && this.state.value !== "";
+    return !this.state.placeHolder && !/^[\s-'"]+$/.test(this.state.value);
+  }
+
+  // Return value in state with excess space and dashes removed, and underscores
+  //   converted to space, excess quotes to a single quote
+  formatKeywords() {
+    return this.state.value.replace(/-+/g, "-")
+                           .replace(/_+/g, " ")
+                           .replace(/"+/g, "'")
+                           .replace(/'+/g, "'")
+                           .replace(/\s+/g, " ")
+                           .trim();
   }
 
   submitSearch(e) {
     e.preventDefault();
     if (this.validEntry()) {
-      const pathName = '/search'
+      const pathName = '/search';
 
       let url = this.props.router.createPath({
         pathname: pathName,
-        query: { keywords: this.state.value }
+        query: { keywords: this.formatKeywords() }
       });
 
       let currentURL = this.props.router.location.pathname +
@@ -71,8 +84,10 @@ class SearchBar extends React.Component {
   }
 
   handleInputChange() {
+    const invalid = /[!@#\$%\^&\*\(\)=\[\]\{\}:;<>\?\\/,\.]/;
     return (e) => {
-      this.setState({ value: e.target.value, placeHolder: false });
+      if (!invalid.test(e.target.value[e.target.value.length - 1]))
+          this.setState({ value: e.target.value, placeHolder: false });
     };
   }
 

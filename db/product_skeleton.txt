@@ -13,6 +13,7 @@ SleepingBag.create(weight: ,
                   )
 
 Product.create(category_id: 1,
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} marmot hydrogen down 800-fill backpacking water-resistant".downcase.split(" "),
                product_table_id: ,
                brand_id: ,
                name: "",
@@ -60,6 +61,7 @@ Tent.create(seasons: "",
            )
 
 Product.create(category_id: 2,
+               search_keywords: "#{tents_keywords} 2-person 3-seasons nemo galaxi galaxy 2 with footprint backpacking".downcase.split(" "),
                product_table_id: ,
                brand_id: ,
                name: "",

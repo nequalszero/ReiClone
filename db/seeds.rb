@@ -6,7 +6,6 @@
 # #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 # #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
 def create_image_url(image_url, type)
   upload = "upload/"
   url_parts = image_url.split(upload)
@@ -185,11 +184,10 @@ categories.each_with_index { |cat, idx| category_ids[cat] = idx + 1 }
 categories.each { |cat| Category.create(name: cat) }
 
 # Search Keywords
-mens_keywords = "mens men's man's mans"
-womens_keywords = "womens women's womans women"
-sleepingbags_keywords = "sleeping sleep sleepings bag bags"
-tents_keywords = "tents tent"
-
+mens_keywords = "men men's man's man"
+womens_keywords = "women women's woman"
+sleepingbags_keywords = "sleeping sleep bag"
+tents_keywords = "tent"
 
 # Marmot Hydrogen Regular
 SleepingBag.create(weight: 1.45625,
@@ -207,7 +205,7 @@ SleepingBag.create(weight: 1.45625,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} marmot hydrogen down 800-fill backpacking water-resistant",
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} marmot hydrogen down 800-fill backpacking water-resistant".downcase.split(" ").uniq,
                product_table_id: 1,
                brand_id: 1,
                name: "Hydrogen Down Sleeping Bag",
@@ -252,7 +250,7 @@ SleepingBag.create(weight: 2.125,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} marmot plasma down 875-fill backpacking water-resistant ultralight",
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} marmot plasma down 875-fill backpacking water-resistant ultralight".downcase.split(" ").uniq,
                product_table_id: 2,
                brand_id: 1,
                name: "Plasma 15 Sleeping Bag",
@@ -297,7 +295,7 @@ SleepingBag.create(weight: 1.8125,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} REI igneo down 700-fill backpacking water-resistant ultralight",
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} REI igneo down 700-fill backpacking water-resistant ultralight".downcase.split(" ").uniq,
                product_table_id: 3,
                brand_id: 2,
                name: "Igneo Sleeping Bag",
@@ -342,7 +340,7 @@ SleepingBag.create(weight: 1.6875,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{womens_keywords} REI flash down primaloft 700-fill backpacking water-resistant ultralight",
+               search_keywords: "#{sleepingbags_keywords} #{womens_keywords} REI flash down primaloft 700-fill backpacking water-resistant ultralight".downcase.split(" ").uniq,
                product_table_id: 4,
                brand_id: 2,
                name: "Flash Sleeping Bag - Women's",
@@ -386,7 +384,7 @@ SleepingBag.create(weight: 3.625,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{womens_keywords} NEMO celesta 25 synthetic backpacking",
+               search_keywords: "#{sleepingbags_keywords} #{womens_keywords} NEMO celesta 25 synthetic backpacking".downcase.split(" ").uniq,
                product_table_id: 5,
                brand_id: 5,
                name: "Celesta 25 Sleeping Bag - Women's",
@@ -419,7 +417,7 @@ SleepingBag.create(weight: 3.0625,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} NEMO #{womens_keywords} celesta 35 synthetic backpacking",
+               search_keywords: "#{sleepingbags_keywords} NEMO #{womens_keywords} celesta 35 synthetic backpacking".downcase.split(" ").uniq,
                product_table_id: 6,
                brand_id: 5,
                name: "Celesta 35 Sleeping Bag - Women's",
@@ -455,7 +453,7 @@ SleepingBag.create(weight: 2.6875,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} NEMO #{womens_keywords} 750-fill down rhapsody synthetic backpacking",
+               search_keywords: "#{sleepingbags_keywords} NEMO #{womens_keywords} 750-fill down rhapsody 15 synthetic backpacking".downcase.split(" ").uniq,
                product_table_id: 7,
                brand_id: 5,
                name: "Rhapsody 15 Sleeping Bag - Women's",
@@ -496,7 +494,7 @@ SleepingBag.create(weight: 2.75,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} mountain hardware hardwear phantom torch 3 800-fill down water-resistant backpacking",
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} mountain hardware hardwear phantom torch 3 800-fill down water-resistant backpacking".downcase.split(" ").uniq,
                product_table_id: 8,
                brand_id: 3,
                name: "Phantom Torch 3 Sleeping Bag",
@@ -534,7 +532,7 @@ SleepingBag.create(weight: 3.9375,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} mountain hardware hardwear lamina z torch synthetic backpacking",
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} mountain hardware hardwear lamina z torch synthetic backpacking".downcase.split(" ").uniq,
                product_table_id: 9,
                brand_id: 3,
                name: "Lamina Z Torch Sleeping Bag",
@@ -573,7 +571,7 @@ SleepingBag.create(weight: 4.5625,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} mountain hardware hardwear phantom torch 3 800-fill down water-resistant backpacking",
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} mountain hardware synthetic lazmina z blaze -15 backpacking".downcase.split(" ").uniq,
                product_table_id: 10,
                brand_id: 3,
                name: "Lamina Z Blaze -15 Sleeping Bag",
@@ -613,7 +611,7 @@ SleepingBag.create(weight: 2.6875,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf cats cat's meow 22 synthetic backpacking",
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf cats cat's meow 22 synthetic backpacking".downcase.split(" ").uniq,
                product_table_id: 11,
                brand_id: 4,
                name: "Cat's Meow 22 Sleeping Bag",
@@ -650,7 +648,7 @@ SleepingBag.create(weight: 2.5625,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf blue kazoo 20 650-fill down synthetic backpacking",
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf blue kazoo 20 650-fill down synthetic backpacking".downcase.split(" ").uniq,
                product_table_id: 12,
                brand_id: 4,
                name: "Blue Kazoo 20 Sleeping Bag",
@@ -692,7 +690,7 @@ SleepingBag.create(weight: 1.3125,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf dolomite 40 synthetic camping",
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf dolomite 40 synthetic camping".downcase.split(" ").uniq,
                product_table_id: 13,
                brand_id: 4,
                name: "Dolomite 40 Sleeping Bag",
@@ -724,7 +722,7 @@ SleepingBag.create(weight: 4.8125,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf homestead twin 20 synthetic camping",
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf homestead twin 20 synthetic camping".downcase.split(" ").uniq,
                product_table_id: 14,
                brand_id: 4,
                name: "Homestead Twin 20 Sleeping Bag",
@@ -775,7 +773,7 @@ Tent.create(seasons: "3-season",
            )
 
 Product.create(category_id: category_ids["tents"],
-               search_keywords: "#{tents_keywords} 2-person 3-seasons REI half dome 2plus 2+ backpacking",
+               search_keywords: "#{tents_keywords} 2 person 3 season REI half dome 2plus 2+ 2 + plus backpacking".downcase.split(" ").uniq,
                product_table_id: 1,
                brand_id: brand_ids["REI"],
                name: "Half Dome 2 Plus Tent",
@@ -830,7 +828,7 @@ Tent.create(seasons: "3-season",
            )
 
 Product.create(category_id: category_ids["tents"],
-               search_keywords: "#{tents_keywords} 2-person 3-seasons REI half dome 2 backpacking",
+               search_keywords: "#{tents_keywords} 2 person 3 season REI half dome 2 backpacking".downcase.split(" ").uniq,
                product_table_id: 2,
                brand_id: brand_ids["REI"],
                name: "Half Dome 2 Tent",
@@ -883,7 +881,7 @@ Tent.create(seasons: "3-season",
            )
 
 Product.create(category_id: category_ids["tents"],
-               search_keywords: "#{tents_keywords} 2-person 3-seasons heimplanet fistral 2 backpacking",
+               search_keywords: "#{tents_keywords} 2 person 3 season heimplanet fistral 2 backpacking".downcase.split(" ").uniq,
                product_table_id: 3,
                brand_id: brand_ids["Heimplanet"],
                name: "Fistral 2 Tent",
@@ -939,7 +937,7 @@ Tent.create(seasons: "3-season",
            )
 
 Product.create(category_id: category_ids["tents"],
-               search_keywords: "#{tents_keywords} 1-person 3-seasons ultralight nemo veda 1p backpacking trekkingpoles",
+               search_keywords: "#{tents_keywords} 1 person 3 season ultralight nemo veda 1p backpacking trekkingpoles".downcase.split(" ").uniq,
                product_table_id: 4,
                brand_id: brand_ids["NEMO"],
                name: "Veda 1P Tent",
@@ -992,7 +990,7 @@ Tent.create(seasons: "3-season",
            )
 
 Product.create(category_id: category_ids["tents"],
-               search_keywords: "#{tents_keywords} 2-person 3-seasons nemo galaxi galaxy 2 with footprint backpacking",
+               search_keywords: "#{tents_keywords} 2 person 3 season nemo galaxi galaxy 2 with footprint backpacking".downcase.split(" ").uniq,
                product_table_id: 5,
                brand_id: brand_ids["NEMO"],
                name: "Galaxi 2 Tent with Footprint",

@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20161109192727) do
     t.string   "result_image",                   null: false
     t.string   "cart_image",                     null: false
     t.text     "description",                    null: false
-    t.text     "search_keywords",                null: false
+    t.string   "search_keywords",  default: [],  null: false, array: true
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
