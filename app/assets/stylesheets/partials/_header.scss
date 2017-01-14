@@ -19,8 +19,8 @@ header{
   display: flex;
   justify-content: center;
   height: 100px;
-  width: 168px;
-  padding-right: 10px;
+  max-width: 168px;
+  padding-right: 30px;
 }
 
 .header-logo-container:hover {
