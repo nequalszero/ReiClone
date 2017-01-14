@@ -5,8 +5,7 @@ import SearchBarContainer from '../search/search_bar_container';
 import CategoryIndexContainer from '../results/category_index_container';
 
 const Header = ({props}) => {
-  const logoURL = "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_100/v1478194085/animal-icon-png-6295_rk9nzw.png";
-
+  const logoURL = "http://res.cloudinary.com/nequalszero/image/upload/c_scale,h_100/v1484352285/homepage-logo2_ixljrx.png";
   return (
     <header className="header">
       <nav className="header-nav">
