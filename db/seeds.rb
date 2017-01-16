@@ -690,7 +690,7 @@ SleepingBag.create(weight: 1.3125,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf dolomite 40 synthetic camping".downcase.split(" ").uniq,
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf dolomite 40 synthetic camping camp".downcase.split(" ").uniq,
                product_table_id: 13,
                brand_id: 4,
                name: "Dolomite 40 Sleeping Bag",
@@ -722,7 +722,7 @@ SleepingBag.create(weight: 4.8125,
                   )
 
 Product.create(category_id: category_ids["sleeping_bags"],
-               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf homestead twin 20 synthetic camping".downcase.split(" ").uniq,
+               search_keywords: "#{sleepingbags_keywords} #{mens_keywords} the north face tnf homestead twin 20 synthetic camping camp".downcase.split(" ").uniq,
                product_table_id: 14,
                brand_id: 4,
                name: "Homestead Twin 20 Sleeping Bag",
@@ -1015,6 +1015,384 @@ The NEMO Galaxi 2P Tent comes with a coated ripstop nylon footprint to help prot
 
 details.split("\n").each { |det| Detail.create(product_id: 19, description: det) }
 
+
+
+# ##### REI Camp Dome 2 Tent #####
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1484535296/REI_Clone/Tents/REI_CampDome_2_Tent_bp35zv.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "2-person",
+            minimum_trail_weight: calc_weight(4, 8),
+            packaged_weight: calc_weight(5, 0),
+            packed_size: "7.5 x 25.5 inches",
+            floor_dimensions: "84 x 54 inches",
+            floor_area: 31.5,
+            peak_height: 43,
+            number_of_doors: 2,
+            number_of_poles: 3,
+            pole_material: "Aluminum",
+            canopy_fabric: "Nylon",
+            floor_fabric: "Polyester",
+            rainfly_fabric: "Polyester taffeta",
+            footprint_included: "No",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 2 person 3 season REI Camp Dome 2 camping camp".downcase.split(" ").uniq,
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids["REI"],
+               name: "Camp Dome 2 Tent",
+               price: 99.95,
+               rating: 4.1,
+               num_ratings: 18,
+               best_use: "Camping",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "Lightweight, durable and easy to pitch, the Camp Dome 2 Tent sleeps 2 comfortably and offers supreme ventilation through 2 easy-access doors."
+              )
+
+details = "Durable, equal-length aluminum poles and pole-clip design offer quick setup
+Polyester taffeta rainfly and a bound, cut-in floor provide a taut, water-resistant pitch
+Polyester fabric resists UV degradation
+Mesh storage pockets inside tent keep small items organized
+Includes stuff sack, pole and stake bags, 4 stakes, 2 guylines with tighteners and pole repair tube
+Large mesh windows secured by zip open panels
+Awnings enable views and ventilation while providing weather coverage"
+
+product_id = Product.last.id
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
+
+
+
+
+# ##### REI Camp Dome 4 Tent #####
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1484535302/REI_Clone/Tents/REI_CampDome_4_Tent_gl2lkt.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "4-person",
+            minimum_trail_weight: calc_weight(8, 4),
+            packaged_weight: calc_weight(8, 13),
+            packed_size: "8.7 x 27 inches",
+            floor_dimensions: "100 x 86 inches",
+            floor_area: 59.6,
+            peak_height: 56,
+            number_of_doors: 2,
+            number_of_poles: 3,
+            pole_material: "Aluminum",
+            canopy_fabric: "Nylon",
+            floor_fabric: "Polyester",
+            rainfly_fabric: "Polyester",
+            footprint_included: "No",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 4 person 3 season REI Camp Dome 4 camping camp".downcase.split(" ").uniq,
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids["REI"],
+               name: "Camp Dome 4 Tent",
+               price: 199.00,
+               rating: 4.2,
+               num_ratings: 9,
+               best_use: "Camping",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "Lightweight, durable and easy to pitch, the Camp Dome 4 Tent sleeps 4 comfortably and offers supreme ventilation through 2 easy-access doors."
+              )
+
+details = "Durable, equal-length aluminum poles and pole-clip design offer quick setup
+Polyester taffeta rainfly and a bound, cut-in floor provide a taut, water-resistant pitch
+Polyester fabric resists UV degradation
+Mesh storage pockets inside tent keep small items organized
+Includes stuff sack, pole and stake bags, 4 stakes, 2 guylines with tighteners and pole repair tube
+Large mesh windows secured by zip open panels
+Awnings enable views and ventilation while providing weather coverage"
+
+product_id = Product.last.id
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
+
+
+
+
+# ##### North Face Kaiju 6 Tent #####
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1484537125/REI_Clone/Tents/North_Face_Kaiju_qno1jj.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "4-person",
+            minimum_trail_weight: calc_weight(12, 6.2),
+            packaged_weight: calc_weight(19, 2.6),
+            packed_size: "10 x 32 inches",
+            floor_dimensions: "120 x 104 inches",
+            floor_area: 86.7,
+            peak_height: 80,
+            number_of_doors: 2,
+            number_of_poles: 3,
+            pole_material: "Aluminum DAC Featherlite NSL",
+            pole_diameter: "13 millimeters",
+            canopy_fabric: "68-denier polyester",
+            floor_fabric: "150-denier polyurethane-coated polyester",
+            rainfly_fabric: "68-denier polyurethane-coated polyester",
+            footprint_included: "No",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 6 person 3 season the north face tnf kaiju 6 camping camp".downcase.split(" ").uniq,
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids["The North Face"],
+               name: "Kaiju 6 Tent",
+               price: 399.00,
+               rating: 4.1,
+               num_ratings: 34,
+               best_use: "Camping",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "The ultimate in car-camping lodging, The North Face Kaiju 6 tent is absolutely huge, with ample standing room, a full rainfly and a massive vestibule sunshade."
+              )
+
+details = "80 in. interior stand-up height
+Tablet pocket; 10+ storage pockets; internal hanger loops
+Easy-pitch 3+1 pole design with tough and light DAC poles
+Full-length rainfly with 2 vestibules, fly pole and roll-up ventilation option
+Foot wiper
+Compatible with CJV2 Tentertainment loft (not included)"
+
+product_id = Product.last.id
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
+
+##### Marmot Limelight 3P Tent with Footprint #####
+
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1484539065/REI_Clone/Tents/Marmot_Limelight_3P_Tent_dgpscj.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "3-person",
+            minimum_trail_weight: calc_weight(6, 0.5),
+            fly_footprint_pitch_weight: calc_weight(4, 2),
+            packaged_weight: calc_weight(6, 11),
+            packed_size: "22 x 8 inches",
+            floor_dimensions: "68 x 90 inches",
+            floor_area: 42.5,
+            vestibule_area: "11.3 + 7.5 square feet",
+            peak_height: 48,
+            number_of_doors: 2,
+            number_of_poles: 3,
+            pole_material: "DAC aluminum",
+            pole_diameter: "9/8.5 millimeters",
+            canopy_fabric: "40-denier polyester mesh",
+            floor_fabric: "68-denier polyester taffeta",
+            rainfly_fabric: "68-denier polyester taffeta",
+            footprint_included: "Yes",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 3 person 3 season marmot limelight 3P 3 with footprint backpacking".downcase.split(" "),
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids["Marmot"],
+               name: "Limelight 3P Tent with Footprint",
+               price: 299.00,
+               rating: 4.9,
+               num_ratings: 18,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "With increased volume and no added weight, the Limelight 3P tent maximizes livable space with its zone construction. Enjoy light, roomy comfort and 3-season protection on your next night in nature."
+              )
+
+Feature.create(product_id: Product.last.id, name: "Footprint Included")
+
+details = "Large double door and rear D-shaped door lead to 2 vestibules to keep your gear dry in wet weather
+DAC Press-Fit poles and Velocity aluminum 7000 ridge pole are simple to set up; Body Zone pre-bends create vertical walls for a more spacious living area
+Color-coded Easy Pitch clips and poles; strategic clip placement enhances interior volume
+Seam-taped, full-coverage fly with vents
+Seam-taped, catenary cut floor
+Interior pockets for small-gear organization; Lamp Shade pocket securely holds your headlamp to provide ambient light
+Jingle-free nylon zipper pulls
+Footprint included"
+
+product_id = Product.last.id
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
+
+
+#### Marmot Catalyst 2P Tent with Footprint #####
+
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1484539072/REI_Clone/Tents/Marmot_Catalyst_2P_Tent_jbqftm.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "2-person",
+            minimum_trail_weight: calc_weight(4, 11),
+            packaged_weight: calc_weight(5, 3),
+            packed_size: "18 x 7 inches",
+            floor_dimensions: "53 x 88 inches",
+            floor_area: 32.5,
+            vestibule_area: "9.5 + 6.7 square feet",
+            peak_height: 44,
+            number_of_doors: 2,
+            number_of_poles: 3,
+            pole_material: "Velocity HD Aluminum",
+            pole_diameter: "9/8.5 millimeters",
+            canopy_fabric: "40-denier polyester mesh",
+            floor_fabric: "68-denier polyester taffeta",
+            rainfly_fabric: "68-denier polyester taffeta",
+            footprint_included: "Yes",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 2 person 3 season marmot catalyst 2p 2 with footprint backpacking".downcase.split(" "),
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids["Marmot"],
+               name: "Catalyst 2P Tent with Footprint",
+               price: 169.00,
+               rating: 4.4,
+               num_ratings: 15,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "Roomy, livable and lightweight, the freestanding Marmot Catalyst 2P tent is a comfortable, versatile choice for camping and backpacking trips when you want to shave precious weight."
+              )
+
+product_id = Product.last.id
+
+Feature.create(product_id: product_id, name: "Footprint Included")
+
+details = "This 3-season, 2-person tent features a seam-taped catenary cut floor, color-coded poles for easy setup, 2 D-shaped doors and 2 vestibules with plenty of room to stash gear
+Strategic clip placement enhances interior volume
+Seam-taped, full-coverage fly with vents
+Seam-taped, catenary cut floor
+Interior pockets for small-gear organization; Lamp Shade pocket securely holds your headlamp to provide ambient light
+Jingle-free nylon zipper pulls
+HD Velocity 7000 series aluminum poles
+Footprint included"
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
+
+
+##### Marmot Limelight 2P Tent with Footprint #####
+
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1484539076/REI_Clone/Tents/Marmot_Limelight_2P_Tent_mnogt7.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "2-person",
+            minimum_trail_weight: calc_weight(5, 2),
+            fly_footprint_pitch_weight: calc_weight(3, 5),
+            packaged_weight: calc_weight(5, 10),
+            packed_size: "7 x 18 inches",
+            floor_dimensions: "88 x 54 inches",
+            floor_area: 33,
+            vestibule_area: "9.5 + 6.7 square feet",
+            peak_height: 43,
+            number_of_doors: 2,
+            number_of_poles: 3,
+            pole_material: "DAC aluminum",
+            pole_diameter: "9/8.5 millimeters",
+            canopy_fabric: "40-denier polyester mesh",
+            floor_fabric: "68-denier polyester taffeta",
+            rainfly_fabric: "68-denier polyester taffeta",
+            footprint_included: "Yes",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 2 person 3 season marmot limelight 2p 2 with footprint backpacking".downcase.split(" "),
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids["Marmot"],
+               name: "Limelight 2P Tent with Footprint",
+               price: 249.00,
+               rating: 4.2,
+               num_ratings: 13,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "Increasing volume with no added weight, the Limelight 2P tent maximizes livable space with its zone construction. Enjoy light, roomy comfort and 3-season protection on your next night in nature."
+              )
+
+product_id = Product.last.id
+
+Feature.create(product_id: product_id, name: "Footprint Included")
+
+details = "Large double door and rear D-shaped door lead to 2 vestibules to keep your gear dry in wet weather.
+DAC Press-Fit poles with a Velocity aluminum 7000 ridge pole; Body Zone pre-bends create vertical walls for a more spacious living area
+Color-coded Easy Pitch clips and poles; strategic clip placement provides larger interior volume
+Seam-taped, full-coverage fly with vents
+Seam-taped, catenary cut floor
+Interior pockets for small-gear organization; Lamp Shade pocket securely holds your headlamp to provide ambient light
+Jingle-free nylon zipper pulls
+Footprint included"
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
+
+
+
+##### Marmot Catalyst 3P Tent with Footprint #####
+
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1484539082/REI_Clone/Tents/Marmot_Catalyst_3P_Tent_aup74j.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "2-person",
+            minimum_trail_weight: calc_weight(5, 9),
+            packaged_weight: calc_weight(6, 0),
+            packed_size: "22 x 8 inches",
+            floor_dimensions: "65 x 88 inches",
+            floor_area: 40,
+            vestibule_area: "10.4 + 7.9 square feet",
+            peak_height: 47,
+            number_of_doors: 2,
+            number_of_poles: 3,
+            pole_material: "Velocity HD Aluminum",
+            pole_diameter: "9/8.5 millimeters",
+            canopy_fabric: "40-denier polyester mesh",
+            floor_fabric: "68-denier polyester taffeta",
+            rainfly_fabric: "68-denier polyester taffeta",
+            footprint_included: "Yes",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 2 person 3 season marmot catalyst 3P 3 with footprint backpacking".downcase.split(" "),
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids["Marmot"],
+               name: "Catalyst 3P Tent with Footprint",
+               price: 229.00,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "Roomy, livable and light, the freestanding Marmot Catalyst 3P tent is a comfortable, versatile choice for camping and hiking trips when you want to shave precious weight."
+              )
+
+product_id = Product.last.id
+
+Feature.create(product_id: product_id, name: "Footprint Included")
+
+details = "This 3-season, 3-person tent features a seam-taped catenary cut floor, color-coded poles for easy setup, 2 D-shaped doors and 2 vestibules with plenty of room to stash gear
+Strategic clip placement enhances interior volume
+Seam-taped, full-coverage fly with vents
+Seam-taped, catenary cut floor
+Interior pockets for small-gear organization; Lamp Shade pocket securely holds your headlamp to provide ambient light
+Jingle-free nylon zipper pulls
+HD Velocity 7000 series aluminum poles
+Footprint included"
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
 
 # ####### Reviews ##########################################################################################################################################################################################################################################################
 

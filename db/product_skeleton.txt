@@ -38,8 +38,8 @@ Detail.create(product_id: , description: "")
 
 image_url = ""
 
-Tent.create(seasons: "",
-            sleeping_capacity: "",
+Tent.create(seasons: "-season",
+            sleeping_capacity: "-person",
             minimum_trail_weight: calc_weight(),
             fly_footprint_pitch_weight: calc_weight(),
             packaged_weight: calc_weight(),
@@ -49,7 +49,7 @@ Tent.create(seasons: "",
             vestibule_area: "",
             peak_height: ,
             number_of_doors: ,
-            number_of_poles: "",
+            number_of_poles: ,
             pole_material: "",
             pole_diameter: "",
             canopy_fabric: "",
@@ -60,10 +60,10 @@ Tent.create(seasons: "",
             design_type: ""
            )
 
-Product.create(category_id: 2,
-               search_keywords: "#{tents_keywords} 2-person 3-seasons nemo galaxi galaxy 2 with footprint backpacking".downcase.split(" "),
-               product_table_id: ,
-               brand_id: ,
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 2 person 3 season nemo galaxi galaxy 2 with footprint backpacking".downcase.split(" "),
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids[""],
                name: "",
                price: ,
                rating: ,
@@ -76,7 +76,10 @@ Product.create(category_id: 2,
                description: ""
               )
 
-Feature.create(product_id: , name: "")
+product_id = Product.last.id
+
+Feature.create(product_id: product_id, name: "")
 
 details = ""
-details.split("\n").each { |det| Detail.create(product_id: , description: det) }
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }

@@ -35,7 +35,6 @@ On the back end, this setup saves space in the database in the event that a user
 
 # Screenshots
 
-
 ## Search Results
 ![results screenshot](docs/screenshots/gearfix-results.png)
 
@@ -50,20 +49,23 @@ On the back end, this setup saves space in the database in the event that a user
 
 # Future Directions for the Project
 
-There were numerous MVPs that I was unable to complete for this project, so I will continue working on them in
-the future, as well as implementing a few other features as listed below:
-
 ### Add Past Purchases
-
 Current upon checking out, the user's shopping cart is simply dumped out. Ideally there would be a mock payment screen and a table to handle past purchases so that they can viewed in the account details.
 
 ### More Seeds
-
 Seed more categories and more items per category.
 
 ### Search Bar and Filters
-
-Search bar is working, could use an auto-complete feature.  Sidebar filter is still in progress.
+Search bar is could use a suggestions / auto-complete feature.  Sidebar filter is for results should be implemented.
 
 ## Refactoring
-Reduce number of Container Components, learn how to use refs to access child components and their methods from their parents.
+Reduce number of controlled components, learn how to use refs to access child components and their methods from their parents.  Eliminate unnecessary item from component states that are already being passed in via props.
+
+## React Classnames library
+Implement React Classnames library to handle changing class names in components, as opposed to manually constructing classnames based on various boolean conditions.
+
+## Fix Dropdowns in Firefox
+Initial naive implementation of opening/closing dropdowns throws errors in Firefox and does not function properly.  Refactor to use onFocus and onBlur.
+
+## Database Changes
+Look into storing hashes in a database column as opposed to arrays or strings for product search keywords.  Look into polymorphic associations for the Products table.
