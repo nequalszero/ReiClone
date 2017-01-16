@@ -1,84 +1,143 @@
 import React from 'react';
+import classNames from 'classnames';
 import ReviewsIndexContainer from '../reviews/reviews_index_container';
 
 import { getTableValues } from '../helper_functions/product_details_helper';
 import getCategories from '../helper_functions/product_spec_rownames';
 
-const detailsLink = "product-details-link";
-const specsLink = "product-specs-link";
-const reviewsLink = "product-reviews-link";
-const detailsId = "product-details-section";
-const specsId = "product-specs-table";
-const reviewsId = "product-reviews";
+const defaultActiveLinks = () => ({
+  details: false,
+  specs: false,
+  reviews: false,
+  toTop: false,
+  fixedNavBar: false,
+  backToTop: false
+});
 
-const idHash = {};
-idHash[detailsLink] = detailsId;
-idHash[specsLink] = specsId;
-idHash[reviewsLink] = reviewsId;
+// intentaionally in reverse order
+const navbarKeys = ["reviews", "specs", "details"];
 
 class ProductDisplay extends React.Component {
   constructor(props) {
     super(props);
-    // console.log("ProductDisplay props: ", props);
+    this.state = {activeLinks: defaultActiveLinks()};
+    this.state.activeLinks.details = true;
+
+    this.setNavElementClassName = this.setNavElementClassName.bind(this);
+    this.setNavbarClass = this.setNavbarClass.bind(this);
+    this.setBackToTopClass = this.setBackToTopClass.bind(this);
+
+    this.handleScroll = this.handleScroll.bind(this);
+    this.backToTop = this.backToTop.bind(this);
   }
 
   componentDidMount() {
-    // console.log("componentDidMount");
-    window.scrollTo(0, 0);
-    let details = document.getElementsByClassName(detailsLink)[0];
-    details.style.borderBottom = "6px solid #06c";
-    details.style.color = "black";
+    let navBarHeight = this.navbar.getBoundingClientRect().height;
+    let specsLinkHeight = this.specsLink.getBoundingClientRect().height;
+    let detailsLinkHeight = this.detailsLink.getBoundingClientRect().height;
 
-    let specs = document.getElementsByClassName(specsLink)[0];
-    specs.style.borderBottom = "none";
-    specs.style.color = "#06c";
-
-    let reviews = document.getElementsByClassName(reviewsLink)[0];
-    reviews.style.borderBottom = "none";
-    reviews.style.color = "#06c";
-  }
-
-  toggleLink(targetLink) {
-    // console.log("toggling", targetLink);
-    let details = document.getElementsByClassName(detailsLink)[0];
-
-    const links = [detailsLink, specsLink, reviewsLink];
-
-    links.forEach(link => {
-      let currentElement = document.getElementsByClassName(link)[0];
-
-      switch(link) {
-        case targetLink:
-          currentElement.style.borderBottom = "6px solid #06c";
-          currentElement.style.color = "black";
-          let scrollToTarget = document.getElementById(idHash[link]);
-          let scrollToPos = window.scrollY - 82
-                            + scrollToTarget.getBoundingClientRect().top;
-          // console.log(`${idHash[link]} position`, scrollToPos);
-          window.scrollTo(0, scrollToPos);
-          break;
-        default:
-          currentElement.style.borderBottom = "none";
-          currentElement.style.color = "#06c";
-          break;
-      }
+    this.setState({
+      sectionPositions: {
+        details: this.detailsLink.offsetTop - detailsLinkHeight - navBarHeight,
+        specs: this.specsLink.offsetTop - navBarHeight - specsLinkHeight,
+        reviews: this.reviewsLink.offsetTop - navBarHeight - 20,
+        navbar: this.navbar.offsetTop + navBarHeight
+      },
+      navbarHeight: navBarHeight
     });
 
+    document.addEventListener('scroll', this.handleScroll);
+    window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handleScroll);
+  }
+
+  backToTop() {
+    return (
+      <div className={this.setBackToTopClass()}>
+        <div className="back-to-top-dummy">
+          <div className="back-to-top-button"
+               onClick={() => window.scrollTo(0, 0)}/>
+        </div>
+      </div>
+    );
+  }
+
+  handleScroll(event) {
+    let pagePos = event.srcElement.body.scrollTop;
+
+    let newActiveLinks = Object.assign({}, this.state.activeLinks);
+    let positions = this.state.sectionPositions;
+    newActiveLinks.fixedNavBar = pagePos > positions.navbar ? true : false;
+    newActiveLinks.backToTop = false;
+
+    if (newActiveLinks.fixedNavBar) {
+      newActiveLinks.backToTop = true;
+      let navbarHeight = this.state.navbarHeight;
+      let found = false;
+
+      // navbarKeys are in reverse order from 'reviews' to 'details'
+      navbarKeys.forEach(key => {
+        if (found) {
+          newActiveLinks[key] = false;
+        }
+        else {
+          newActiveLinks[key] = (pagePos + navbarHeight) >= positions[key]
+                                ? true : false;
+          if (newActiveLinks[key]) found = true;
+        }
+      });
+    }
+
+    this.setState({activeLinks: newActiveLinks});
+  }
+
+  toggleLink(target) {
+    let newActiveLinks = defaultActiveLinks();
+    newActiveLinks[target] = true;
+    newActiveLinks.fixedNavBar = this.state.activeLinks.fixedNavBar;
+    this.setState({activeLinks: newActiveLinks});
+    let scrollToPosition = this.state.sectionPositions[target];
+    window.scrollTo(0, scrollToPosition);
+  }
+
+  setNavElementClassName(target) {
+    return classNames({
+      'navbar-link': true,
+      'pd-active-navbar': this.state.activeLinks[target]
+    });
+  }
+
+  setNavbarClass() {
+    return classNames({
+      "product-details-nav": true,
+      'pd-fixed-navbar': this.state.activeLinks.fixedNavBar
+    });
+  }
+
+  setBackToTopClass() {
+    return classNames({
+      "back-to-top-container": true,
+      'back-to-top-hidden': !this.state.activeLinks.backToTop,
+    });
   }
 
   detailsNavigationBar() {
     return(
-      <ul className="product-details-nav">
-        <li className={detailsLink}
-            onClick={() => this.toggleLink(detailsLink)}>
+      <ul className={this.setNavbarClass("navbar")}
+          ref={(navbar) => {this.navbar = navbar;}}>
+        <li className={this.setNavElementClassName("details")}
+            onClick={() => this.toggleLink("details")}>
             Details
         </li>
-        <li className="product-specs-link"
-            onClick={() => this.toggleLink(specsLink)}>
+        <li className={this.setNavElementClassName("specs")}
+            onClick={() => this.toggleLink("specs")}>
             Specs
         </li>
-        <li className="product-reviews-link"
-            onClick={() => this.toggleLink(reviewsLink)}>
+        <li className={this.setNavElementClassName("reviews")}
+            onClick={() => this.toggleLink("reviews")}>
           Reviews
         </li>
       </ul>
@@ -88,8 +147,9 @@ class ProductDisplay extends React.Component {
   detailsSection(){
     let details = this.props.product.item.details;
     return(
-      <section className={detailsId}>
-        <h3 className="details-label" id={detailsId}>
+      <section className="details-section">
+        <h3 className="details-label"
+            ref={(h3) => { this.detailsLink = h3; }}>
           Details
         </h3>
         <ul className="details-list">
@@ -122,7 +182,8 @@ class ProductDisplay extends React.Component {
 
     return(
       <div className="product-specs-table-container">
-        <h3 className="product-specs-table-title" id={specsId}>
+        <h3 className="product-specs-table-title"
+            ref={(h3) => { this.specsLink = h3; }}>
           Specs
         </h3>
         <table className="product-specs">
@@ -145,8 +206,10 @@ class ProductDisplay extends React.Component {
         {this.detailsNavigationBar()}
         {this.detailsSection()}
         {this.specsTable()}
-        <ReviewsIndexContainer item={this.props.product.item}
-                               idName={reviewsId}/>
+        <span id="reviews-position-placeholder"
+              ref={(RIC) => {this.reviewsLink = RIC; }}/>
+        <ReviewsIndexContainer item={this.props.product.item}/>
+        {this.backToTop()}
       </div>
     );
   }

@@ -167,7 +167,7 @@ class ReviewsIndex extends React.Component {
     return (
       <div className="product-reviews-container">
         <div className="reviews-header-button-container">
-          <h3 className="reviews-label" id={this.props.idName}>
+          <h3 className="reviews-label">
             Reviews
           </h3>
           <button className={`${blueButtonClass} review-button`}
