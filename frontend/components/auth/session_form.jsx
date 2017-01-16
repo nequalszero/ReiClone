@@ -3,7 +3,6 @@ import {blueButtonClass} from '../helper_functions/misc_elements';
 
 class SessionForm extends React.Component {
   constructor(props) {
-    // console.log("SessionForm props: ", props);
     super(props);
     this.state = {
       username: "",
@@ -26,7 +25,6 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
-    // console.log("renderErrors props:", this.props);
     if (this.props.errors) {
       if (this.props.errors[this.props.formType]) {
         return(
