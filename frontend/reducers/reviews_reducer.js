@@ -1,6 +1,6 @@
 import { RECEIVE_REVIEW,
          RECEIVE_REVIEWS,
-         RECEIVE_ERRORS,
+         RECEIVE_REVIEWS_ERRORS,
          RECEIVE_UPDATED_REVIEW,
          CLEAR_REVIEWS_STATE,
          CLEAR_USER_REVIEW_STATE,
@@ -43,7 +43,7 @@ const ReviewsReducer = (oldState = _defaultResult, action) => {
       newState.userReview = action.review;
       return newState;
 
-    case RECEIVE_ERRORS:
+    case RECEIVE_REVIEWS_ERRORS:
       let errors = action.errors;
       return merge(newState, { errors });
 

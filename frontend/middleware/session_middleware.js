@@ -1,5 +1,5 @@
 import { receiveCurrentUser,
-         receiveErrors,
+         receiveSessionErrors,
          LOGIN,
          LOGOUT,
          SIGNUP,
@@ -29,7 +29,7 @@ const SessionMiddleware = ({ getState, dispatch }) => next => action => {
 
   // xhr = xml http response, responseJson is the key where our json is stored
   //   when the ajax request fails and returns an error object.
-  const errorCallback = xhr => dispatch(receiveErrors(xhr.responseJSON));
+  const errorCallback = xhr => dispatch(receiveSessionErrors(xhr.responseJSON));
 
 
 

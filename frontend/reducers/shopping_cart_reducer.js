@@ -1,6 +1,6 @@
 import { RECEIVE_USER_ITEMS,
          REMOVE_ITEM_FROM_CART,
-         RECEIVE_ERRORS,
+         RECEIVE_SC_ERRORS,
          ADD_ITEM_TO_CART,
          UPDATE_QUANTITY,
          EMPTY_CART_ON_LOGOUT
@@ -74,7 +74,7 @@ const ShoppingCartReducer = (oldState = _defaultShoppingCart, action) => {
       }
       return newState;
 
-    case RECEIVE_ERRORS:
+    case RECEIVE_SC_ERRORS:
       newState.errors = action.errors;
       return newState;
 

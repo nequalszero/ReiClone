@@ -1,5 +1,5 @@
 import { RECEIVE_ITEM,
-         RECEIVE_ERRORS,
+         RECEIVE_PRODUCT_ERRORS,
          CLEAR_ITEM_FROM_STATE
        } from '../actions/product_actions';
 import merge from 'lodash/merge';
@@ -18,7 +18,7 @@ const ResultsReducer = (oldState = _defaultProduct, action) => {
     case RECEIVE_ITEM:
       let item = action.item;
       return merge(newState, { item });
-    case RECEIVE_ERRORS:
+    case RECEIVE_PRODUCT_ERRORS:
       let errors = action.errors;
       return merge(newState, { errors });
     case CLEAR_ITEM_FROM_STATE:

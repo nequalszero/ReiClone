@@ -3,7 +3,7 @@ export const REMOVE_ITEM_FROM_CART = "REMOVE_ITEM_FROM_CART";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const REQUEST_USER_ITEMS = "REQUEST_USER_ITEMS";
 export const RECEIVE_USER_ITEMS = "RECEIVE_USER_ITEMS";
-export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
+export const RECEIVE_SC_ERRORS = "RECEIVE_SC_ERRORS";
 export const SAVE_CART_ITEM_TO_DATABASE = "SAVE_CART_ITEM_TO_DATABASE";
 export const REMOVE_USER_ITEM_FROM_DATABASE = "REMOVE_USER_ITEM_FROM_DATABASE";
 export const UPDATE_QUANTITY_IN_DATABASE = "UPDATE_QUANTITY_IN_DATABASE";
@@ -33,10 +33,10 @@ export const receiveUserItems = items => ({
   items
 });
 
-export const receiveErrors = ( {errors} ) => {
+export const receiveSCErrors = ( {errors} ) => {
   // console.log("receiveErrors errors", errors);
   return {
-    type: "RECEIVE_ERRORS",
+    type: "RECEIVE_SC_ERRORS",
     errors
   };
 };

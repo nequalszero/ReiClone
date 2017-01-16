@@ -1,5 +1,5 @@
 import { RECEIVE_ITEMS,
-         RECEIVE_ERRORS,
+         RECEIVE_RESULTS_ERRORS,
          RECEIVE_CATEGORIES,
          CLEAR_RESULTS_FROM_STATE
        } from '../actions/results_actions';
@@ -24,7 +24,7 @@ const ResultsReducer = (oldState = _defaultResult, action) => {
       newState.items = items;
       return newState;
 
-    case RECEIVE_ERRORS:
+    case RECEIVE_RESULTS_ERRORS:
       let errors = action.errors;
       return merge(newState, { errors });
 

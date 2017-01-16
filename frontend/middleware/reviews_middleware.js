@@ -8,7 +8,7 @@ import { REQUEST_REVIEWS,
          REQUEST_ADDITIONAL_REVIEWS,
          receiveReview,
          receiveReviews,
-         receiveErrors,
+         receiveReviewsErrors,
          receiveUpdatedReview,
          receiveUserReview,
          receiveAdditionalReviews }
@@ -25,7 +25,7 @@ import { fetchItem } from '../util/product_api_util';
 
 const ReviewsMiddleware = ({ getState, dispatch }) => next => action => {
   let successCallback;
-  const errorCallback = xhr => dispatch(receiveErrors(xhr.responseJSON));
+  const errorCallback = xhr => dispatch(receiveReviewsErrors(xhr.responseJSON));
 
   switch(action.type) {
     case REQUEST_REVIEWS:

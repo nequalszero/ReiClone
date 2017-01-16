@@ -5,7 +5,7 @@ import { REQUEST_USER_ITEMS,
          ADD_ITEM_TO_CART,
          RECEIVE_USER_ITEMS,
          saveCartItemToDatabase,
-         receiveErrors,
+         receiveSCErrors,
          receiveUserItems,
          updateQuantity,
          addItemToCart,
@@ -21,7 +21,7 @@ import { fetchUserItems,
         } from '../util/shopping_cart_api_util';
 
 const ShoppingCartMiddleware = ({ getState, dispatch }) => next => action => {
-  const errorCb = xhr => dispatch(receiveErrors(xhr.responseJSON));
+  const errorCb = xhr => dispatch(receiveSCErrors(xhr.responseJSON));
   const requestUserItemsSuccessCb = items => dispatch(receiveUserItems(items));
   const updateSuccessCb = (item) => dispatch(updateQuantity(item));
   const saveItemSuccessCb = (item) => dispatch(addItemToCart(item));

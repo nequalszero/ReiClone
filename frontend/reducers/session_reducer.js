@@ -1,10 +1,16 @@
-import { RECEIVE_CURRENT_USER, LOGOUT, RECEIVE_ERRORS }
-    from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER,
+         LOGOUT,
+         RECEIVE_SESSION_ERRORS,
+         TOGGLE_SIGNUP_FORM,
+         TOGGLE_SIGNIN_FORM
+       } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
 const _nullUser = Object.freeze({
   currentUser: null,
-  errors: {}
+  errors: {},
+  signInOpen: false,
+  signUpOpen: false
 });
 
 // Merge with _nullUser instead of oldState because of issues with errors
@@ -22,13 +28,24 @@ const SessionReducer = (oldState = _nullUser, action) => {
       newState.currentUser = currentUser;
       window.localStorage.setItem("currentUser", JSON.stringify(currentUser));
       return newState;
+
     case LOGOUT:
       window.localStorage.setItem("currentUser", JSON.stringify(null));
       return merge({}, _nullUser);
-    case RECEIVE_ERRORS:
+
+    case RECEIVE_SESSION_ERRORS:
       let errors = action.errors;
       window.localStorage.setItem("currentUser", JSON.stringify(null));
       return merge({}, _nullUser, { errors });
+
+    case TOGGLE_SIGNIN_FORM:
+      newState.signInOpen = !newState.signInOpen;
+      return newState;
+
+    case TOGGLE_SIGNUP_FORM:
+      newState.signUpOpen = !newState.signUpOpen;
+      return newState;
+      
     default:
       return oldState;
   }
