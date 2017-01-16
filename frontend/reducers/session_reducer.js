@@ -18,12 +18,16 @@ const SessionReducer = (oldState = _nullUser, action) => {
 
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
-      newState.currentUser = action.currentUser;
+      let currentUser = action.currentUser;
+      newState.currentUser = currentUser;
+      window.localStorage.setItem("currentUser", JSON.stringify(currentUser));
       return newState;
     case LOGOUT:
+      window.localStorage.setItem("currentUser", JSON.stringify(null));
       return merge({}, _nullUser);
     case RECEIVE_ERRORS:
       let errors = action.errors;
+      window.localStorage.setItem("currentUser", JSON.stringify(null));
       return merge({}, _nullUser, { errors });
     default:
       return oldState;

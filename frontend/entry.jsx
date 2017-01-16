@@ -88,8 +88,9 @@ document.addEventListener("click", (event) => {
 document.addEventListener("DOMContentLoaded", () => {
   let store;
 
-  if (window.currentUser) {
-    const preloadedState = {session: {currentUser: window.currentUser}};
+  if (window.localStorage.currentUser) {
+    let currentUser = JSON.parse(window.localStorage.currentUser);
+    const preloadedState = {session: {currentUser: currentUser}};
     store = configureStore(preloadedState);
   } else {
     store = configureStore();

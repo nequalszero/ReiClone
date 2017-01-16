@@ -142,7 +142,6 @@ class ShoppingCartDisplay extends React.Component {
 
   renderItemDetails() {
     let numDifferentProducts = this.state.items.length;
-
     return (
       <div className="shopping-cart-item-details-list">
         {this.state.items.map((item, idx) => (
@@ -154,7 +153,7 @@ class ShoppingCartDisplay extends React.Component {
 
   renderItemDetailAndBorder(item, idx, numDifferentProducts) {
     return (
-      <div key={idx} className="shopping-cart-item-details-row">
+      <div key={item.product_id} className="shopping-cart-item-details-row">
         <ShoppingCartDisplayItemContainer item={item}/>
         { idx === numDifferentProducts - 1 ? undefined : bottomDivider }
       </div>

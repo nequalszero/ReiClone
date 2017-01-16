@@ -73,6 +73,7 @@ header{
   height: 100%;
   padding: 0px 12px;
   right: 0px;
+  top: 0px;
 }
 
 .search-auth-container {
@@ -133,7 +134,7 @@ nav.header-auth > li {
   padding-top: 13px;
 }
 
-li.visible-li:hover {
+.visible-li:hover {
   color: $lime-green !important;
   cursor: pointer;
 }
