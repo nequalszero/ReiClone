@@ -6,6 +6,7 @@ import ResultsIndexContainer from './results/results_index_container';
 import ProductDisplayContainer from './product/product_display_container';
 import ShoppingCartDisplayContainer
     from './shopping_cart/shopping_cart_display_container';
+import Checkout from './shopping_cart/checkout';
 
 import { requestCategoryItems } from '../actions/results_actions';
 import { requestItem } from '../actions/product_actions';
@@ -44,6 +45,8 @@ const Root = ( props ) => {
           <Route path="/search"
                  component={ResultsIndexContainer}
                  onEnter={getSearchResults}/>
+          <Route path="/checkout"
+                 component={Checkout}/>
         </Route>
       </Router>
     </Provider>

@@ -29,7 +29,7 @@ const Footer = () => {
                 inspiration for this application.
               </p>
               <p className="footer-text">
-                <a href="https://github.com/nequalszero/ReiClone">Click here</a> to see my code!
+                <a href="https://github.com/nequalszero/ReiClone">Click here</a> to see the code!
               </p>
             </div>
             <div className="footer-container">
@@ -42,7 +42,7 @@ const Footer = () => {
             </div>
             <div className="footer-container">
               <h2 className="footer-title">LINKS</h2>
-              <p className="link-text">
+              <div className="link-text">
                 <div className="linked-in-container">
                   <i className="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
                   <a href="https://www.linkedin.com/in/travis-ludlum">LinkedIn</a>
@@ -51,7 +51,7 @@ const Footer = () => {
                   <i className="fa fa-github fa-2x" aria-hidden="true"></i>
                   <a href="https://github.com/nequalszero">Github</a>
                 </div>
-              </p>
+              </div>
             </div>
           </div>
           <div className="footer-bottom-border" />;

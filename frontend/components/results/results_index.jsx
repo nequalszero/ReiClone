@@ -60,7 +60,7 @@ class ResultsIndex extends React.Component {
     return(
       <div>
         <div className="product-results-page">
-          <div className="sidebar-container">Sidebar filter goes here</div>
+          <div className="sidebar-container"></div>
           {this.loadResults()}
         </div>
       </div>

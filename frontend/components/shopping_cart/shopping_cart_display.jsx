@@ -52,8 +52,10 @@ class ShoppingCartDisplay extends React.Component {
       this.state.items.forEach((item) => {
         this.removeCartItem(item);
       });
+      this.props.router.replace('/checkout');
     } else {
       this.props.emptyLocalCart();
+      this.props.router.replace('/checkout');
     }
   }
 
