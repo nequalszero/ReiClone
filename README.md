@@ -59,7 +59,7 @@ The search bar feature at the top of the page allows a user to enter their own s
 # Future Directions for the Project
 
 ### Search Bar and Filters
-Search bar is could use a suggestions / auto-complete feature.  Sidebar filter for results should be implemented.
+Search bar could use an auto-complete feature.  A sidebar filter for results would be nice to implement.
 
 ### More Seeds
 Seed more categories and more items per category.
