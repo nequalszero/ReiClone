@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './home_page/header';
+import Footer from './home_page/footer';
 import SplashPageContainer from './home_page/splash_page_container';
 import {withRouter, Link} from 'react-router';
 
@@ -15,6 +16,7 @@ const App = ( props ) => {
       <Header props={props}/>
       {renderHomePage(props)}
       {props.children}
+      <Footer />
     </div>
   );
 };

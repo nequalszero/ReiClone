@@ -1,0 +1,128 @@
+.footer-outer-container {
+  height: auto;
+  width: 100%;
+}
+
+.footer-top {
+  width: 100%;
+  height: 110px;
+  padding: 36px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 16px sans-serif;
+}
+
+.footer-tree-right {
+  margin: 24px;
+  height: 62.25px;
+  width: 56px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(http://res.cloudinary.com/nequalszero/image/upload/v1484612012/REI_Clone/trees_right_or2jxy.svg);
+}
+
+.footer-tree-left {
+  margin: 24px;
+  height: 52px;
+  width: 56px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(http://res.cloudinary.com/nequalszero/image/upload/v1484612029/REI_Clone/trees_left_bep2wh.svg);
+}
+
+.footer-top-linktag {
+  text-decoration: underline;
+  color: #004e00;
+}
+
+.footer-top-linktag:hover {
+  cursor: pointer;
+}
+
+.footer-bottom {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: black;
+}
+
+.footer-bottom-centered {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.footer-details {
+  width: 100%;
+  display: flex;
+  padding-top: 40px;
+  margin-bottom: 17px;
+}
+
+.footer-container {
+  width: 100%;
+  width: 31%;
+  max-width: 350px;
+  font: 18px sans-serif;
+  color: white;
+  padding-right: 40px;
+}
+
+.footer-title {
+  color: $lime-green;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.footer-text {
+  line-height: 1.3;
+  padding-bottom: 20px;
+}
+
+.footer-text > a {
+  text-decoration: underline;
+  cursor: pointer;
+  color: $lime-green;
+}
+
+.link-text {
+  font-weight: bold;
+}
+
+.link-text > * {
+  cursor: pointer;
+}
+
+.footer-bottom-border {
+  position: absolute;
+  bottom: 18px;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1140px;
+  height: 2px;
+  background-color: $hex-gray;
+  margin-top: 18px;
+}
+
+.linked-in-container, .github-container {
+  padding: 10px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.linked-in-container:hover, .github-container:hover {
+  color: #06c;
+}
+
+.linked-in-container {
+  padding-top: 0px;
+}
+
+.linked-in-container > a, .github-container > a {
+  padding-left: 5px;
+}

@@ -30,6 +30,8 @@ div.details-specs-and-reviews-container {
 
 .pd-fixed-navbar {
   position: fixed;
+  width: 100%;
+  max-width: 1140px;
   top: 0px;
   background-color: white;
 }
@@ -118,6 +120,7 @@ tr.products-specs-table-row > td {
   bottom: 0px;
   display: block;
   max-width: 1140px;
+  z-index: 10;
 }
 
 .back-to-top-dummy {
@@ -132,9 +135,7 @@ tr.products-specs-table-row > td {
   top: 0px;
   width: 65px;
   height: 40px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url(http://res.cloudinary.com/nequalszero/image/upload/v1484607371/REI_Clone/back-to-top_jvo1il.png);
+  color: #222;
 }
 
 .back-to-top-button:hover {

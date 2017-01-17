@@ -58,7 +58,8 @@ class ProductDisplay extends React.Component {
     return (
       <div className={this.setBackToTopClass()}>
         <div className="back-to-top-dummy">
-          <div className="back-to-top-button"
+          <img className="back-to-top-button"
+               src="http://res.cloudinary.com/nequalszero/image/upload/v1484607371/REI_Clone/back-to-top_jvo1il.png"
                onClick={() => window.scrollTo(0, 0)}/>
         </div>
       </div>
