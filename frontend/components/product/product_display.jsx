@@ -3,6 +3,7 @@ import ProductDetailsContainer from './product_details_container';
 import { padPrice, validQuantity }
         from '../helper_functions/product_details_helper';
 import { formatRating } from '../helper_functions/rating_helper';
+import Loading from 'react-loading-animation';
 
 import { blueButtonClass } from '../helper_functions/misc_elements';
 
@@ -86,7 +87,7 @@ class ProductDisplay extends React.Component {
     } else {
       return (
         <div className="display-product-page-container">
-          <p>Loading product information</p>
+          <Loading />
         </div>
       );
     }

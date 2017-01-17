@@ -25,19 +25,21 @@ class SplashPage extends React.Component {
 
   render() {
     return (
-      <section>
+      <div className="splash-page-container">
         {this.homepageBanner()}
-        <div className="opt-outside">
-          <img src={optOutsideUrl}></img>
-        </div>
-        <div className="featured-items-container">
-          <NemoVeda props={this.props}/>
-          <div className="medium-featured-items-container">
-            <MHLamina props={this.props}/>
-            <MarmotPlasma props={this.props}/>
+        <section>
+          <div className="opt-outside">
+            <img src={optOutsideUrl}></img>
           </div>
-        </div>
-      </section>
+          <div className="featured-items-container">
+            <NemoVeda props={this.props}/>
+            <div className="medium-featured-items-container">
+              <MHLamina props={this.props}/>
+              <MarmotPlasma props={this.props}/>
+            </div>
+          </div>
+        </section>
+      </div>
     );
   }
 }

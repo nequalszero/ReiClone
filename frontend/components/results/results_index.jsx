@@ -1,6 +1,7 @@
 import React from 'react';
 import ResultsIndexItem from './results_index_item';
 import { bottomDivider } from '../helper_functions/misc_elements';
+import Loading from 'react-loading-animation';
 
 class ResultsIndex extends React.Component {
   constructor(props) {
@@ -52,7 +53,11 @@ class ResultsIndex extends React.Component {
     if (this.props.results.items) {
       return this.displayResults();
     } else {
-      return (<p>Loading</p>);
+      return (
+        <div className="loading-container">
+          <Loading />
+        </div>
+      );
     }
   }
 

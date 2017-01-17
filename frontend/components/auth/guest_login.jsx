@@ -14,7 +14,7 @@ class GuestLogin extends React.Component {
     return (
       <li className="visible-li guest-login"
           onClick={this.guestLogin}>
-          GUEST LOGIN <i className="fa fa-user-secret fa-lg"
+          GUEST LOGIN <i className="fa fa-user-circle fa-lg fa-inverse"
                          aria-hidden="true"></i>
         </li>
     );
