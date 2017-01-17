@@ -2,7 +2,7 @@
 
 [GearFix live][heroku]
 
-[heroku]: www.gearfix.tech
+[heroku]: http://www.gearfix.tech/?from=@#/
 
 GearFix is a web application that is inspired by REI. In contrast to the REI site, GearFix is a single page application that runs off of a single static page, and only re-renders the components that are affected by changes in the application state.  GearFix makes use of Ruby on Rails on the back end, a PostgreSQL database, and React.js with the Redux pattern on the front end.  
 
@@ -37,6 +37,10 @@ On the back end, this setup saves space in the database in the event that a user
 When viewing a single product, additional information is found in 3 sections: details, specifications, and reviews. A navigation bar with links to these 3 sections can be found midway down the page.  Upon scrolling past the Details section, the navigation bar detaches from its static position and become fixed at the top of the window.  This logic is handled in the product details component.
 
 When rendering the component, refs are used to store reference to the DOM nodes representing the Details, Specs, and Reviews sections.  Using these references, the state is populated with locations of these sections on the page, as well as with booleans representing which section is current active / being focused on.  When the component mounts, an on-scroll listener is added to the document, checking the current position of the user's window.  When the user moves past each section, the on-scroll event changes a boolean in the state representing which link in the navigation bar should be active. The state is then passed to the React Classnames library, which uses the boolean values and class name keys to appropriately adjust element class names, thus manipulating their styling by adding and removing active classes.
+
+### Search Bar Utilizing Query Strings
+The search bar feature at the top of the page allows a user to enter their own search terms.  Upon dispatching the request, the search terms are stripped of excess spaces / special characters, and a query string is constructed.  The search terms are then passed via an API call to the server, where the server returns all products whose search_keywords column contains matches to all the search terms.  Sending the search results URL to another person or refreshing the window yields the same reproducible results, due to an on-enter hook in the search route that grabs the query string from the URL and passes it to the server.
+
 
 # Screenshots
 
