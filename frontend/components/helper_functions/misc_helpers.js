@@ -14,7 +14,7 @@ export const emptyObject = (object) => {
 };
 
 const backgrounds = [
-  // {class: 'hiker-banner', route: '/'},
+  {class: 'hiker-banner', route: '/'},
   // {class: 'osprey-banner', route: '/'},
   {class: 'heimplanet-banner-1', route: '/search?keywords=Heimplanet'},
   {class: 'heimplanet-banner-2', route: '/search?keywords=Heimplanet'},
