@@ -1,8 +1,10 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router';
 import { padPrice } from '../helper_functions/product_details_helper';
-import { bottomDivider } from '../helper_functions/misc_elements';
-import { blueButtonClass } from '../helper_functions/misc_elements';
+import { bottomDivider,
+         blueButtonClass
+       } from '../helper_functions/misc_elements';
+import { pickBanner } from '../helper_functions/misc_helpers';
 
 import ShoppingCartDisplayItemContainer
       from './shopping_cart_display_item_container';
@@ -165,10 +167,16 @@ class ShoppingCartDisplay extends React.Component {
   render() {
     let empty = true;
     if (this.state.items && this.state.items.length > 0) empty = false;
+    let banner = pickBanner();
 
     return (
-      <div className="shopping_cart_page_container">
-        { empty ? this.renderEmptyCartPage() : this.renderFilledCartPage() }
+      <div className="shopping-cart-page-wrapper">
+        <Link to={banner.route}>
+          <div className={`checkout-banner ${banner.class}`}/>
+        </Link>
+        <div className="shopping_cart_page_container">
+          { empty ? this.renderEmptyCartPage() : this.renderFilledCartPage() }
+        </div>
       </div>
     );
   }

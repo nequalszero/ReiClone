@@ -1394,6 +1394,169 @@ Footprint included"
 
 details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
 
+
+##### Heimplanet The Cave 3 Tent #####
+
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1484676695/REI_Clone/Tents/24723d9f-3c26-4fb2-b0f7-dd8e4f2e8118_o2xh2r.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "3-person",
+            minimum_trail_weight: calc_weight(10, 0),
+            fly_footprint_pitch_weight: calc_weight(10, 9),
+            packaged_weight: calc_weight(10, 9),
+            packed_size: "16 x 13 x 9 inches",
+            floor_dimensions: "94 x 75 inches",
+            floor_area: 53.8,
+            vestibule_area: "8.6 square feet",
+            peak_height: 71,
+            number_of_doors: 1,
+            number_of_poles: 5,
+            pole_material: "Inflatable poles",
+            pole_diameter: "90 millimeters",
+            canopy_fabric: "40-denier ripstop nylon/polyester mesh",
+            floor_fabric: "70-denier nylon taffeta",
+            rainfly_fabric: "40-denier high-tenacity ripstop polyester",
+            footprint_included: "No",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 3 person 3 season heimplanet the cave 3 camping camp".downcase.split(" "),
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids["Heimplanet"],
+               name: "The Cave 3 Tent",
+               price: 700.00,
+               best_use: "Camping",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "The strong and weather-worthy, 3-season Heimplanet Cave 3 tent inflates in less than a minute. It offers generous headroom, storage space and easy access for up to 3 people."
+              )
+
+product_id = Product.last.id
+
+details = "Intuitive, easy, fast pitching with simultaneous setup of the airframe, inner tent and rainfly
+1-pump system sets up with a single inflation process (pump sold separately)
+Multi-chamber system separates frame into independent chambers for stability—even with a leak—and ensures easy repair or replacement of inflatable Diamond Grid
+Inflatable geodesic structure ensures outstanding stability and easy setup
+Light and well-ventilated interior has no-see-um mesh and lots of storage space integrated into the sidewalls
+Round floor shape offers ample space for 3 people to sleep with room for baggage, or for up to 5 people to sit together
+Entrance opens with a 2-way zipper and can be used for additional ventilation
+5 closable ports create air exchange to keep the tent interior ventilated
+Corner pockets, roof pockets and hang loops provide multiple storage options; stuff pockets hold doors out of the way and double as storage pockets
+Durable polyester rainfly holds a taut pitch and resists UV degradation
+Save weight and create a minimalist shelter by using just the rainfly, inflatable frame and optional footprint (not included)
+Includes guylines with tighteners, stakes, pole repair kit, compression stuff sack, pole bags and stake bags"
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
+
+
+##### The North Face Stormbreak 1 Tent #####
+
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1484677325/REI_Clone/Tents/d50f2486-7e13-4616-b114-7e2b4903fe04_zouaxu.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "1-person",
+            minimum_trail_weight: calc_weight(3, 1.4),
+            fly_footprint_pitch_weight: calc_weight(2, 4.6),
+            packaged_weight: calc_weight(3, 7),
+            packed_size: "6 x 22 inches",
+            floor_dimensions: "87 x 34 inches",
+            floor_area: 18.13,
+            vestibule_area: "6.04 square feet",
+            peak_height: 33.5,
+            number_of_doors: 1,
+            number_of_poles: 2,
+            pole_material: "Extruded Aluminum",
+            pole_diameter: "8.5 millimeters",
+            canopy_fabric: "Breathable polyester taffeta with water-resistant finish",
+            floor_fabric: "Polyester taffeta with 1500mm polyurethane coating",
+            rainfly_fabric: "Polyester taffeta with 1200mm polyurethane coating",
+            footprint_included: "No",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 1 person 3 season the north face tnf storm breaker stormbreaker backpacking".downcase.split(" "),
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids["The North Face"],
+               name: "Stormbreaker 1 Tent",
+               price: 129.00,
+               rating: 4.6,
+               num_ratings: 29,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "With a simple 1-person design, this 3-season tent offers comfortable shelter from a trailhead campsite to your favorite backcountry hideaway."
+              )
+
+product_id = Product.last.id
+
+details = "Fully seam-taped canopy and floor
+Easy-pitch design
+High / low ventilation
+Accommodates the Square gear loft (sold separately)
+Footprint (sold separately) extends the life of your tent by protecting it from abrasive wear and tear"
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
+
+
+
+##### The North Face Tadpole FL 2 Tent #####
+
+image_url = "http://res.cloudinary.com/nequalszero/image/upload/v1484677363/REI_Clone/Tents/1a8752d4-a42b-48cc-88a1-a3568cc756a9_mw7txu.jpg"
+
+Tent.create(seasons: "3-season",
+            sleeping_capacity: "2-person",
+            minimum_trail_weight: calc_weight(3, 15),
+            fly_footprint_pitch_weight: calc_weight(2, 15),
+            packaged_weight: calc_weight(4, 7),
+            packed_size: "12 x 21 inches",
+            floor_dimensions: "88 x 54 (foot width) 42 inches",
+            floor_area: 29,
+            vestibule_area: "8.8 square feet",
+            peak_height: 41,
+            number_of_doors: 1,
+            number_of_poles: 2,
+            pole_material: "Aluminum DAC Featherlite NSL",
+            pole_diameter: "Unavailable",
+            canopy_fabric: "Ripstop nylon/no-see-um mesh",
+            floor_fabric: "Coated ripstop nylon",
+            rainfly_fabric: "Coated ripstop nylon",
+            design_type: "Freestanding"
+           )
+
+Product.create(category_id: category_ids["tents"],
+               search_keywords: "#{tents_keywords} 3 person 3 season the north face tnf tadpole 2 fl backpacking".downcase.split(" "),
+               product_table_id: Tent.last.id,
+               brand_id: brand_ids["The North Face"],
+               name: "Tadpole FL 2 Tent",
+               price: 309.00,
+               rating: 4.3,
+               num_ratings: 16,
+               best_use: "Backpacking",
+               full_size_image: image_url,
+               primary_image: create_image_url(image_url, :primary),
+               result_image: create_image_url(image_url, :result),
+               cart_image: create_image_url(image_url, :cart),
+               description: "Inspired by the legendary original, The North Face Tadpole FL Tent for 2 adds more interior room at a lighter weight, letting you enjoy reliable performance and comfort on adventures across 3 seasons."
+              )
+
+product_id = Product.last.id
+
+details = "Lightweight pole hubs, pole clips and color-coded webbing save weight and make setup and disassembly simple and fast without sacrificing strength or rigidity
+DAC Featherlite® NSL pole ends feature unique inserts that create strong, functional poles to save weight and reduce breakage
+Fully seam-sealed canopy and floor help keep you snug and dry; high/low ventilation promotes breathability and helps control condensation
+Handy ceiling loop makes it easy to hang a headlamp or accessories
+Poles and rainfly can be set up with the Tadpole FL footprint (sold separately) to create an even lighter weight shelter
+Includes guylines, stakes and stuff sacks"
+
+details.split("\n").each { |det| Detail.create(product_id: product_id, description: det) }
+
+
 # ####### Reviews ##########################################################################################################################################################################################################################################################
 
 # Since my ruby version / Faker version are currently behind
