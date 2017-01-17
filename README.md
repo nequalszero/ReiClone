@@ -31,7 +31,12 @@ the server updates the quantity of existing database entry and returns a redirec
 
 On the front end, the middleware and reducer both listen for the action that updates the user's cart in the store. If the redirection boolean is present, the reducer returns the old state, and the middleware dispatches an action to update the item in the store as opposed to pushing a duplicate item. Similar logic is used to handle "Add to Cart" actions dispatched while no user is logged in, updating the store and local storage appropriately.
 
-On the back end, this setup saves space in the database in the event that a user has large quantities of the same item.  As opposed to having [quantity] number of rows each representing a single item, a single row with a product id, user id, and quantity column is used.  On the front end, I believe this setup offers a more aesthetic user experience.  Currently on the REI website, adding the same item to your cart multiple times yields multiple identical items in your shopping cart, each with their own quantity attribute.  I opted to manage identical items as a single cart object in the store with a net quantity attribute, thereby making it easy to render the shopping cart with a single listing for each product and eliminating the need for a user to ever manually count the quantity of a product.
+On the back end, this setup saves space in the database in the event that a user has large quantities of the same item.  As opposed to having [quantity] number of rows each representing a single item, a single row with a product id, user id, and quantity column is used.  On the front end, I believe this setup offers a more enjoyable user experience.  Currently on the REI website, adding the same item to your cart multiple times yields multiple identical items in your shopping cart, each with their own quantity attribute.  I opted to manage identical items as a single cart object in the store with a net quantity attribute, thereby making it easy to render the shopping cart with a single listing for each product and eliminating the need for a user to ever manually count the quantity of a product.
+
+### Floating Navigation Bar on Product Page
+When viewing a single product, additional information is found in 3 sections: details, specifications, and reviews. A navigation bar with links to these 3 sections can be found midway down the page.  Upon scrolling past the Details section, the navigation bar detaches from its static position and become fixed at the top of the window.  This logic is handled in the product details component.
+
+When rendering the component, refs are used to store reference to the DOM nodes representing the Details, Specs, and Reviews sections.  Using these references, the state is populated with locations of these sections on the page, as well as with booleans representing which section is current active / being focused on.  When the component mounts, an on-scroll listener is added to the document, checking the current position of the user's window.  When the user moves past each section, the on-scroll event changes a boolean in the state representing which link in the navigation bar should be active. The state is then passed to the React Classnames library, which uses the boolean values and class name keys to appropriately adjust element class names, thus manipulating their styling by adding and removing active classes.
 
 # Screenshots
 
@@ -49,23 +54,20 @@ On the back end, this setup saves space in the database in the event that a user
 
 # Future Directions for the Project
 
-### Add Past Purchases
-Current upon checking out, the user's shopping cart is simply dumped out. Ideally there would be a mock payment screen and a table to handle past purchases so that they can viewed in the account details.
+### Search Bar and Filters
+Search bar is could use a suggestions / auto-complete feature.  Sidebar filter for results should be implemented.
 
 ### More Seeds
 Seed more categories and more items per category.
 
-### Search Bar and Filters
-Search bar is could use a suggestions / auto-complete feature.  Sidebar filter is for results should be implemented.
-
 ## Refactoring
 Reduce number of controlled components, learn how to use refs to access child components and their methods from their parents.  Eliminate unnecessary item from component states that are already being passed in via props.
-
-## React Classnames library
-Implement React Classnames library to handle changing class names in components, as opposed to manually constructing classnames based on various boolean conditions.
 
 ## Fix Dropdowns in Firefox
 Initial naive implementation of opening/closing dropdowns throws errors in Firefox and does not function properly.  Refactor to use onFocus and onBlur.
 
 ## Database Changes
 Look into storing hashes in a database column as opposed to arrays or strings for product search keywords.  Look into polymorphic associations for the Products table.
+
+### Add Past Purchases
+Current upon checking out, the user's shopping cart is simply dumped out. Ideally there would be a mock payment screen and a table to handle past purchases so that they can viewed in the account details.
