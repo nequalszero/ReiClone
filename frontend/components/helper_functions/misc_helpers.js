@@ -17,7 +17,7 @@ const backgrounds = [
   {class: 'hiker-banner', route: '/'},
   // {class: 'osprey-banner', route: '/'},
   {class: 'heimplanet-banner-1', route: '/search?keywords=Heimplanet'},
-  {class: 'heimplanet-banner-2', route: '/search?keywords=Heimplanet'},
+  {class: 'heimplanet-banner-2', route: '/product/27'},
   {class: 'tnf-banner', route: '/search?keywords=The+North+Face'},
   {class: 'checkout-marmot-banner', route: '/search?keywords=Marmot'},
 ];
